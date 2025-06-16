@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>17 Agustus 2025 - Lomba Kemerdekaan Indonesia</title>
+    <!-- Swiper CSS -->
+     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
     <style>
         * {
             margin: 0;
@@ -728,13 +731,68 @@
         .close-notification:hover {
             opacity: 1;
         }
+
+        .galeri-section {
+        padding: 2rem;
+        background: #f4f4f4;
+        text-align: center;
+        }
+
+        .swiper {
+        width: 90%;
+        margin: 1rem auto;
+        }
+
+        .swiper-slide img {
+        width: 100%;
+        height: 280px;        /* 👉 agak tinggi, tidak terlalu vertikal */
+        object-fit: cover;    /* potong bagian atas/bawah jika perlu */
+        object-position: center;
+        border-radius: 12px;
+        }
+        .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+        gap: 1rem;
+        }
+
+        .pagination button {
+        background-color: #e63946;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .pagination button:hover {
+        background-color: #d62828;
+        transform: scale(1.05);
+        }
+
+        .pagination button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+        }
+
+        #page-info {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #333;
+        }
+
+
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">🇮🇩 17 Agustus 2025</div>
+            <div class="logo">KATAR 07</div>
             <ul class="nav-menu">
                 <li><a href="#beranda">Beranda</a></li>
                 <li><a href="#lomba">Lomba</a></li>
@@ -815,53 +873,50 @@
 
     <!-- Lomba Section -->
     <section id="lomba" class="lomba">
-        <div class="container">
-            <h2 class="section-title reveal">Jenis Lomba</h2>
-            <div class="lomba-grid">
-                <div class="lomba-card reveal">
-                    <div class="lomba-icon">🏃</div>
-                    <h3>Balap Karung</h3>
-                    <p>Lomba lari menggunakan karung goni yang menguji kecepatan dan keseimbangan. Peserta dari berbagai usia dapat berpartisipasi dalam kategori yang berbeda.</p>
-                    <button class="daftar-btn" onclick="daftar('Balap Karung')">Daftar</button>
-                </div>
-                
-                <div class="lomba-card reveal">
-                    <div class="lomba-icon">🍪</div>
-                    <h3>Makan Kerupuk</h3>
-                    <p>Lomba makan kerupuk yang digantung tanpa menggunakan tangan. Menguji kemampuan dan kecepatan dalam menghabiskan kerupuk.</p>
-                    <button class="daftar-btn" onclick="daftar('Makan Kerupuk')">Daftar</button>
-                </div>
-                
-                <div class="lomba-card reveal">
-                    <div class="lomba-icon">🌴</div>
-                    <h3>Panjat Pinang</h3>
-                    <p>Lomba tradisional memanjat pohon pinang yang sudah diolesi minyak untuk meraih hadiah di puncaknya. Membutuhkan kerjasama tim.</p>
-                    <button class="daftar-btn" onclick="daftar('Panjat Pinang')">Daftar</button>
-                </div>
-                
-                <div class="lomba-card reveal">
-                    <div class="lomba-icon">🥄</div>
-                    <h3>Balap Sendok</h3>
-                    <p>Lomba lari sambil menyeimbangkan telur di atas sendok. Menguji konsentrasi dan kestabilan dalam bergerak.</p>
-                    <button class="daftar-btn" onclick="daftar('Balap Sendok')">Daftar</button>
-                </div>
-                
-                <div class="lomba-card reveal">
-                    <div class="lomba-icon">👥</div>
-                    <h3>Tarik Tambang</h3>
-                    <p>Lomba kekuatan tim untuk menarik tali hingga lawan melewati garis batas. Membutuhkan kekompakan dan strategi tim.</p>
-                    <button class="daftar-btn" onclick="daftar('Tarik Tambang')">Daftar</button>
-                </div>
-                
-                <div class="lomba-card reveal">
-                    <div class="lomba-icon">💧</div>
-                    <h3>Pecah Air</h3>
-                    <p>Lomba memecahkan balon berisi air yang digantung dengan mata tertutup. Menguji ketepatan dan keberuntungan.</p>
-                    <button class="daftar-btn" onclick="daftar('Pecah Air')">Daftar</button>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="container">
+    <h2 class="section-title reveal">Jenis Lomba</h2>
+    <div id="lomba-grid" class="lomba-grid"></div>
+    <div class="pagination">
+      <button onclick="prevPage()">⟨ Prev</button>
+      <span id="page-info"></span>
+      <button onclick="nextPage()">Next ⟩</button>
+    </div>
+  </div>
+</section>
+
+<section class="galeri-section">
+  <h2>📸 Galeri Lomba</h2>
+  <div class="swiper lombaSwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="images/1.jpg" alt="Lomba 1"></div>
+      <div class="swiper-slide"><img src="images/2.jpg" alt="Lomba 2"></div>
+      <div class="swiper-slide"><img src="images/3.jpg" alt="Lomba 3"></div>
+      <div class="swiper-slide"><img src="images/4.jpg" alt="Lomba 4"></div>
+      <div class="swiper-slide"><img src="images/5.jpg" alt="Lomba 5"></div>
+      <div class="swiper-slide"><img src="images/6.jpg" alt="Lomba 1"></div>
+      <div class="swiper-slide"><img src="images/7.jpg" alt="Lomba 2"></div>
+      <div class="swiper-slide"><img src="images/8.jpg" alt="Lomba 3"></div>
+      <div class="swiper-slide"><img src="images/9.jpg" alt="Lomba 4"></div>
+      <div class="swiper-slide"><img src="images/10.jpg" alt="Lomba 5"></div>
+    </div>
+  </div>
+
+  <h2>🌙 Galeri Malam Puncak</h2>
+  <div class="swiper puncakSwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="images/p1.jpg" alt="Puncak 1"></div>
+      <div class="swiper-slide"><img src="images/p2.jpg" alt="Puncak 2"></div>
+      <div class="swiper-slide"><img src="images/p3.jpg" alt="Puncak 3"></div>
+      <div class="swiper-slide"><img src="images/p4.jpg" alt="Puncak 4"></div>
+      <div class="swiper-slide"><img src="images/p5.jpg" alt="Puncak 5"></div>
+      <div class="swiper-slide"><img src="images/p6.jpg" alt="Puncak 6"></div>
+      <div class="swiper-slide"><img src="images/p7.jpg" alt="Puncak 7"></div>
+      <div class="swiper-slide"><img src="images/p8.jpg" alt="Puncak 8"></div>
+      <div class="swiper-slide"><img src="images/p9.jpg" alt="Puncak 9"></div>
+      <div class="swiper-slide"><img src="images/p10.jpg" alt="Puncak 10"></div>
+    </div>
+  </div>
+</section>
 
     <!-- Registration Section -->
     <section id="daftar" class="registration">
@@ -974,22 +1029,25 @@
             <button class="close-notification" onclick="closeNotification()">×</button>
         </div>
     </div>
-<div class="music-player">
-    <div class="music-controls">
-      <button id="playPauseBtn" title="Play/Pause">▶️</button>
-      <button id="volumeBtn" title="Mute/Unmute">🔊</button>
+
+    <div class="music-player">
+        <div class="music-controls">
+        <button id="playPauseBtn" title="Play/Pause">▶️</button>
+        <button id="volumeBtn" title="Mute/Unmute">🔊</button>
+        </div>
+        <div class="music-info">
+        <div id="songTitle">Indonesia Raya</div>
+        <div id="songArtist">Lagu Kebangsaan Indonesia</div>
+        <div class="music-progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        </div>
     </div>
-    <div class="music-info">
-      <div id="songTitle">Indonesia Raya</div>
-      <div id="songArtist">Lagu Kebangsaan Indonesia</div>
-      <div class="music-progress">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
-    </div>
-  </div>
 
   <!-- Hidden audio -->
   <audio id="backgroundMusic" src="lagu.mp3" loop preload="auto"></audio>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script>
         // Mobile menu toggle
@@ -1406,7 +1464,108 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', startMusic);
 });
 
+     const lombaSwiper = new Swiper('.lombaSwiper', {
+    loop: true,
+    slidesPerView: 3,
+    spaceBetween: 20,
+    autoplay: {
+      delay: 0,
+      disableOnInteraction: false
+    },
+    speed: 3000,
+    allowTouchMove: false,
+  });
+
+  const puncakSwiper = new Swiper('.puncakSwiper', {
+    loop: true,
+    slidesPerView: 3,
+    spaceBetween: 20,
+    autoplay: {
+      delay: 0,
+      disableOnInteraction: false,
+      reverseDirection: true // geser ke kiri
+    },
+    speed: 3000,
+    allowTouchMove: false,
+  });
         
     </script>
+    <script>
+  const lombaList = [
+    // Umur 3–5 tahun
+    { nama: "Lomba Bendera", deskripsi: "Mengenali dan menyusun bendera dengan cepat.", icon: "🚩" },
+    { nama: "Lomba Nangkep Ikan", deskripsi: "Menangkap ikan kecil dari kolam buatan.", icon: "🐟" },
+
+    // Umur 6–8 tahun
+    { nama: "Lomba Stocking", deskripsi: "Permainan lucu dengan stocking di kepala dan bola!", icon: "🧦" },
+    { nama: "Lomba Paku", deskripsi: "Memasukkan paku ke dalam botol dengan cepat.", icon: "🪛" },
+    { nama: "Pindah Gelas Pake Balon", deskripsi: "Memindahkan gelas hanya dengan hembusan balon.", icon: "🎈" },
+
+    // Umur 9–15 tahun
+    { nama: "Balap Karung", deskripsi: "Lomba lari dengan karung, uji kecepatan & keseimbangan.", icon: "🏃" },
+    { nama: "Lomba Octopus", deskripsi: "Permainan tim 4 orang penuh koordinasi dan seru!", icon: "🐙" },
+    { nama: "Tiup Gelas", deskripsi: "Bekerjasama meniup gelas dari ujung ke ujung.", icon: "🥤" },
+    { nama: "Voli Air", deskripsi: "Main voli pakai air dan ember, pasti basah!", icon: "🏐" },
+
+    // Ibu-ibu
+    { nama: "Lari Bawa Balon", deskripsi: "Lari sambil jaga balon tetap utuh!", icon: "🎈" },
+    { nama: "Lomba Makeup", deskripsi: "Makeup cepat dan lucu, bisa bareng anak!", icon: "💄" },
+    { nama: "Sedotan ke Botol", deskripsi: "Isi botol dengan air dari sedotan, uji konsentrasi!", icon: "🥤" },
+    { nama: "Estafet Kardus", deskripsi: "Kerja tim bawa kardus sambung menyambung!", icon: "📦" },
+
+    // Universal
+    { nama: "Kerupuk Sarung", deskripsi: "Makan kerupuk dari dalam sarung!", icon: "🍘" },
+    { nama: "Lomba Biskuit", deskripsi: "Geser biskuit dari dahi ke mulut tanpa tangan!", icon: "🍪" },
+  ];
+
+  let currentPage = 1;
+  const itemsPerPage = 6;
+
+  function renderLombaPage(page) {
+    const lombaGrid = document.getElementById("lomba-grid");
+    const pageInfo = document.getElementById("page-info");
+    lombaGrid.innerHTML = "";
+
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const currentItems = lombaList.slice(start, end);
+
+    currentItems.forEach((lomba) => {
+      const card = document.createElement("div");
+      card.className = "lomba-card reveal";
+      card.innerHTML = `
+        <div class="lomba-icon">${lomba.icon}</div>
+        <h3>${lomba.nama}</h3>
+        <p>${lomba.deskripsi}</p>
+        <button class="daftar-btn" onclick="daftar('${lomba.nama}')">Daftar</button>
+      `;
+      lombaGrid.appendChild(card);
+    });
+
+    pageInfo.textContent = `Halaman ${page} dari ${Math.ceil(lombaList.length / itemsPerPage)}`;
+  }
+
+  function nextPage() {
+    if (currentPage < Math.ceil(lombaList.length / itemsPerPage)) {
+      currentPage++;
+      renderLombaPage(currentPage);
+    }
+  }
+
+  function prevPage() {
+    if (currentPage > 1) {
+      currentPage--;
+      renderLombaPage(currentPage);
+    }
+  }
+
+  function daftar(namaLomba) {
+    alert(`Kamu mendaftar untuk: ${namaLomba}`);
+  }
+
+  // Inisialisasi halaman pertama
+  renderLombaPage(currentPage);
+</script>
+
 </body>
 </html>
