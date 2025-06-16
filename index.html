@@ -423,66 +423,105 @@
         }
 
         /* Registration Section */
-        .registration {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, #FF0000, #FF4444);
-            color: #FFFFFF;
-        }
-
-        .registration-form {
-            max-width: 600px;
+         .container1 {
+            max-width: 800px;
             margin: 0 auto;
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255,255,255,0.9);
+          .section-title {
+            text-align: center;
             color: #333;
-            font-size: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
+        
+        .form-group {
+            margin-bottom: 25px;
         }
-
-        .submit-btn {
-            background: #FFFFFF;
-            color: #FF0000;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            cursor: pointer;
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: bold;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
             font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
-            width: 100%;
         }
-
+        
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,255,255,0.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .kupon-display {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 3px dashed #FF6B35;
+            display: none;
+        }
+        
+        .lomba-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .lomba-title {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
         }
 
         /* Footer */
@@ -1085,52 +1124,128 @@
 </section>
 
     <!-- Registration Section -->
-    <section id="daftar" class="registration">
-        <div class="container">
-            <h2 class="section-title" style="color: #FFFFFF;">Daftar Lomba</h2>
-            <form class="registration-form reveal" id="registrationForm">
+     <div class="container1">
+        <h2 class="section-title">🏆 Daftar Lomba 17 Agustus 🏆</h2>
+        
+        <div class="success-message" id="successMessage">
+            Pendaftaran berhasil! Terima kasih telah mendaftar.
+        </div>
+        
+        <div class="kupon-display" id="kuponDisplay">
+            <h3>🎫 KUPON PENDAFTARAN 🎫</h3>
+            <div id="kuponCode" style="font-size: 1.5rem; margin: 10px 0;"></div>
+            <small>Simpan kupon ini sebagai bukti pendaftaran</small>
+        </div>
+        
+        <form class="registration-form" id="registrationForm">
+            <div class="form-group">
+                <label for="nama">👤 Nama Lengkap</label>
+                <input type="text" id="nama" name="nama" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="umur">🎂 Umur</label>
+                <input type="number" id="umur" name="umur" min="3" max="80" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="alamat">🏠 Alamat</label>
+                <textarea id="alamat" name="alamat" required placeholder="Masukkan alamat lengkap..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="namaOrangTua">👨‍👩‍👧‍👦 Nama Orang Tua</label>
+                <input type="text" id="namaOrangTua" name="namaOrangTua" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="telepon">📱 Nomor Telepon</label>
+                <input type="tel" id="telepon" name="telepon" required placeholder="08xxxxxxxxxx">
+            </div>
+            
+            <div class="lomba-section">
+                <h3 class="lomba-title">🏆 Lomba Pertama (Wajib)</h3>
                 <div class="form-group">
-                    <label for="nama">Nama Lengkap</label>
-                    <input type="text" id="nama" name="nama" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="telepon">Nomor Telepon</label>
-                    <input type="tel" id="telepon" name="telepon" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="usia">Usia</label>
-                    <input type="number" id="usia" name="usia" min="5" max="80" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="lomba">Pilih Lomba</label>
-                    <select id="lomba" name="lomba" required>
-                        <option value="">-- Pilih Lomba --</option>
-                        <option value="Balap Karung">Balap Karung</option>
-                        <option value="Makan Kerupuk">Makan Kerupuk</option>
-                        <option value="Panjat Pinang">Panjat Pinang</option>
-                        <option value="Balap Sendok">Balap Sendok</option>
-                        <option value="Tarik Tambang">Tarik Tambang</option>
-                        <option value="Pecah Air">Pecah Air</option>
+                    <label for="lomba1">Pilih Lomba Pertama</label>
+                    <select id="lomba1" name="lomba1" required>
+                        <option value="">-- Pilih Lomba Pertama --</option>
+                        
+                        <optgroup label="🎈 Umur 3-5 tahun">
+                            <option value="Lomba Bendera">Lomba Bendera</option>
+                            <option value="Lomba Nangkep Ikan">Lomba Nangkep Ikan</option>
+                        </optgroup>
+                        
+                        <optgroup label="🎯 Umur 6-8 tahun">
+                            <option value="Lomba Stocking">Lomba Stocking</option>
+                            <option value="Lomba Paku">Lomba Paku</option>
+                            <option value="Lomba Pindahin Gelas Pake Balon">Lomba Pindahin Gelas Pake Balon</option>
+                        </optgroup>
+                        
+                        <optgroup label="🏃 Umur 9-15 tahun">
+                            <option value="Lomba Balap Karung">Lomba Balap Karung</option>
+                            <option value="Lomba Octopus [4 orang]">Lomba Octopus [4 orang]</option>
+                            <option value="Lomba Tiup Gelas [4 orang]">Lomba Tiup Gelas [4 orang]</option>
+                            <option value="Lomba Voli Air [4 orang]">Lomba Voli Air [4 orang]</option>
+                        </optgroup>
+                        
+                        <optgroup label="👩 Lomba Ibu-Ibu">
+                            <option value="Lomba Lari Bawa Balon">Lomba Lari Bawa Balon</option>
+                            <option value="Lomba Makeup">Lomba Makeup</option>
+                            <option value="Lomba Sedotan ke Botol">Lomba Sedotan ke Botol</option>
+                            <option value="Lomba Estafet Kardus [4 orang]">Lomba Estafet Kardus [4 orang]</option>
+                        </optgroup>
+                        
+                        <optgroup label="🌟 Universal (Semua Umur)">
+                            <option value="Lomba Kerupuk Sarung">Lomba Kerupuk Sarung</option>
+                            <option value="Lomba Biskuit">Lomba Biskuit</option>
+                        </optgroup>
                     </select>
                 </div>
-                
+            </div>
+            
+            <div class="lomba-section">
+                <h3 class="lomba-title">🎯 Lomba Kedua (Opsional)</h3>
                 <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <textarea id="alamat" name="alamat" required></textarea>
+                    <label for="lomba2">Pilih Lomba Kedua (Opsional)</label>
+                    <select id="lomba2" name="lomba2">
+                        <option value="">-- Pilih Lomba Kedua (Opsional) --</option>
+                        
+                        <optgroup label="🎈 Umur 3-5 tahun">
+                            <option value="Lomba Bendera">Lomba Bendera</option>
+                            <option value="Lomba Nangkep Ikan">Lomba Nangkep Ikan</option>
+                        </optgroup>
+                        
+                        <optgroup label="🎯 Umur 6-8 tahun">
+                            <option value="Lomba Stocking">Lomba Stocking</option>
+                            <option value="Lomba Paku">Lomba Paku</option>
+                            <option value="Lomba Pindahin Gelas Pake Balon">Lomba Pindahin Gelas Pake Balon</option>
+                        </optgroup>
+                        
+                        <optgroup label="🏃 Umur 9-15 tahun">
+                            <option value="Lomba Balap Karung">Lomba Balap Karung</option>
+                            <option value="Lomba Octopus [4 orang]">Lomba Octopus [4 orang]</option>
+                            <option value="Lomba Tiup Gelas [4 orang]">Lomba Tiup Gelas [4 orang]</option>
+                            <option value="Lomba Voli Air [4 orang]">Lomba Voli Air [4 orang]</option>
+                        </optgroup>
+                        
+                        <optgroup label="👩 Lomba Ibu-Ibu">
+                            <option value="Lomba Lari Bawa Balon">Lomba Lari Bawa Balon</option>
+                            <option value="Lomba Makeup">Lomba Makeup</option>
+                            <option value="Lomba Sedotan ke Botol">Lomba Sedotan ke Botol</option>
+                            <option value="Lomba Estafet Kardus [4 orang]">Lomba Estafet Kardus [4 orang]</option>
+                        </optgroup>
+                        
+                        <optgroup label="🌟 Universal (Semua Umur)">
+                            <option value="Lomba Kerupuk Sarung">Lomba Kerupuk Sarung</option>
+                            <option value="Lomba Biskuit">Lomba Biskuit</option>
+                        </optgroup>
+                    </select>
                 </div>
-                
-                <button type="submit" class="submit-btn">Daftar Sekarang</button>
-            </form>
-        </div>
-    </section>
+            </div>
+            
+            <button type="submit" class="submit-btn">🚀 Daftar Sekarang</button>
+        </form>
+    </div>
 
     <!-- Footer -->
     <footer id="kontak" class="footer">
@@ -1660,29 +1775,119 @@ document.addEventListener('DOMContentLoaded', () => {
 <script>
 const lombaList = [
   // Umur 3–5 tahun
-  { nama: "Lomba Bendera", deskripsi: "Mengenali dan menyusun bendera dengan cepat.", icon: "🚩", kategori: "Umur 3–5 tahun" },
-  { nama: "Lomba Nangkep Ikan", deskripsi: "Menangkap ikan kecil dari kolam buatan.", icon: "🐟", kategori: "Umur 3–5 tahun" },
+  { 
+    nama: "Lomba Bendera", 
+    deskripsi: "Mengenali dan menyusun bendera dengan cepat.", 
+    icon: "🚩", 
+    kategori: "Umur 3–5 tahun",
+    gambar: "https://a.okezone.com/photos/2023/08/06//93171/429646_highres.jpg"
+  },
+  { 
+    nama: "Lomba Nangkep Ikan", 
+    deskripsi: "Menangkap ikan kecil dari kolam buatan.", 
+    icon: "🐟", 
+    kategori: "Umur 3–5 tahun",
+    gambar: "https://tkalkalamsurabaya.wordpress.com/wp-content/uploads/2012/04/lomba-menangkap-ikan-di-bak.jpg"
+  },
 
   // Umur 6–8 tahun
-  { nama: "Lomba Stocking", deskripsi: "Permainan lucu dengan stocking di kepala dan bola!", icon: "🧦", kategori: "Umur 6–8 tahun" },
-  { nama: "Lomba Paku", deskripsi: "Memasukkan paku ke dalam botol dengan cepat.", icon: "🪛", kategori: "Umur 6–8 tahun" },
-  { nama: "Pindah Gelas Pake Balon", deskripsi: "Memindahkan gelas hanya dengan hembusan balon.", icon: "🎈", kategori: "Umur 6–8 tahun" },
+  { 
+    nama: "Lomba Stocking", 
+    deskripsi: "Permainan lucu dengan stocking di kepala dan bola!", 
+    icon: "🧦", 
+    kategori: "Umur 6–8 tahun",
+    gambar: "https://cdn.idntimes.com/content-images/post/20220816/2-22da20c1cce56bc8dd84bb8e71dfc794.jpg"
+  },
+  { 
+    nama: "Lomba Paku", 
+    deskripsi: "Memasukkan paku ke dalam botol dengan cepat.", 
+    icon: "🪛", 
+    kategori: "Umur 6–8 tahun",
+    gambar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREhF5hMbyyPM6OKo7R1hqInctHjML8I4v-Rw&s"
+  },
+  { 
+    nama: "Pindah Gelas Pake Balon", 
+    deskripsi: "Memindahkan gelas hanya dengan hembusan balon.", 
+    icon: "🎈", 
+    kategori: "Umur 6–8 tahun",
+    gambar: "https://i.ytimg.com/vi/BDv0yLn2ckU/maxresdefault.jpg"
+  },
 
   // Umur 9–15 tahun
-  { nama: "Balap Karung", deskripsi: "Lomba lari dengan karung, uji kecepatan & keseimbangan.", icon: "🏃", kategori: "Umur 9–15 tahun" },
-  { nama: "Lomba Octopus", deskripsi: "Permainan tim 4 orang penuh koordinasi dan seru!", icon: "🐙", kategori: "Umur 9–15 tahun" },
-  { nama: "Tiup Gelas", deskripsi: "Bekerjasama meniup gelas dari ujung ke ujung.", icon: "🥤", kategori: "Umur 9–15 tahun" },
-  { nama: "Voli Air", deskripsi: "Main voli pakai air dan ember, pasti basah!", icon: "🏐", kategori: "Umur 9–15 tahun" },
+  { 
+    nama: "Balap Karung", 
+    deskripsi: "Lomba lari dengan karung, uji kecepatan & keseimbangan.", 
+    icon: "🏃", 
+    kategori: "Umur 9–15 tahun",
+    gambar: "https://cdn.rri.co.id/berita/Mamuju/t/1723508592691-_5d85129e-f785-4acb-a9bb-28e1e19fd1b1/4msltmlei4ryr4t.jpeg"
+  },
+  { 
+    nama: "Lomba Octopus", 
+    deskripsi: "Permainan tim 4 orang penuh koordinasi dan seru!", 
+    icon: "🐙", 
+    kategori: "Umur 9–15 tahun",
+    gambar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe98sf927YZAjAIYhmr6lnqlDcYI5VN8A7qw&s"
+  },
+  { 
+    nama: "Tiup Gelas", 
+    deskripsi: "Bekerjasama meniup gelas dari ujung ke ujung.", 
+    icon: "🥤", 
+    kategori: "Umur 9–15 tahun",
+    gambar: "https://i.ytimg.com/vi/0Hs7BTsnQeg/sddefault.jpg"
+  },
+  { 
+    nama: "Voli Air", 
+    deskripsi: "Main voli pakai air dan ember, pasti basah!", 
+    icon: "🏐", 
+    kategori: "Umur 9–15 tahun",
+    gambar: "hhttps://www.man1banyuwangi.sch.id/upload/imagecache/22961190DSC_0405(1)-800x534.jpg"
+  },
 
   // Ibu-ibu
-  { nama: "Lari Bawa Balon", deskripsi: "Lari sambil jaga balon tetap utuh!", icon: "🎈", kategori: "Ibu-ibu" },
-  { nama: "Lomba Makeup", deskripsi: "Makeup cepat dan lucu, bisa bareng anak!", icon: "💄", kategori: "Ibu-ibu" },
-  { nama: "Sedotan ke Botol", deskripsi: "Isi botol dengan air dari sedotan, uji konsentrasi!", icon: "🥤", kategori: "Ibu-ibu" },
-  { nama: "Estafet Kardus", deskripsi: "Kerja tim bawa kardus sambung menyambung!", icon: "📦", kategori: "Ibu-ibu" },
+  { 
+    nama: "Lari Bawa Balon", 
+    deskripsi: "Lari sambil jaga balon tetap utuh!", 
+    icon: "🎈", 
+    kategori: "Ibu-ibu",
+    gambar: "https://pwmu.co/wp-content/uploads/2019/08/Almadany-tugas.jpg"
+  },
+  { 
+    nama: "Lomba Makeup", 
+    deskripsi: "Makeup cepat dan lucu, bisa bareng anak!", 
+    icon: "💄", 
+    kategori: "Ibu-ibu",
+    gambar: "https://cdn.timesmedia.co.id/images/2018/08/13/Lomba-Merias-Wajah-c.jpg"
+  },
+  { 
+    nama: "Sedotan ke Botol", 
+    deskripsi: "Isi botol dengan air dari sedotan, uji konsentrasi!", 
+    icon: "🥤", 
+    kategori: "Ibu-ibu",
+    gambar: "https://asset-2.tstatic.net/kupang/foto/bank/images/hut-ri-oks-4.jpg"
+  },
+  { 
+    nama: "Estafet Kardus", 
+    deskripsi: "Kerja tim bawa kardus sambung menyambung!", 
+    icon: "📦", 
+    kategori: "Ibu-ibu",
+    gambar: "https://www.infopublik.id/resources/album/peringatan-hut-ke-78-ri/DSC_4604_compressed.JPG"
+  },
 
   // Universal
-  { nama: "Kerupuk Sarung", deskripsi: "Makan kerupuk dari dalam sarung!", icon: "🍘", kategori: "Universal (Semua Umur)" },
-  { nama: "Lomba Biskuit", deskripsi: "Geser biskuit dari dahi ke mulut tanpa tangan!", icon: "🍪", kategori: "Universal (Semua Umur)" }
+  { 
+    nama: "Kerupuk Sarung", 
+    deskripsi: "Makan kerupuk dari dalam sarung!", 
+    icon: "🍘", 
+    kategori: "Universal (Semua Umur)",
+    gambar: "https://i.ytimg.com/vi/d9h_HJoeP4c/maxresdefault.jpg"
+  },
+  { 
+    nama: "Lomba Biskuit", 
+    deskripsi: "Geser biskuit dari dahi ke mulut tanpa tangan!", 
+    icon: "🍪", 
+    kategori: "Universal (Semua Umur)",
+    gambar: "https://i0.wp.com/pwmu.co/wp-content/uploads/2019/08/Lomba-makan-roti.jpg?fit=686%2C492&ssl=1"
+  },
 ];
 
 let currentPage = 1;
@@ -1734,10 +1939,13 @@ function showDetail(namaLomba) {
   const modalContent = document.getElementById("lomba-modal-content");
 
   modalContent.innerHTML = `
-    <h3>${lomba.icon} ${lomba.nama}</h3>
-    <p><strong>Deskripsi:</strong> ${lomba.deskripsi}</p>
-    <p><strong>Kategori Peserta:</strong> ${lomba.kategori}</p>
-    <button class="daftar-btn" onclick="closeModal()">Tutup</button>
+    <div style="text-align: center;">
+      <img src="${lomba.gambar}" alt="${lomba.nama}" style="width: 100%; max-width: 350px; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+      <h3>${lomba.icon} ${lomba.nama}</h3>
+      <p><strong>Deskripsi:</strong> ${lomba.deskripsi}</p>
+      <p><strong>Kategori Peserta:</strong> ${lomba.kategori}</p>
+      <button class="daftar-btn" onclick="closeModal()">Tutup</button>
+    </div>
   `;
   modal.style.display = "flex";
 }
@@ -1746,6 +1954,10 @@ function closeModal() {
   document.getElementById("lomba-modal").style.display = "none";
 }
 
+// Initialize page on load
+document.addEventListener('DOMContentLoaded', function() {
+  renderLombaPage(1);
+});
 // Jalankan saat halaman dimuat
 document.addEventListener("DOMContentLoaded", function () {
   renderLombaPage(currentPage);
@@ -1771,7 +1983,192 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener('scroll', revealOnScroll);
 </script>
+  <script>
+        // Ganti dengan nomor WhatsApp tujuan (tanpa tanda + dan spasi)
+        const WHATSAPP_NUMBER = '6288214612609'; // Ganti dengan nomor WA yang dituju
+        
+        // Function to generate kupon code
+        function generateKuponCode(nama, tahun) {
+            // Ambil 3 huruf pertama dari nama (uppercase)
+            const namaCode = nama.toUpperCase().replace(/[^A-Z]/g, '').substring(0, 3);
+            
+            // Generate random 4 digit number
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            
+            // Gabungkan: NAMA + TAHUN + RANDOM
+            return `${namaCode}${tahun}${randomNum}`;
+        }
+        
+        // Function to validate age for lomba
+        function validateLombaAge(lomba, umur) {
+            if (!lomba || lomba === '') return true; // Skip if no lomba selected
+            
+            if ((lomba === 'Lomba Bendera' || lomba === 'Lomba Nangkep Ikan') && (umur < 3 || umur > 5)) {
+                return false;
+            }
+            if ((lomba === 'Lomba Stocking' || lomba === 'Lomba Paku' || lomba === 'Lomba Pindahin Gelas Pake Balon') && (umur < 6 || umur > 8)) {
+                return false;
+            }
+            if ((lomba === 'Lomba Balap Karung' || lomba === 'Lomba Octopus [4 orang]' || lomba === 'Lomba Tiup Gelas [4 orang]' || lomba === 'Lomba Voli Air [4 orang]') && (umur < 9 || umur > 15)) {
+                return false;
+            }
+            
+            return true;
+        }
+        
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Simple validation
+            if (!data.nama || !data.umur || !data.alamat || !data.namaOrangTua || !data.telepon || !data.lomba1) {
+                alert('Mohon lengkapi semua field yang diperlukan!');
+                return;
+            }
+            
+            // Check if lomba1 and lomba2 are the same
+            if (data.lomba2 && data.lomba1 === data.lomba2) {
+                alert('Lomba pertama dan kedua tidak boleh sama!');
+                return;
+            }
+            
+            // Phone number validation (basic)
+            const phoneRegex = /^[0-9+\-\s]+$/;
+            if (!phoneRegex.test(data.telepon)) {
+                alert('Format nomor telepon tidak valid!');
+                return;
+            }
+            
+            // Age validation for specific competitions
+            const umur = parseInt(data.umur);
+            
+            // Validate lomba 1
+            if (!validateLombaAge(data.lomba1, umur)) {
+                alert(`Lomba pertama "${data.lomba1}" tidak sesuai dengan umur ${umur} tahun!`);
+                return;
+            }
+            
+            // Validate lomba 2 if selected
+            if (data.lomba2 && !validateLombaAge(data.lomba2, umur)) {
+                alert(`Lomba kedua "${data.lomba2}" tidak sesuai dengan umur ${umur} tahun!`);
+                return;
+            }
+            
+            // Generate kupon code
+            const currentYear = new Date().getFullYear();
+            const kuponCode = generateKuponCode(data.nama, currentYear);
+            
+            // Display kupon
+            document.getElementById('kuponCode').textContent = kuponCode;
+            document.getElementById('kuponDisplay').style.display = 'block';
+            
+            // Create WhatsApp message
+            const today = new Date();
+            const tanggal = today.toLocaleDateString('id-ID', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            
+            let lombaDipilih = `🏆 Lomba 1: ${data.lomba1}`;
+            if (data.lomba2) {
+                lombaDipilih += `\n🎯 Lomba 2: ${data.lomba2}`;
+            }
+            
+            const message = `🎉 *PENDAFTARAN LOMBA 17 AGUSTUS* 🎉
 
+🎫 *KUPON PENDAFTARAN: ${kuponCode}*
+
+📝 *Data Pendaftar:*
+👤 Nama: ${data.nama}
+🎂 Umur: ${data.umur} tahun
+🏠 Alamat: ${data.alamat}
+👨‍👩‍👧‍👦 Nama Orang Tua: ${data.namaOrangTua}
+📱 No. Telepon: ${data.telepon}
+
+🏆 *Lomba yang Dipilih:*
+${lombaDipilih}
+
+📅 Tanggal daftar: ${tanggal}
+
+Terima kasih telah mendaftar! 🙏
+Simpan KUPON ini sebagai bukti pendaftaran.`;
+            
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Create WhatsApp URL
+            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('successMessage').innerHTML = '✅ Data pendaftaran sedang dikirim ke WhatsApp. Silakan kirim pesan yang sudah disiapkan!<br>🎫 Kupon pendaftaran Anda telah dibuat!';
+            
+            // Reset form after 5 seconds
+            setTimeout(() => {
+                this.reset();
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('kuponDisplay').style.display = 'none';
+            }, 8000);
+            
+            // Scroll to kupon display
+            document.getElementById('kuponDisplay').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Real-time age validation for lomba selection
+        function setupAgeValidation() {
+            document.getElementById('umur').addEventListener('change', function() {
+                const lomba1Select = document.getElementById('lomba1');
+                const lomba2Select = document.getElementById('lomba2');
+                const umur = parseInt(this.value);
+                
+                // Reset lomba 1 if age doesn't match
+                if (lomba1Select.value && !validateLombaAge(lomba1Select.value, umur)) {
+                    lomba1Select.value = '';
+                    alert('Pilihan lomba pertama di-reset karena tidak sesuai dengan umur yang dimasukkan.');
+                }
+                
+                // Reset lomba 2 if age doesn't match
+                if (lomba2Select.value && !validateLombaAge(lomba2Select.value, umur)) {
+                    lomba2Select.value = '';
+                    alert('Pilihan lomba kedua di-reset karena tidak sesuai dengan umur yang dimasukkan.');
+                }
+            });
+        }
+        
+        // Prevent selecting same lomba
+        function setupLombaValidation() {
+            document.getElementById('lomba1').addEventListener('change', function() {
+                const lomba2Select = document.getElementById('lomba2');
+                if (this.value && this.value === lomba2Select.value) {
+                    lomba2Select.value = '';
+                    alert('Lomba kedua tidak boleh sama dengan lomba pertama!');
+                }
+            });
+            
+            document.getElementById('lomba2').addEventListener('change', function() {
+                const lomba1Select = document.getElementById('lomba1');
+                if (this.value && this.value === lomba1Select.value) {
+                    this.value = '';
+                    alert('Lomba kedua tidak boleh sama dengan lomba pertama!');
+                }
+            });
+        }
+        
+        // Initialize validations
+        setupAgeValidation();
+        setupLombaValidation();
+    </script>
 
 </body>
 </html>
