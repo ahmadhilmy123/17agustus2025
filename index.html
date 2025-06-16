@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17 Agustus 2025 - Lomba Kemerdekaan Indonesia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #FF0000, #FFFFFF);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #FFFFFF;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #FF0000 0%, #FFFFFF 50%, #FF0000 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23FFD700" opacity="0.3"/></svg>') repeat;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #FFFFFF;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #FF0000;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #FF0000, #FF4444);
+            color: #FFFFFF;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,0,0,0.4);
+        }
+
+        /* Floating decorations */
+        .decoration {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .balloon {
+            width: 40px;
+            height: 60px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .balloon.red { background: #FF0000; }
+        .balloon.white { background: #FFFFFF; border: 2px solid #FF0000; }
+
+        .balloon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .balloon:nth-child(2) { top: 60%; right: 15%; animation-delay: 1s; }
+        .balloon:nth-child(3) { top: 40%; left: 5%; animation-delay: 2s; }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #FF0000;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #FF0000, #FFFFFF);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-info {
+            background: #FFFFFF;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #FF0000;
+        }
+
+        .info-item {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #FF0000, #FF4444);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        /* Lomba Section */
+        .lomba {
+            padding: 5rem 0;
+            background: #FFFFFF;
+        }
+
+        .lomba-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .lomba-card {
+            background: #FFFFFF;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 5px solid #FF0000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lomba-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,0,0,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+
+        .lomba-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .lomba-card:hover::before {
+            animation: shine 0.7s ease-in-out;
+        }
+
+        .lomba-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #FF0000, #FF4444);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #FFFFFF;
+        }
+
+        .lomba-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #FF0000;
+        }
+
+        .lomba-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .daftar-btn {
+            background: linear-gradient(45deg, #FF0000, #FF4444);
+            color: #FFFFFF;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .daftar-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,0,0,0.3);
+        }
+
+        /* Registration Section */
+        .registration {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #FF0000, #FF4444);
+            color: #FFFFFF;
+        }
+
+        .registration-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: #FFFFFF;
+            color: #FF0000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: #FFFFFF;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #FF0000;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #FF0000;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #FF0000;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,0,0,0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            text-align: center;
+            color: #999;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                top: -50%;
+                right: -50%;
+            }
+            100% {
+                top: 150%;
+                right: 150%;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: rgba(255,0,0,0.95);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .lomba-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .decoration {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+         /* Music Player Styles */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #FF0000, #FFFFFF);
+            border-radius: 50px;
+            padding: 15px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            max-width: 280px;
+        }
+
+        .music-player:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .music-toggle {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-toggle:hover {
+            background: rgba(255,255,255,1);
+            transform: scale(1.1);
+        }
+
+        .volume-control {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .volume-control:hover {
+            background: rgba(255,255,255,1);
+            transform: scale(1.1);
+        }
+
+        .music-info {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .song-title {
+            font-size: 0.85rem;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .song-artist {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .music-progress {
+            width: 100%;
+            height: 3px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            width: 0%;
+            transition: width 0.1s ease;
+            border-radius: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .music-player {
+                bottom: 15px;
+                right: 15px;
+                max-width: 250px;
+                padding: 12px 16px;
+            }
+            
+            .music-info {
+                font-size: 0.75rem;
+            }
+            
+            .song-title {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Notification styles */
+        .music-notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 9998;
+            transform: translateX(350px);
+            transition: transform 0.5s ease;
+            max-width: 300px;
+        }
+
+        .music-notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification-text {
+            flex: 1;
+            font-size: 0.9rem;
+        }
+
+        .close-notification {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-notification:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🇮🇩 17 Agustus 2025</div>
+            <ul class="nav-menu">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#lomba">Lomba</a></li>
+                <li><a href="#daftar">Daftar</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero">
+        <div class="decoration balloon red"></div>
+        <div class="decoration balloon white"></div>
+        <div class="decoration balloon red"></div>
+        
+        <div class="hero-content">
+            <h1>Dirgahayu Indonesia ke-80!</h1>
+            <p>Merayakan kemerdekaan dengan berbagai lomba seru dan meriah</p>
+            <a href="#lomba" class="cta-button">Lihat Lomba</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="tentang" class="about">
+        <div class="container">
+            <h2 class="section-title reveal">Tentang Acara</h2>
+            <div class="about-content">
+                <div class="about-text reveal">
+                    <p>
+                        Dalam rangka memperingati Hari Kemerdekaan Republik Indonesia ke-80, 
+                        kami mengadakan berbagai lomba tradisional yang penuh dengan semangat 
+                        kemerdekaan dan kebersamaan. Acara ini terbuka untuk seluruh masyarakat 
+                        dari berbagai kalangan usia.
+                    </p>
+                    <p>
+                        Mari bergabung bersama kami dalam merayakan kemerdekaan Indonesia dengan 
+                        penuh sukacita dan mempererat tali persaudaraan antarwarga.
+                    </p>
+                </div>
+                <div class="about-info reveal">
+                    <div class="info-item">
+                        <div class="info-icon">📅</div>
+                        <div>
+                            <strong>Tanggal Acara:</strong><br>
+                            17 Agustus 2025
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <div>
+                            <strong>Waktu:</strong><br>
+                            08:00 - 16:00 WIB
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div>
+                            <strong>Tempat:</strong><br>
+                            Lapangan Merdeka, Jakarta
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📝</div>
+                        <div>
+                            <strong>Pendaftaran:</strong><br>
+                            1 - 15 Agustus 2025
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lomba Section -->
+    <section id="lomba" class="lomba">
+        <div class="container">
+            <h2 class="section-title reveal">Jenis Lomba</h2>
+            <div class="lomba-grid">
+                <div class="lomba-card reveal">
+                    <div class="lomba-icon">🏃</div>
+                    <h3>Balap Karung</h3>
+                    <p>Lomba lari menggunakan karung goni yang menguji kecepatan dan keseimbangan. Peserta dari berbagai usia dapat berpartisipasi dalam kategori yang berbeda.</p>
+                    <button class="daftar-btn" onclick="daftar('Balap Karung')">Daftar</button>
+                </div>
+                
+                <div class="lomba-card reveal">
+                    <div class="lomba-icon">🍪</div>
+                    <h3>Makan Kerupuk</h3>
+                    <p>Lomba makan kerupuk yang digantung tanpa menggunakan tangan. Menguji kemampuan dan kecepatan dalam menghabiskan kerupuk.</p>
+                    <button class="daftar-btn" onclick="daftar('Makan Kerupuk')">Daftar</button>
+                </div>
+                
+                <div class="lomba-card reveal">
+                    <div class="lomba-icon">🌴</div>
+                    <h3>Panjat Pinang</h3>
+                    <p>Lomba tradisional memanjat pohon pinang yang sudah diolesi minyak untuk meraih hadiah di puncaknya. Membutuhkan kerjasama tim.</p>
+                    <button class="daftar-btn" onclick="daftar('Panjat Pinang')">Daftar</button>
+                </div>
+                
+                <div class="lomba-card reveal">
+                    <div class="lomba-icon">🥄</div>
+                    <h3>Balap Sendok</h3>
+                    <p>Lomba lari sambil menyeimbangkan telur di atas sendok. Menguji konsentrasi dan kestabilan dalam bergerak.</p>
+                    <button class="daftar-btn" onclick="daftar('Balap Sendok')">Daftar</button>
+                </div>
+                
+                <div class="lomba-card reveal">
+                    <div class="lomba-icon">👥</div>
+                    <h3>Tarik Tambang</h3>
+                    <p>Lomba kekuatan tim untuk menarik tali hingga lawan melewati garis batas. Membutuhkan kekompakan dan strategi tim.</p>
+                    <button class="daftar-btn" onclick="daftar('Tarik Tambang')">Daftar</button>
+                </div>
+                
+                <div class="lomba-card reveal">
+                    <div class="lomba-icon">💧</div>
+                    <h3>Pecah Air</h3>
+                    <p>Lomba memecahkan balon berisi air yang digantung dengan mata tertutup. Menguji ketepatan dan keberuntungan.</p>
+                    <button class="daftar-btn" onclick="daftar('Pecah Air')">Daftar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="daftar" class="registration">
+        <div class="container">
+            <h2 class="section-title" style="color: #FFFFFF;">Daftar Lomba</h2>
+            <form class="registration-form reveal" id="registrationForm">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telepon">Nomor Telepon</label>
+                    <input type="tel" id="telepon" name="telepon" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="usia">Usia</label>
+                    <input type="number" id="usia" name="usia" min="5" max="80" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lomba">Pilih Lomba</label>
+                    <select id="lomba" name="lomba" required>
+                        <option value="">-- Pilih Lomba --</option>
+                        <option value="Balap Karung">Balap Karung</option>
+                        <option value="Makan Kerupuk">Makan Kerupuk</option>
+                        <option value="Panjat Pinang">Panjat Pinang</option>
+                        <option value="Balap Sendok">Balap Sendok</option>
+                        <option value="Tarik Tambang">Tarik Tambang</option>
+                        <option value="Pecah Air">Pecah Air</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="alamat">Alamat</label>
+                    <textarea id="alamat" name="alamat" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Daftar Sekarang</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kontak Panitia</h3>
+                    <p>📞 +62 88214612609</p>
+                    <p>📧 info@17agustus2025.id</p>
+                    <p>📍 Jl. Waruajay 1B</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Media Sosial</h3>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">📘</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="Twitter">🐦</a>
+                        <a href="#" title="YouTube">📺</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Informasi</h3>
+                    <p>Pendaftaran: 1 - 15 Agustus 2025</p>
+                    <p>Acara: 17 Agustus 2025</p>
+                    <p>Waktu: 08:00 - 16:00 WIB</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Karang Taruna 07/022. Dirgahayu Indonesia ke-80!</p>
+            </div>
+        </div>
+    </footer>
+
+     <!-- Music Player -->
+    <div class="music-player" id="musicPlayer">
+        <div class="music-controls">
+            <button class="music-toggle" id="playPauseBtn" title="Play/Pause">
+                ▶️
+            </button>
+            <button class="volume-control" id="volumeBtn" title="Mute/Unmute">
+                🔊
+            </button>
+        </div>
+        <div class="music-info">
+            <div class="song-title" id="songTitle">Indonesia Raya</div>
+            <div class="song-artist" id="songArtist">Lagu Kebangsaan Indonesia</div>
+            <div class="music-progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Notification -->
+    <div class="music-notification" id="musicNotification">
+        <div class="notification-content">
+            <div class="notification-text">
+                🎵 Musik patriotik sedang diputar untuk merayakan kemerdekaan Indonesia!
+            </div>
+            <button class="close-notification" onclick="closeNotification()">×</button>
+        </div>
+    </div>
+<div class="music-player">
+    <div class="music-controls">
+      <button id="playPauseBtn" title="Play/Pause">▶️</button>
+      <button id="volumeBtn" title="Mute/Unmute">🔊</button>
+    </div>
+    <div class="music-info">
+      <div id="songTitle">Indonesia Raya</div>
+      <div id="songArtist">Lagu Kebangsaan Indonesia</div>
+      <div class="music-progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden audio -->
+  <audio id="backgroundMusic" src="lagu.mp3" loop preload="auto"></audio>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal(); // Initial check
+
+        // Registration form handling
+        const registrationForm = document.getElementById('registrationForm');
+        
+        registrationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (data.nama && data.email && data.telepon && data.usia && data.lomba && data.alamat) {
+                alert(`Terima kasih ${data.nama}! Pendaftaran untuk lomba ${data.lomba} telah berhasil. Kami akan menghubungi Anda melalui email untuk konfirmasi lebih lanjut.`);
+                this.reset();
+            } else {
+                alert('Mohon lengkapi semua field yang diperlukan.');
+            }
+        });
+
+        // Function to handle direct registration from lomba cards
+        function daftar(namaLomba) {
+            document.getElementById('lomba').value = namaLomba;
+            document.getElementById('daftar').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'linear-gradient(135deg, rgba(255,0,0,0.95), rgba(255,255,255,0.95))';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, #FF0000, #FFFFFF)';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+
+        // Add floating animation to decorative elements
+        const balloons = document.querySelectorAll('.balloon');
+        balloons.forEach((balloon, index) => {
+            balloon.style.animationDelay = `${index * 0.5}s`;
+        });
+
+        // Add entrance animation for hero elements
+        window.addEventListener('load', function() {
+            const heroElements = document.querySelectorAll('.hero-content h1, .hero-content p, .cta-button');
+            heroElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.3}s`;
+            });
+        });
+
+        // Add particles effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.cssText = `
+                position: fixed;
+                width: 6px;
+                height: 6px;
+                background: ${Math.random() > 0.5 ? '#FF0000' : '#FFFFFF'};
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 1;
+                left: ${Math.random() * window.innerWidth}px;
+                top: ${window.innerHeight + 10}px;
+                animation: particleFloat ${3 + Math.random() * 4}s linear forwards;
+            `;
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                if (document.body.contains(particle)) {
+                    document.body.removeChild(particle);
+                }
+            }, 7000);
+        }
+
+        // Add particle animation CSS
+        const particleStyle = document.createElement('style');
+        particleStyle.textContent = `
+            @keyframes particleFloat {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-${window.innerHeight + 100}px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(particleStyle);
+
+        // Create particles periodically
+        setInterval(createParticle, 500);
+
+        // Add interactive hover effects for cards
+        document.querySelectorAll('.lomba-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add typing effect for hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect after page load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const heroTitle = document.querySelector('.hero h1');
+                const originalText = heroTitle.textContent;
+                typeWriter(heroTitle, originalText, 150);
+            }, 500);
+        });
+
+        // Add countdown timer for registration
+        function updateCountdown() {
+            const registrationEnd = new Date('2025-08-15T23:59:59');
+            const now = new Date();
+            const timeLeft = registrationEnd - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                const countdownElement = document.getElementById('countdown');
+                if (countdownElement) {
+                    countdownElement.innerHTML = `
+                        <div class="countdown-item">
+                            <span class="countdown-number">${days}</span>
+                            <span class="countdown-label">Hari</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number">${hours}</span>
+                            <span class="countdown-label">Jam</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number">${minutes}</span>
+                            <span class="countdown-label">Menit</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number">${seconds}</span>
+                            <span class="countdown-label">Detik</span>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Add form validation with better UX
+        const inputs = document.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.value.trim() === '' && this.hasAttribute('required')) {
+                    this.style.borderColor = '#FF0000';
+                    this.style.boxShadow = '0 0 5px rgba(255, 0, 0, 0.3)';
+                } else {
+                    this.style.borderColor = '#28a745';
+                    this.style.boxShadow = '0 0 5px rgba(40, 167, 69, 0.3)';
+                }
+            });
+
+            input.addEventListener('focus', function() {
+                this.style.borderColor = '#007bff';
+                this.style.boxShadow = '0 0 5px rgba(0, 123, 255, 0.3)';
+            });
+        });
+
+        // Add loading state for form submission
+        registrationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Mendaftar...';
+            submitBtn.disabled = true;
+            
+            // Simulate processing time
+            setTimeout(() => {
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                if (data.nama && data.email && data.telepon && data.usia && data.lomba && data.alamat) {
+                    // Show success message with animation
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'success-message';
+                    successMessage.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: linear-gradient(45deg, #28a745, #20c997);
+                        color: white;
+                        padding: 2rem;
+                        border-radius: 15px;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                        z-index: 9999;
+                        text-align: center;
+                        animation: successPop 0.5s ease-out;
+                    `;
+                    successMessage.innerHTML = `
+                        <h3>🎉 Pendaftaran Berhasil!</h3>
+                        <p>Terima kasih ${data.nama}!<br>
+                        Pendaftaran untuk lomba <strong>${data.lomba}</strong> telah berhasil.<br>
+                        Kami akan menghubungi Anda melalui email untuk konfirmasi.</p>
+                        <button onclick="this.parentElement.remove();" style="
+                            background: white;
+                            color: #28a745;
+                            border: none;
+                            padding: 0.5rem 1rem;
+                            border-radius: 25px;
+                            margin-top: 1rem;
+                            cursor: pointer;
+                            font-weight: bold;
+                        ">Tutup</button>
+                    `;
+                    
+                    document.body.appendChild(successMessage);
+                    
+                    // Add success animation CSS
+                    const successStyle = document.createElement('style');
+                    successStyle.textContent = `
+                        @keyframes successPop {
+                            0% {
+                                transform: translate(-50%, -50%) scale(0.5);
+                                opacity: 0;
+                            }
+                            100% {
+                                transform: translate(-50%, -50%) scale(1);
+                                opacity: 1;
+                            }
+                        }
+                    `;
+                    document.head.appendChild(successStyle);
+                    
+                    this.reset();
+                    
+                    // Auto close after 5 seconds
+                    setTimeout(() => {
+                        if (document.body.contains(successMessage)) {
+                            successMessage.remove();
+                        }
+                    }, 5000);
+                } else {
+                    alert('Mohon lengkapi semua field yang diperlukan.');
+                }
+                
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Add scroll progress indicator
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #FF0000, #FFFFFF, #FF0000);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        `;
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+
+        console.log('🇮🇩 Website 17 Agustus 2025 loaded successfully! Dirgahayu Indonesia ke-80!');
+
+        class MusicPlayer {
+  constructor() {
+    this.audio = document.getElementById('backgroundMusic');
+    this.playPauseBtn = document.getElementById('playPauseBtn');
+    this.volumeBtn = document.getElementById('volumeBtn');
+    this.progressBar = document.getElementById('progressBar');
+    this.songTitle = document.getElementById('songTitle');
+    this.songArtist = document.getElementById('songArtist');
+
+    this.isPlaying = false;
+    this.isMuted = false;
+
+    this.init();
+  }
+
+  init() {
+    this.audio.volume = 0.5;
+
+    this.playPauseBtn.addEventListener('click', () => this.togglePlay());
+    this.volumeBtn.addEventListener('click', () => this.toggleMute());
+
+    this.audio.addEventListener('timeupdate', () => {
+      const progress = (this.audio.currentTime / this.audio.duration) * 100;
+      this.progressBar.style.width = progress + '%';
+    });
+  }
+
+  togglePlay() {
+    if (this.isPlaying) {
+      this.audio.pause();
+      this.playPauseBtn.textContent = '▶️';
+    } else {
+      this.audio.play();
+      this.playPauseBtn.textContent = '⏸️';
+    }
+    this.isPlaying = !this.isPlaying;
+  }
+
+  toggleMute() {
+    this.audio.muted = !this.audio.muted;
+    this.volumeBtn.textContent = this.audio.muted ? '🔇' : '🔊';
+  }
+}
+
+// Start after interaction
+let musicPlayer;
+
+document.addEventListener('DOMContentLoaded', () => {
+  musicPlayer = new MusicPlayer();
+
+  // Autoplay workaround: play after user interacts
+  const startMusic = () => {
+    musicPlayer.audio.play().then(() => {
+      musicPlayer.isPlaying = true;
+      musicPlayer.playPauseBtn.textContent = '⏸️';
+    }).catch((err) => {
+      console.warn("Autoplay diblokir. Menunggu interaksi pengguna.");
+    });
+
+    document.removeEventListener('click', startMusic);
+    document.removeEventListener('keydown', startMusic);
+  };
+
+  document.addEventListener('click', startMusic);
+  document.addEventListener('keydown', startMusic);
+});
+
+        
+    </script>
+</body>
+</html>
