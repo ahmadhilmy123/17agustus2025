@@ -939,6 +939,297 @@
         color: #333;
         }
 
+        
+        
+        .competition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .competition-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .competition-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .competition-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .competition-date {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        .winners-podium {
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            margin: 25px 0;
+            gap: 15px;
+        }
+
+        .podium-place {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .winner-name {
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .coming-soon-text {
+            color: #999;
+            font-style: italic;
+        }
+
+        .podium-base {
+            width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .podium-base.first {
+            height: 70px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #333;
+        }
+
+        .podium-base.second {
+            height: 55px;
+            background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
+            color: #333;
+        }
+
+        .podium-base.third {
+            height: 40px;
+            background: linear-gradient(135deg, #cd7f32, #daa520);
+        }
+
+        .countdown-timer {
+            margin: 20px 0;
+        }
+
+        .countdown-timer h4 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .countdown-display {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .countdown-item {
+            text-align: center;
+        }
+
+        .countdown-number {
+            display: block;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .status-upcoming {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .status-ongoing {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            color: #333;
+        }
+
+        .status-completed {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+        }
+
+        /* Pagination Styles */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .pagination-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .pagination-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .pagination-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .pagination-info {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .page-numbers {
+            display: flex;
+            gap: 8px;
+        }
+
+        .page-number {
+            background: rgba(255, 255, 255, 0.7);
+            color: #333;
+            border: 2px solid transparent;
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-number:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.1);
+        }
+
+        .page-number.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .competition-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .pagination-container {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .countdown-display {
+                gap: 8px;
+            }
+            
+            .countdown-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        .hasil-section {
+  padding: 3rem 1rem;
+  background: linear-gradient(to right, #f0f4ff, #ffffff);
+  text-align: center; /* PENTING: agar teks anaknya ketengah */
+}
+
+.custom-heading {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1d3557;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  position: relative;
+  margin: 0 auto 0.5rem auto; /* Supaya benar-benar ketengah */
+}
+
+.custom-heading::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #ff595e;
+  margin: 0.5rem auto 0; /* Garis bawahnya juga ketengah */
+  border-radius: 2px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #444;
+  font-weight: 500;
+  margin-top: 0;
+}
 
     </style>
 </head>
@@ -1259,6 +1550,31 @@
             <button type="submit" class="submit-btn">🚀 Daftar Sekarang</button>
         </form>
     </div>
+
+ <section class="hasil-section" id="hasil">
+         <div class="custom-heading">
+        🏆 HASIL PERLOMBAAN
+    </div>
+    <p class="subtitle">Pengumuman Juara dan Pemenang Setiap Kompetisi</p>
+        
+        <div class="competition-grid" id="competitionGrid">
+            <!-- Competition cards will be inserted here by JavaScript -->
+        </div>
+
+        <div class="pagination-container">
+            <button class="pagination-btn" id="prevBtn" onclick="changePage(-1)">← Sebelumnya</button>
+            
+            <div class="page-numbers" id="pageNumbers">
+                <!-- Page numbers will be inserted here -->
+            </div>
+            
+            <div class="pagination-info">
+                <span id="pageInfo">Halaman 1 dari 3</span>
+            </div>
+            
+            <button class="pagination-btn" id="nextBtn" onclick="changePage(1)">Selanjutnya →</button>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer id="kontak" class="footer">
@@ -1782,7 +2098,7 @@ document.addEventListener('DOMContentLoaded', () => {
     speed: 3000,
     allowTouchMove: false,
   });
-        
+
     </script>
 
 <script>
@@ -2182,6 +2498,309 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         setupAgeValidation();
         setupLombaValidation();
     </script>
+
+    <script>
+    // Data kompetisi
+    const competitions = [
+    // Umur 3–5 tahun
+    {
+        title: "🚩 LOMBA BENDERA",
+        date: "Umur: 3–5 tahun",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "bendera",
+        status: "Segera Diumumkan",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-15T17:00:00"
+    },
+    {
+        title: "🐟 LOMBA NANGKEP IKAN",
+        date: "Umur: 3–5 tahun",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "ikan",
+        status: "Sedang Berlangsung",
+        statusClass: "status-ongoing",
+        isCompleted: false,
+        deadline: "2025-08-16T17:00:00"
+    },
+
+    // Umur 6–8 tahun
+    {
+        title: "🧦 LOMBA STOCKING",
+        date: "Umur: 6–8 tahun",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "stocking",
+        status: "Pendaftaran Dibuka",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-17T17:00:00"
+    },
+    {
+        title: "🔨 LOMBA PAKU",
+        date: "Umur: 6–8 tahun",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "paku",
+        status: "Segera",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-17T17:00:00"
+    },
+    {
+        title: "🎈 LOMBA PINDAHIN GELAS PAKE BALON",
+        date: "Umur: 6–8 tahun",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "balon",
+        status: "Segera Dimulai",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-18T17:00:00"
+    },
+
+    // Umur 9–15 tahun
+    {
+        title: "🏃 LOMBA BALAP KARUNG",
+        date: "Umur: 9–15 tahun",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "karung",
+        status: "Audisi Dibuka",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-18T17:00:00"
+    },
+    {
+        title: "🐙 LOMBA OCTOPUS",
+        date: "Umur: 9–15 tahun (4 orang)",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "octopus",
+        status: "Segera Diumumkan",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-19T17:00:00"
+    },
+    {
+        title: "💨 LOMBA TIUP GELAS",
+        date: "Umur: 9–15 tahun (4 orang)",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "tiup",
+        status: "Sedang Berlangsung",
+        statusClass: "status-ongoing",
+        isCompleted: false,
+        deadline: "2025-08-19T17:00:00"
+    },
+    {
+        title: "🏐 LOMBA VOLI AIR",
+        date: "Umur: 9–15 tahun (4 orang)",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "voliair",
+        status: "Pendaftaran Dibuka",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-20T17:00:00"
+    },
+
+    // Kategori Ibu-Ibu
+    {
+        title: "🎈 LOMBA LARI BAWA BALON",
+        date: "Kategori: Ibu-Ibu",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "laribalon",
+        status: "Segera Dimulai",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-21T17:00:00"
+    },
+    {
+        title: "💄 LOMBA MAKEUP",
+        date: "Kategori: Ibu-Ibu",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "makeup",
+        status: "Audisi Dibuka",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-21T17:00:00"
+    },
+    {
+        title: "🥤 LOMBA SEDOTAN KE BOTOL",
+        date: "Kategori: Ibu-Ibu",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "sedotan",
+        status: "Segera Diumumkan",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-22T17:00:00"
+    },
+    {
+        title: "📦 LOMBA ESTAFET KARDUS",
+        date: "Kategori: Ibu-Ibu (4 orang)",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "estafet",
+        status: "Segera Dimulai",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-22T17:00:00"
+    },
+
+    // Universal (semua umur)
+    {
+        title: "🍘 LOMBA KERUPUK SARUNG",
+        date: "Kategori: Semua Umur",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "kerupuk",
+        status: "Audisi Dibuka",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-23T17:00:00"
+    },
+    {
+        title: "🍪 LOMBA BISKUIT",
+        date: "Kategori: Semua Umur",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "biskuit",
+        status: "Segera Diumumkan",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-23T17:00:00"
+    }
+];
+
+
+    const itemsPerPage1 = 6;
+    let currentPage1 = 1;
+    const totalPages = Math.ceil(competitions.length / itemsPerPage1);
+
+    function createCompetitionCard(competition, index) {
+        const winnersHtml = competition.winners.map((winner, i) => {
+            const positions = ['second', 'first', 'third'];
+            const numbers = ['2', '1', '3'];
+            const isComingSoon = winner === "Coming Soon";
+
+            return `
+                <div class="podium-place">
+                    <div class="winner-name">
+                        ${isComingSoon ? '<span class="coming-soon-text">Coming Soon</span>' : winner}
+                    </div>
+                    <div class="podium-base ${positions[i]}">
+                        <span class="podium-number">${numbers[i]}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        const countdownHtml = competition.isCompleted
+            ? `<div class="countdown-timer"><h4>🎉 Hasil Telah Diumumkan!</h4><p>Selamat kepada para pemenang!</p></div>`
+            : `<div class="countdown-timer" data-countdown="${competition.countdownId}" data-deadline="${competition.deadline}">
+                <h4>⏰ Countdown Pengumuman:</h4>
+                <div class="countdown-display">
+                    <div class="countdown-item"><span class="countdown-number">00</span><span class="countdown-label">Hari</span></div>
+                    <div class="countdown-item"><span class="countdown-number">00</span><span class="countdown-label">Jam</span></div>
+                    <div class="countdown-item"><span class="countdown-number">00</span><span class="countdown-label">Menit</span></div>
+                    <div class="countdown-item"><span class="countdown-number">00</span><span class="countdown-label">Detik</span></div>
+                </div>
+            </div>`;
+
+        return `
+            <div class="competition-card">
+                <h3 class="competition-title">${competition.title}</h3>
+                <p class="competition-date">${competition.date}</p>
+                <div class="winners-podium">${winnersHtml}</div>
+                ${countdownHtml}
+                <span class="status-badge ${competition.statusClass}">${competition.status}</span>
+            </div>
+        `;
+    }
+
+    function displayPage(page) {
+        const startIndex = (page - 1) * itemsPerPage1;
+        const endIndex = startIndex + itemsPerPage1;
+        const pageCompetitions = competitions.slice(startIndex, endIndex);
+
+        const grid = document.getElementById('competitionGrid');
+        if (!grid) return;
+
+        grid.innerHTML = pageCompetitions.map(createCompetitionCard).join('');
+        startCountdowns();
+    }
+
+    function updatePagination() {
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageInfo = document.getElementById('pageInfo');
+        const pageNumbers = document.getElementById('pageNumbers');
+
+        prevBtn.disabled = currentPage === 1;
+        nextBtn.disabled = currentPage === totalPages;
+        pageInfo.textContent = `Halaman ${currentPage} dari ${totalPages}`;
+
+        pageNumbers.innerHTML = '';
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement('div');
+            btn.className = `page-number ${i === currentPage ? 'active' : ''}`;
+            btn.textContent = i;
+            btn.addEventListener('click', () => goToPage(i));
+            pageNumbers.appendChild(btn);
+        }
+    }
+
+    function changePage(direction) {
+        const newPage = currentPage + direction;
+        if (newPage >= 1 && newPage <= totalPages) {
+            currentPage = newPage;
+            displayPage(currentPage);
+            updatePagination();
+        }
+    }
+
+    function goToPage(page) {
+        if (page >= 1 && page <= totalPages) {
+            currentPage = page;
+            displayPage(currentPage);
+            updatePagination();
+        }
+    }
+
+    function startCountdowns() {
+        const countdownBlocks = document.querySelectorAll('[data-countdown]');
+        countdownBlocks.forEach(block => {
+            const deadline = new Date(block.dataset.deadline);
+            const numberEls = block.querySelectorAll('.countdown-number');
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = deadline - now;
+
+                if (diff <= 0) {
+                    numberEls.forEach(el => el.textContent = "00");
+                    block.innerHTML = "<h4>🎉 Hasil Telah Diumumkan!</h4><p>Selamat kepada para pemenang!</p>";
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / (1000 * 60)) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                numberEls[0].textContent = String(days).padStart(2, '0');
+                numberEls[1].textContent = String(hours).padStart(2, '0');
+                numberEls[2].textContent = String(minutes).padStart(2, '0');
+                numberEls[3].textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+    }
+
+    // Inisialisasi
+    document.addEventListener('DOMContentLoaded', () => {
+        displayPage(1);
+        updatePagination();
+
+        document.getElementById('prevBtn').addEventListener('click', () => changePage(-1));
+        document.getElementById('nextBtn').addEventListener('click', () => changePage(1));
+    });
+</script>
+
+   
 
 </body>
 </html>
