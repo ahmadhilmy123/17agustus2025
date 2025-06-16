@@ -22,96 +22,108 @@
         }
 
        /* Navbar */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: linear-gradient(90deg, #d00000, #ffffff);
-    padding: 1rem 0;
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #d00000, #ffffff);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
 
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-}
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #d00000, #ffffff);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
 
-.logo {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: #ffffff;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
-    font-family: 'Poppins', sans-serif;
-}
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+        }
 
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-}
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+            font-family: 'Poppins', sans-serif;
+        }
 
-.nav-menu a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 0.5rem 1.2rem;
-    border-radius: 50px;
-    background: transparent;
-    transition: all 0.3s ease-in-out;
-    font-family: 'Poppins', sans-serif;
-}
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
 
-.nav-menu a:hover {
-    background: #fff;
-    color: #d00000;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
+        .nav-menu li {
+            margin: 0;
+        }
 
-/* Hamburger Menu */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            background: transparent;
+            transition: all 0.3s ease-in-out;
+            font-family: 'Poppins', sans-serif;
+            display: block;
+        }
 
-.hamburger span {
-    width: 28px;
-    height: 3px;
-    background: #ffffff;
-    margin: 4px 0;
-    border-radius: 3px;
-    transition: all 0.3s ease;
-}
+        .nav-menu a:hover {
+            background: #fff;
+            color: #d00000;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
 
-/* Responsive (Mobile) */
-@media (max-width: 768px) {
-    .nav-menu {
-        position: absolute;
-        top: 70px;
-        right: 0;
-        background: linear-gradient(90deg, #d00000, #ffffff);
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        padding: 1rem 2rem;
-        display: none;
-    }
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
 
-    .nav-menu.active {
-        display: flex;
-    }
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #ffffff;
+            margin: 3px 0;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            display: block;
+        }
 
-    .hamburger {
-        display: flex;
-    }
-}
+        /* Hamburger Animation */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
 
 .hero {
     background: linear-gradient(to bottom, rgba(255,0,0,0.7), rgba(255,255,255,0.7)), url('images/p1.JPG') center/cover no-repeat;
@@ -932,23 +944,24 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
+      <nav class="navbar">
         <div class="nav-container">
             <div class="logo">🇮🇩 KATAR 07</div>
             <ul class="nav-menu">
-            <li><a href="#beranda">Beranda</a></li>
-            <li><a href="#lomba">Lomba</a></li>
-            <li><a href="#galery">Galery</a></li>
-            <li><a href="#daftar">Daftar</a></li>
-            <li><a href="#kontak">Kontak</a></li>
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#lomba">Lomba</a></li>
+                <li><a href="#galery">Galery</a></li>
+                <li><a href="#daftar">Daftar</a></li>
+                <li><a href="#kontak">Kontak</a></li>
             </ul>
             <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-        </nav>
+    </nav>
+
 
 
     <!-- Hero Section -->
@@ -986,7 +999,7 @@
                     </p>
                     <p>
                         Mari bergabung bersama kami dalam merayakan kemerdekaan Indonesia dengan 
-                        penuh sukacita dan mempererat tali persaudaraan antarwarga.
+                        penuh sukacita dan mempererat tali persaudaraan antar warga.
                     </p>
                 </div>
                 <div class="about-info reveal-right">
@@ -1002,7 +1015,7 @@
                         <div class="info-icon">⏰</div>
                         <div>
                             <strong>Waktu:</strong><br>
-                            08:00 - 16:00 WIB
+                            08:00 WIB / Selesai
                         </div>
                     </div>
                     <div class="info-item">
@@ -1016,7 +1029,7 @@
                         <div class="info-icon">📝</div>
                         <div>
                             <strong>Pendaftaran:</strong><br>
-                            1 - 15 Agustus 2025
+                            13 Juli - 15 Agustus 2025
                         </div>
                     </div>
                 </div>
@@ -1034,7 +1047,7 @@
                         <div class="info-icon">⏰</div>
                         <div>
                             <strong>Waktu:</strong><br>
-                            08:00 - 16:00 WIB
+                            20:00 - 23:00 WIB
                         </div>
                     </div>
                     <div class="info-item">
@@ -1047,8 +1060,8 @@
                     <div class="info-item">
                         <div class="info-icon">📝</div>
                         <div>
-                            <strong>Pendaftaran:</strong><br>
-                            1 - 15 Agustus 2025
+                            <strong>Pendaftaran Pentas Seni:</strong><br>
+                            17 - 23 Agustus 2025
                         </div>
                     </div>
                 <p></p>
@@ -1062,7 +1075,7 @@
                     </p>
                     <p>
                     Suasana kebersamaan dan semangat nasionalisme akan terasa kuat, menjadikan malam tersebut sebagai malam 
-                    yang tak terlupakan bagi seluruh warga RW 07. Yuk, ajak keluarga dan tetangga untuk hadir dan menikmati kemeriahan bersama!
+                    yang tak terlupakan bagi seluruh warga RT 07/022 . Yuk, ajak keluarga dan tetangga untuk hadir dan menikmati kemeriahan bersama!
                     </p>
                 </div>
 
@@ -1124,7 +1137,7 @@
 </section>
 
     <!-- Registration Section -->
-     <div class="container1">
+     <div id="daftar" class="container1">
         <h2 class="section-title">🏆 Daftar Lomba 17 Agustus 🏆</h2>
         
         <div class="success-message" id="successMessage">
@@ -1253,8 +1266,8 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Kontak Panitia</h3>
-                    <p>📞 +62 88214612609</p>
-                    <p>📧 info@17agustus2025.id</p>
+                    <p>📞 +6283128446613 (Bani)</p>
+                    <p>📞 +6285282520521 (Ilham)</p>
                     <p>📍 Jl. Waruajay 1B</p>
                 </div>
                 
@@ -1270,9 +1283,9 @@
                 
                 <div class="footer-section">
                     <h3>Informasi</h3>
-                    <p>Pendaftaran: 1 - 15 Agustus 2025</p>
+                    <p>Pendaftaran: 13 Juli - 15 Agustus 2025</p>
                     <p>Acara: 17 Agustus 2025</p>
-                    <p>Waktu: 08:00 - 16:00 WIB</p>
+                    <p>Waktu: 08:00 WIB / Selesai</p>
                 </div>
             </div>
             
@@ -1840,7 +1853,7 @@ const lombaList = [
     deskripsi: "Main voli pakai air dan ember, pasti basah!", 
     icon: "🏐", 
     kategori: "Umur 9–15 tahun",
-    gambar: "hhttps://www.man1banyuwangi.sch.id/upload/imagecache/22961190DSC_0405(1)-800x534.jpg"
+    gambar: "https://www.man1banyuwangi.sch.id/upload/imagecache/22961190DSC_0405(1)-800x534.jpg"
   },
 
   // Ibu-ibu
@@ -1985,7 +1998,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
   <script>
         // Ganti dengan nomor WhatsApp tujuan (tanpa tanda + dan spasi)
-        const WHATSAPP_NUMBER = '6283128446613'; // Ganti dengan nomor WA yang dituju
+        const WHATSAPP_NUMBER = '62895401111425'; // Ganti dengan nomor WA yang dituju
         
         // Function to generate kupon code
         function generateKuponCode(nama, tahun) {
