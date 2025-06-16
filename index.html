@@ -21,134 +21,175 @@
             overflow-x: hidden;
         }
 
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: linear-gradient(135deg, #FF0000, #FFFFFF);
-            padding: 1rem 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
+       /* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #d00000, #ffffff);
+    padding: 1rem 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #FFFFFF;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    font-family: 'Poppins', sans-serif;
+}
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
 
-        .nav-menu a {
-            color: #FFFFFF;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-        }
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+    font-family: 'Poppins', sans-serif;
+}
 
-        .nav-menu a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
+.nav-menu a:hover {
+    background: #fff;
+    color: #d00000;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
 
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #FFFFFF;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: #ffffff;
+    margin: 4px 0;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #FF0000 0%, #FFFFFF 50%, #FF0000 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+/* Responsive (Mobile) */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: linear-gradient(90deg, #d00000, #ffffff);
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding: 1rem 2rem;
+        display: none;
+    }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23FFD700" opacity="0.3"/></svg>') repeat;
-            animation: float 6s ease-in-out infinite;
-        }
+    .nav-menu.active {
+        display: flex;
+    }
 
-        .hero-content {
-            max-width: 800px;
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
-        }
+    .hamburger {
+        display: flex;
+    }
+}
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: #FFFFFF;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-            animation: fadeInUp 1s ease-out;
-        }
+.hero {
+    background: linear-gradient(to bottom, rgba(255,0,0,0.7), rgba(255,255,255,0.7)), url('images/p1.JPG') center/cover no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: #FF0000;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
+/* Lapisan efek jika mau tambahkan blur atau gelap */
+.overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
 
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #FF0000, #FF4444);
-            color: #FFFFFF;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255,0,0,0.3);
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
+/* Konten Hero */
+.hero-content {
+    max-width: 800px;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+    color: #fff;
+}
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255,0,0,0.4);
-        }
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.6);
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: #fff3f3;
+    font-weight: 500;
+    animation: fadeInUp 1s ease-out 0.3s both;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(45deg, #FF0000, #FF4444);
+    color: #FFFFFF;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255,0,0,0.3);
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255,0,0,0.4);
+}
+
+/* Animasi */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 
         /* Floating decorations */
         .decoration {
@@ -241,6 +282,57 @@
             color: #FFFFFF;
             font-weight: bold;
         }
+
+        .highlight-card {
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #FF4444;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .about-info h3 {
+            color: #FF0000;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .highlight-card h3 {
+            color: #FF0000;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .highlight-card p {
+            color: #444;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* Animasi muncul dari kanan */
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
 
         /* Lomba Section */
         .lomba {
@@ -745,17 +837,21 @@
 
         .swiper-slide img {
         width: 100%;
-        height: 280px;        /* 👉 agak tinggi, tidak terlalu vertikal */
-        object-fit: cover;    /* potong bagian atas/bawah jika perlu */
+        height: 280px;     
+        object-fit: cover;  
         object-position: center;
         border-radius: 12px;
         }
 
         @media (max-width: 768px) {
         .swiper-slide img {
-            height: 200px; /* Lebih rendah di mobile */
+            height: 150px;
+            width: 120px;
+            padding: 0 16px;
+            object-fit: cover;
         }
         }
+
 
         .pagination {
         display: flex;
@@ -799,33 +895,43 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">KATAR 07</div>
+            <div class="logo">🇮🇩 KATAR 07</div>
             <ul class="nav-menu">
-                <li><a href="#beranda">Beranda</a></li>
-                <li><a href="#lomba">Lomba</a></li>
-                <li><a href="#daftar">Daftar</a></li>
-                <li><a href="#kontak">Kontak</a></li>
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#lomba">Lomba</a></li>
+            <li><a href="#galery">Galery</a></li>
+            <li><a href="#daftar">Daftar</a></li>
+            <li><a href="#kontak">Kontak</a></li>
             </ul>
             <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
             </div>
         </div>
-    </nav>
+        </nav>
+
 
     <!-- Hero Section -->
     <section id="beranda" class="hero">
+        <div class="overlay"></div>
+
+        <!-- Dekorasi Balon -->
         <div class="decoration balloon red"></div>
         <div class="decoration balloon white"></div>
         <div class="decoration balloon red"></div>
-        
+
+        <!-- Konten Hero -->
         <div class="hero-content">
-            <h1>Dirgahayu Indonesia ke-80!</h1>
-            <p>Merayakan kemerdekaan dengan berbagai lomba seru dan meriah</p>
+            <h1>Dirgahayu Republik Indonesia ke-80!</h1>
+            <p>
+            Ayo kita rayakan semangat kemerdekaan ke-80 Republik Indonesia dengan penuh suka cita.  
+            Rangkai kebersamaan lewat berbagai lomba tradisional, hiburan rakyat, dan semangat gotong royong.
+            </p>
             <a href="#lomba" class="cta-button">Lihat Lomba</a>
         </div>
-    </section>
+</section>
+
 
     <!-- About Section -->
     <section id="tentang" class="about">
@@ -844,7 +950,8 @@
                         penuh sukacita dan mempererat tali persaudaraan antarwarga.
                     </p>
                 </div>
-                <div class="about-info reveal">
+                <div class="about-info reveal-right">
+                    <h3>🎉 Lomba 17 Agustus 2025</h3>
                     <div class="info-item">
                         <div class="info-icon">📅</div>
                         <div>
@@ -874,12 +981,58 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="highlight-card reveal-right">
+                <h3>🎉 Malam Puncak</h3>
+                <div class="info-item">
+                        <div class="info-icon">📅</div>
+                        <div>
+                            <strong>Tanggal Acara:</strong><br>
+                            17 Agustus 2025
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <div>
+                            <strong>Waktu:</strong><br>
+                            08:00 - 16:00 WIB
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div>
+                            <strong>Tempat:</strong><br>
+                                jl. Warujaya 1B, Depok
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📝</div>
+                        <div>
+                            <strong>Pendaftaran:</strong><br>
+                            1 - 15 Agustus 2025
+                        </div>
+                    </div>
+                <p></p>
+            </div>
+
+              <div class="about-text reveal">
+                  <p>
+                    Malam Puncak 17 Agustus merupakan momen spesial penutup rangkaian perayaan kemerdekaan yang penuh makna. 
+                    Acara ini akan diisi dengan berbagai penampilan menarik dari warga, pembagian hadiah lomba, dan hiburan rakyat 
+                    yang meriah. 
+                    </p>
+                    <p>
+                    Suasana kebersamaan dan semangat nasionalisme akan terasa kuat, menjadikan malam tersebut sebagai malam 
+                    yang tak terlupakan bagi seluruh warga RW 07. Yuk, ajak keluarga dan tetangga untuk hadir dan menikmati kemeriahan bersama!
+                    </p>
+                </div>
+
             </div>
         </div>
     </section>
 
     <!-- Lomba Section -->
-    <section id="lomba" class="lomba">
+  <section id="lomba" class="lomba">
   <div class="container">
     <h2 class="section-title reveal">Jenis Lomba</h2>
     <div id="lomba-grid" class="lomba-grid"></div>
@@ -890,8 +1043,14 @@
     </div>
   </div>
 </section>
+<div id="lomba-modal" style="position:fixed; top:0; left:0; width:100%; height:100%;
+  background-color:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center; display:none;">
+  <div id="lomba-modal-content" style="background:#fff; padding:20px; border-radius:10px; max-width:400px; margin:auto;">
+    <!-- Isi detail lomba akan muncul di sini -->
+  </div>
+</div>
 
-<section class="galeri-section">
+<section id="galery" class="galeri-section">
   <h2>📸 Galeri Lomba</h2>
   <div class="swiper lombaSwiper">
     <div class="swiper-wrapper">
@@ -1498,81 +1657,123 @@ document.addEventListener('DOMContentLoaded', () => {
         
     </script>
     <script>
-  const lombaList = [
-    // Umur 3–5 tahun
-    { nama: "Lomba Bendera", deskripsi: "Mengenali dan menyusun bendera dengan cepat.", icon: "🚩" },
-    { nama: "Lomba Nangkep Ikan", deskripsi: "Menangkap ikan kecil dari kolam buatan.", icon: "🐟" },
-
-    // Umur 6–8 tahun
-    { nama: "Lomba Stocking", deskripsi: "Permainan lucu dengan stocking di kepala dan bola!", icon: "🧦" },
-    { nama: "Lomba Paku", deskripsi: "Memasukkan paku ke dalam botol dengan cepat.", icon: "🪛" },
-    { nama: "Pindah Gelas Pake Balon", deskripsi: "Memindahkan gelas hanya dengan hembusan balon.", icon: "🎈" },
-
-    // Umur 9–15 tahun
-    { nama: "Balap Karung", deskripsi: "Lomba lari dengan karung, uji kecepatan & keseimbangan.", icon: "🏃" },
-    { nama: "Lomba Octopus", deskripsi: "Permainan tim 4 orang penuh koordinasi dan seru!", icon: "🐙" },
-    { nama: "Tiup Gelas", deskripsi: "Bekerjasama meniup gelas dari ujung ke ujung.", icon: "🥤" },
-    { nama: "Voli Air", deskripsi: "Main voli pakai air dan ember, pasti basah!", icon: "🏐" },
-
-    // Ibu-ibu
-    { nama: "Lari Bawa Balon", deskripsi: "Lari sambil jaga balon tetap utuh!", icon: "🎈" },
-    { nama: "Lomba Makeup", deskripsi: "Makeup cepat dan lucu, bisa bareng anak!", icon: "💄" },
-    { nama: "Sedotan ke Botol", deskripsi: "Isi botol dengan air dari sedotan, uji konsentrasi!", icon: "🥤" },
-    { nama: "Estafet Kardus", deskripsi: "Kerja tim bawa kardus sambung menyambung!", icon: "📦" },
-
-    // Universal
-    { nama: "Kerupuk Sarung", deskripsi: "Makan kerupuk dari dalam sarung!", icon: "🍘" },
-    { nama: "Lomba Biskuit", deskripsi: "Geser biskuit dari dahi ke mulut tanpa tangan!", icon: "🍪" },
-  ];
-
-  let currentPage = 1;
-  const itemsPerPage = 6;
-
-  function renderLombaPage(page) {
-    const lombaGrid = document.getElementById("lomba-grid");
-    const pageInfo = document.getElementById("page-info");
-    lombaGrid.innerHTML = "";
-
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    const currentItems = lombaList.slice(start, end);
-
-    currentItems.forEach((lomba) => {
-      const card = document.createElement("div");
-      card.className = "lomba-card reveal";
-      card.innerHTML = `
-        <div class="lomba-icon">${lomba.icon}</div>
-        <h3>${lomba.nama}</h3>
-        <p>${lomba.deskripsi}</p>
-        <button class="daftar-btn" onclick="daftar('${lomba.nama}')">Daftar</button>
-      `;
-      lombaGrid.appendChild(card);
-    });
-
-    pageInfo.textContent = `Halaman ${page} dari ${Math.ceil(lombaList.length / itemsPerPage)}`;
-  }
-
-  function nextPage() {
-    if (currentPage < Math.ceil(lombaList.length / itemsPerPage)) {
-      currentPage++;
-      renderLombaPage(currentPage);
-    }
-  }
-
-  function prevPage() {
-    if (currentPage > 1) {
-      currentPage--;
-      renderLombaPage(currentPage);
-    }
-  }
-
-  function daftar(namaLomba) {
-    alert(`Kamu mendaftar untuk: ${namaLomba}`);
-  }
-
   // Inisialisasi halaman pertama
   renderLombaPage(currentPage);
+
+   const revealRight = document.querySelectorAll('.reveal-right');
+
+    function revealOnScroll() {
+        revealRight.forEach((el) => {
+            const windowHeight = window.innerHeight;
+            const revealTop = el.getBoundingClientRect().top;
+            const revealPoint = 150;
+
+            if (revealTop < windowHeight - revealPoint) {
+                el.classList.add('active');
+            } else {
+                el.classList.remove('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
 </script>
+
+<script>
+const lombaList = [
+  // Umur 3–5 tahun
+  { nama: "Lomba Bendera", deskripsi: "Mengenali dan menyusun bendera dengan cepat.", icon: "🚩", kategori: "Umur 3–5 tahun" },
+  { nama: "Lomba Nangkep Ikan", deskripsi: "Menangkap ikan kecil dari kolam buatan.", icon: "🐟", kategori: "Umur 3–5 tahun" },
+
+  // Umur 6–8 tahun
+  { nama: "Lomba Stocking", deskripsi: "Permainan lucu dengan stocking di kepala dan bola!", icon: "🧦", kategori: "Umur 6–8 tahun" },
+  { nama: "Lomba Paku", deskripsi: "Memasukkan paku ke dalam botol dengan cepat.", icon: "🪛", kategori: "Umur 6–8 tahun" },
+  { nama: "Pindah Gelas Pake Balon", deskripsi: "Memindahkan gelas hanya dengan hembusan balon.", icon: "🎈", kategori: "Umur 6–8 tahun" },
+
+  // Umur 9–15 tahun
+  { nama: "Balap Karung", deskripsi: "Lomba lari dengan karung, uji kecepatan & keseimbangan.", icon: "🏃", kategori: "Umur 9–15 tahun" },
+  { nama: "Lomba Octopus", deskripsi: "Permainan tim 4 orang penuh koordinasi dan seru!", icon: "🐙", kategori: "Umur 9–15 tahun" },
+  { nama: "Tiup Gelas", deskripsi: "Bekerjasama meniup gelas dari ujung ke ujung.", icon: "🥤", kategori: "Umur 9–15 tahun" },
+  { nama: "Voli Air", deskripsi: "Main voli pakai air dan ember, pasti basah!", icon: "🏐", kategori: "Umur 9–15 tahun" },
+
+  // Ibu-ibu
+  { nama: "Lari Bawa Balon", deskripsi: "Lari sambil jaga balon tetap utuh!", icon: "🎈", kategori: "Ibu-ibu" },
+  { nama: "Lomba Makeup", deskripsi: "Makeup cepat dan lucu, bisa bareng anak!", icon: "💄", kategori: "Ibu-ibu" },
+  { nama: "Sedotan ke Botol", deskripsi: "Isi botol dengan air dari sedotan, uji konsentrasi!", icon: "🥤", kategori: "Ibu-ibu" },
+  { nama: "Estafet Kardus", deskripsi: "Kerja tim bawa kardus sambung menyambung!", icon: "📦", kategori: "Ibu-ibu" },
+
+  // Universal
+  { nama: "Kerupuk Sarung", deskripsi: "Makan kerupuk dari dalam sarung!", icon: "🍘", kategori: "Universal (Semua Umur)" },
+  { nama: "Lomba Biskuit", deskripsi: "Geser biskuit dari dahi ke mulut tanpa tangan!", icon: "🍪", kategori: "Universal (Semua Umur)" }
+];
+
+let currentPage = 1;
+const itemsPerPage = 6;
+
+function renderLombaPage(page) {
+  const lombaGrid = document.getElementById("lomba-grid");
+  const pageInfo = document.getElementById("page-info");
+  lombaGrid.innerHTML = "";
+
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const currentItems = lombaList.slice(start, end);
+
+  currentItems.forEach((lomba) => {
+    const card = document.createElement("div");
+    card.className = "lomba-card reveal";
+    card.innerHTML = `
+      <div class="lomba-icon">${lomba.icon}</div>
+      <h3>${lomba.nama}</h3>
+      <p>${lomba.deskripsi}</p>
+      <button class="daftar-btn" onclick="showDetail('${lomba.nama.replace(/'/g, "\\'")}')">Lihat Detail</button>
+    `;
+    lombaGrid.appendChild(card);
+  });
+
+  pageInfo.textContent = `Halaman ${page} dari ${Math.ceil(lombaList.length / itemsPerPage)}`;
+}
+
+function nextPage() {
+  if (currentPage < Math.ceil(lombaList.length / itemsPerPage)) {
+    currentPage++;
+    renderLombaPage(currentPage);
+  }
+}
+
+function prevPage() {
+  if (currentPage > 1) {
+    currentPage--;
+    renderLombaPage(currentPage);
+  }
+}
+
+function showDetail(namaLomba) {
+  const lomba = lombaList.find(item => item.nama === namaLomba);
+  if (!lomba) return;
+
+  const modal = document.getElementById("lomba-modal");
+  const modalContent = document.getElementById("lomba-modal-content");
+
+  modalContent.innerHTML = `
+    <h3>${lomba.icon} ${lomba.nama}</h3>
+    <p><strong>Deskripsi:</strong> ${lomba.deskripsi}</p>
+    <p><strong>Kategori Peserta:</strong> ${lomba.kategori}</p>
+    <button class="daftar-btn" onclick="closeModal()">Tutup</button>
+  `;
+  modal.style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("lomba-modal").style.display = "none";
+}
+
+// Jalankan saat halaman dimuat
+document.addEventListener("DOMContentLoaded", function () {
+  renderLombaPage(currentPage);
+});
+</script>
+
 
 </body>
 </html>
