@@ -1,187 +1,677 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bracket Lomba</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tournament Bracket System</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f5f5f5;
+    body { 
+      font-family: 'Segoe UI', sans-serif; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px; 
+      margin: 0;
+      min-height: 100vh;
+    }
+    
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 30px;
+    }
+    
+    .header h1 {
+      font-size: 2.5em;
+      margin: 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .lomba-selector {
+      background: white;
+      border-radius: 15px;
       padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
-    h2 {
+    
+    .lomba-selector h2 {
+      margin-top: 0;
       color: #333;
-      margin-top: 40px;
+      text-align: center;
     }
-    .lomba-container {
+    
+    .lomba-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .lomba-btn {
+      padding: 15px 20px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1em;
+    }
+    
+    .lomba-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .lomba-btn.active {
+      background: linear-gradient(45deg, #2196F3, #1976D2);
+    }
+    
+    .tournament-container {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+    
+    .tournament-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .tournament-header h2 {
+      color: #333;
+      margin: 0;
+      font-size: 2em;
+    }
+    
+    .tournament-stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    
+    .stat-item {
+      text-align: center;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      min-width: 120px;
+    }
+    
+    .stat-number {
+      font-size: 2em;
+      font-weight: bold;
+      color: #2196F3;
+    }
+    
+    .stat-label {
+      color: #666;
+      font-size: 0.9em;
+    }
+    
+    .tournament-phases {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    
+    .phase {
+      border: 2px solid #e0e0e0;
+      border-radius: 15px;
+      padding: 20px;
+      background: #fafafa;
+    }
+    
+    .phase-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .phase-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333;
+      margin: 0;
+    }
+    
+    .phase-subtitle {
+      color: #666;
+      margin: 5px 0 0 0;
+    }
+    
+    .groups-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .group {
       background: white;
       border-radius: 10px;
       padding: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border: 2px solid #e0e0e0;
+      transition: all 0.3s ease;
     }
-    .lomba-title {
+    
+    .group:hover {
+      border-color: #2196F3;
+      transform: translateY(-2px);
+    }
+    
+    .group-header {
+      text-align: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .group-title {
       font-weight: bold;
-      font-size: 1.2em;
-      margin-bottom: 10px;
+      color: #333;
+      margin: 0;
     }
-    .peserta {
+    
+    .participant {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px;
-      border-bottom: 1px solid #eee;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 8px;
+      background: #f8f9fa;
+      transition: all 0.3s ease;
     }
-    .btn-group button {
-      margin-left: 5px;
-      padding: 4px 10px;
+    
+    .participant:hover {
+      background: #e3f2fd;
+    }
+    
+    .participant-info {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .participant-name {
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .participant-details {
+      font-size: 0.85em;
+      color: #666;
+    }
+    
+    .btn-group {
+      display: flex;
+      gap: 5px;
+    }
+    
+    .btn {
+      padding: 6px 12px;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
+      font-size: 0.85em;
+      font-weight: bold;
+      transition: all 0.3s ease;
     }
-    .btn-menang { background-color: #4caf50; color: white; }
-    .btn-kalah { background-color: #f44336; color: white; }
+    
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+    
+    .btn-menang {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+      color: white;
+    }
+    
+    .btn-menang:hover {
+      background: linear-gradient(45deg, #45a049, #3d8b40);
+    }
+    
+    .btn-kalah {
+      background: linear-gradient(45deg, #f44336, #d32f2f);
+      color: white;
+    }
+    
+    .btn-kalah:hover {
+      background: linear-gradient(45deg, #d32f2f, #b71c1c);
+    }
+    
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .winner-badge {
+      background: linear-gradient(45deg, #FFD700, #FFA500);
+      color: #333;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75em;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    
+    .eliminated-badge {
+      background: linear-gradient(45deg, #f44336, #d32f2f);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75em;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 50px;
+      color: #666;
+      font-size: 1.2em;
+    }
+    
+    .error {
+      text-align: center;
+      padding: 50px;
+      color: #f44336;
+      font-size: 1.2em;
+    }
+    
+    @media (max-width: 768px) {
+      .tournament-stats {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .groups-container {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>🎯 Bracket Lomba</h1>
-  <div id="bracket">Loading...</div>
+  <div class="header">
+    <h1>🏆 Tournament Bracket System</h1>
+    <p>Sistem Bracket Otomatis dengan Eliminasi Bertingkat</p>
+  </div>
+
+  <div class="lomba-selector">
+    <h2>Pilih Lomba</h2>
+    <div class="lomba-buttons" id="lombaButtons">
+      <div class="loading">Memuat daftar lomba...</div>
+    </div>
+  </div>
+
+  <div id="tournamentContainer" style="display: none;">
+    <!-- Tournament content will be loaded here -->
+  </div>
 
   <script>
     const API_URL = 'https://api.sheetbest.com/sheets/0d434f8c-aeb0-493e-a72a-052683c6e7d8';
-
+    
     const rentangUmur = {
+      // Umur 3-5 tahun
       "Lomba Bendera": [3, 5],
       "Lomba Nangkep Ikan": [3, 5],
+      
+      // Umur 6-8 tahun  
       "Lomba Stocking": [6, 8],
       "Lomba Paku": [6, 8],
       "Lomba Pindahin Gelas Pake Balon": [6, 8],
+      
+      // Umur 9-15 tahun
       "Lomba Balap Karung": [9, 15],
       "Lomba Octopus [4 orang]": [9, 15],
       "Lomba Tiup Gelas [4 orang]": [9, 15],
       "Lomba Voli Air [4 orang]": [9, 15],
+      
+      // Lomba Ibu-Ibu (18-60 tahun)
       "Lomba Lari Bawa Balon": [18, 60],
       "Lomba Makeup": [18, 60],
       "Lomba Sedotan ke Botol": [18, 60],
       "Lomba Estafet Kardus [4 orang]": [18, 60],
+      
+      // Universal (Semua umur)
       "Lomba Kerupuk Sarung": [3, 99],
       "Lomba Biskuit": [3, 99]
     };
 
-    fetch(API_URL)
-      .then(res => res.json())
-      .then(data => {
-        const umurMap = {};
-        data.forEach(p => {
-          const umur = parseInt(p.Umur);
-          const nama = `${p.Nama} (${umur} th)`;
-          const kupon = p.Kupon || "TANPA-ID";
+    let currentData = [];
+    let currentLomba = '';
 
-          [p.Lomba_1, p.Lomba_2].forEach(lomba => {
-            if (!lomba || lomba === "-") return;
-            const [min, max] = rentangUmur[lomba] || [];
-            if (umur >= min && umur <= max) {
-              if (!umurMap[umur]) umurMap[umur] = {};
-              if (!umurMap[umur][lomba]) umurMap[umur][lomba] = [];
-              umurMap[umur][lomba].push({ nama, kupon });
-            }
-          });
-        });
+    // Load initial data
+    async function loadInitialData() {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        currentData = data;
+        console.log('Data loaded:', data);
+        createLombaButtons();
+      } catch (error) {
+        document.getElementById('lombaButtons').innerHTML = '<div class="error">❌ Gagal memuat data lomba: ' + error.message + '</div>';
+        console.error('Error loading data:', error);
+      }
+    }
 
-        const umurTersortir = Object.keys(umurMap).sort((a, b) => a - b);
-        const container = document.getElementById('bracket');
-        container.innerHTML = '';
-
-        umurTersortir.forEach(umur => {
-          container.innerHTML += `<h2>👧 Usia ${umur} Tahun</h2>`;
-          const lombaMap = umurMap[umur];
-          for (const lomba in lombaMap) {
-            const pesertaHTML = lombaMap[lomba]
-              .map(p => `
-                <div class="peserta">
-                  ${p.nama}
-                  <div class="btn-group">
-                    <button class="btn-menang" onclick="kirimHasil('${p.kupon}', '${lomba}', 'Menang')">Menang</button>
-                    <button class="btn-kalah" onclick="kirimHasil('${p.kupon}', '${lomba}', 'Kalah')">Kalah</button>
-                  </div>
-                </div>
-              `).join('');
-            container.innerHTML += `
-              <div class="lomba-container">
-                <div class="lomba-title">${lomba}</div>
-                ${pesertaHTML}
-              </div>
-            `;
-          }
-        });
-
-        Object.keys(rentangUmur).forEach(lomba => {
-          buatBracketLanjutan(data, lomba);
-        });
-      })
-      .catch(err => {
-        document.getElementById('bracket').innerHTML = `<p style="color:red;">❌ Gagal mengambil data.</p>`;
-        console.error(err);
+    function createLombaButtons() {
+      const container = document.getElementById('lombaButtons');
+      container.innerHTML = '';
+      
+      // Group lomba by age category
+      const lombaByAge = {
+        "Umur 3-5 tahun": [],
+        "Umur 6-8 tahun": [],
+        "Umur 9-15 tahun": [],
+        "Lomba Ibu-Ibu (18-60 tahun)": [],
+        "Universal (Semua Umur)": []
+      };
+      
+      Object.keys(rentangUmur).forEach(lomba => {
+        const [min, max] = rentangUmur[lomba];
+        if (min === 3 && max === 5) {
+          lombaByAge["Umur 3-5 tahun"].push(lomba);
+        } else if (min === 6 && max === 8) {
+          lombaByAge["Umur 6-8 tahun"].push(lomba);
+        } else if (min === 9 && max === 15) {
+          lombaByAge["Umur 9-15 tahun"].push(lomba);
+        } else if (min === 18 && max === 60) {
+          lombaByAge["Lomba Ibu-Ibu (18-60 tahun)"].push(lomba);
+        } else if (min === 3 && max === 99) {
+          lombaByAge["Universal (Semua Umur)"].push(lomba);
+        }
       });
-
-    function kirimHasil(kupon, lomba, hasil) {
-      const updateUrl = `${API_URL}/Kupon/*${kupon}*`;
-      const payload = { [lomba]: hasil };
-
-      fetch(updateUrl, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-      .then(res => {
-        if (!res.ok) throw new Error("Gagal update");
-        return res.json();
-      })
-      .then(() => {
-        alert(`✅ Hasil "${hasil}" berhasil dikirim untuk kupon ${kupon}`);
-        location.reload();
-      })
-      .catch(err => {
-        console.error(err);
-        alert("❌ Gagal mengirim hasil.");
+      
+      // Create grouped buttons
+      Object.keys(lombaByAge).forEach(category => {
+        if (lombaByAge[category].length > 0) {
+          const categoryDiv = document.createElement('div');
+          categoryDiv.innerHTML = `
+            <h3 style="color: #333; margin: 20px 0 10px 0; font-size: 1.2em;">${category}</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px;">
+              ${lombaByAge[category].map(lomba => `
+                <button class="lomba-btn" onclick="selectLomba('${lomba}')">${lomba}</button>
+              `).join('')}
+            </div>
+          `;
+          container.appendChild(categoryDiv);
+        }
       });
     }
 
-    function buatBracketLanjutan(data, lomba) {
-      const pemenang = data.filter(p => (p[lomba] || '').toLowerCase() === 'menang');
-      if (pemenang.length < 2) return;
-
-      const container = document.getElementById('bracket');
-      container.innerHTML += `<h2>🏆 Babak Lanjutan: ${lomba}</h2>`;
-
-      for (let i = 0; i < pemenang.length; i += 2) {
-        const peserta1 = pemenang[i];
-        const peserta2 = pemenang[i + 1];
-
-        if (!peserta2) {
-          container.innerHTML += `<p>${peserta1.Nama} langsung lolos (bye)</p>`;
-          continue;
+    function selectLomba(lomba) {
+      currentLomba = lomba;
+      
+      // Update button states
+      document.querySelectorAll('.lomba-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.trim() === lomba) {
+          btn.classList.add('active');
         }
+      });
+      
+      generateTournament(lomba);
+    }
 
-        container.innerHTML += `
-          <div class="lomba-container">
-            <div class="peserta">${peserta1.Nama}
-              <div class="btn-group">
-                <button class="btn-menang" onclick="kirimHasil('${peserta1.Kupon}', 'Babak_${lomba}', 'Menang')">Menang</button>
-                <button class="btn-kalah" onclick="kirimHasil('${peserta1.Kupon}', 'Babak_${lomba}', 'Kalah')">Kalah</button>
+    function generateTournament(lomba) {
+      const [minAge, maxAge] = rentangUmur[lomba];
+      
+      // Filter participants for this lomba
+      const participants = currentData.filter(p => {
+        const umur = parseInt(p.Umur);
+        return umur >= minAge && umur <= maxAge && 
+               (p.Lomba_1 === lomba || p.Lomba_2 === lomba);
+      }).map(p => ({
+        ...p,
+        umur: parseInt(p.Umur),
+        kupon: p.Kupon || 'TANPA-ID',
+        status: p[lomba] || 'Belum Main'
+      })).sort((a, b) => a.umur - b.umur);
+
+      console.log('Participants for', lomba, ':', participants);
+
+      if (participants.length === 0) {
+        document.getElementById('tournamentContainer').innerHTML = 
+          '<div class="tournament-container"><div class="error">Tidak ada peserta untuk lomba ini</div></div>';
+        document.getElementById('tournamentContainer').style.display = 'block';
+        return;
+      }
+
+      const tournament = createTournamentStructure(participants, lomba);
+      renderTournament(tournament, lomba);
+      document.getElementById('tournamentContainer').style.display = 'block';
+    }
+
+    function createTournamentStructure(participants, lomba) {
+      const totalParticipants = participants.length;
+      const groupSize = 4;
+      const initialGroups = [];
+      
+      // Create initial groups of 4
+      for (let i = 0; i < totalParticipants; i += groupSize) {
+        const group = participants.slice(i, i + groupSize);
+        initialGroups.push({
+          id: `group-${Math.floor(i/groupSize) + 1}`,
+          participants: group,
+          phase: 'group',
+          completed: group.every(p => p.status === 'Menang' || p.status === 'Kalah'),
+          winner: group.find(p => p.status === 'Menang')
+        });
+      }
+
+      // Start with just the initial groups
+      const phases = [{
+        name: 'Babak Grup',
+        subtitle: `${initialGroups.length} grup, ${totalParticipants} peserta`,
+        groups: initialGroups,
+        type: 'group'
+      }];
+
+      return { phases, lomba };
+    }
+
+    function renderTournament(tournament, lomba) {
+      const container = document.getElementById('tournamentContainer');
+      
+      const totalParticipants = tournament.phases[0].groups.reduce((sum, group) => sum + group.participants.length, 0);
+      const totalGroups = tournament.phases.reduce((sum, phase) => sum + phase.groups.length, 0);
+      const completedGroups = tournament.phases.reduce((sum, phase) => 
+        sum + phase.groups.filter(g => g.completed).length, 0);
+      
+      container.innerHTML = `
+        <div class="tournament-container">
+          <div class="tournament-header">
+            <h2>${lomba}</h2>
+            <div class="tournament-stats">
+              <div class="stat-item">
+                <div class="stat-number">${totalParticipants}</div>
+                <div class="stat-label">Total Peserta</div>
               </div>
-            </div>
-            <div class="peserta">${peserta2.Nama}
-              <div class="btn-group">
-                <button class="btn-menang" onclick="kirimHasil('${peserta2.Kupon}', 'Babak_${lomba}', 'Menang')">Menang</button>
-                <button class="btn-kalah" onclick="kirimHasil('${peserta2.Kupon}', 'Babak_${lomba}', 'Kalah')">Kalah</button>
+              <div class="stat-item">
+                <div class="stat-number">${tournament.phases.length}</div>
+                <div class="stat-label">Jumlah Babak</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">${completedGroups}/${totalGroups}</div>
+                <div class="stat-label">Grup Selesai</div>
               </div>
             </div>
           </div>
-        `;
+          
+          <div class="tournament-phases">
+            ${tournament.phases.map(phase => renderPhase(phase, lomba)).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPhase(phase, lomba) {
+      const hasGroups = phase.groups && phase.groups.length > 0;
+      const groupsHTML = hasGroups ? 
+        phase.groups.map(group => renderGroup(group, lomba)).join('') :
+        '<div class="group"><div class="participant"><div class="participant-info"><div class="participant-name">Menunggu pemenang dari babak sebelumnya...</div></div></div></div>';
+      
+      return `
+        <div class="phase">
+          <div class="phase-header">
+            <h3 class="phase-title">${phase.name}</h3>
+            <p class="phase-subtitle">${phase.subtitle}</p>
+          </div>
+          <div class="groups-container">
+            ${groupsHTML}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderGroup(group, lomba) {
+      const groupTitle = group.id.includes('elimination') ? 
+        `${group.id.replace('elimination-', 'Eliminasi ').replace('-', ' Grup ')}` :
+        group.id.includes('final') ? 'FINAL' :
+        group.id.replace('-', ' ').toUpperCase();
+      
+      return `
+        <div class="group">
+          <div class="group-header">
+            <h4 class="group-title">${groupTitle}</h4>
+            ${group.winner ? `<div style="color: #4CAF50; font-weight: bold;">Pemenang: ${group.winner.Nama}</div>` : ''}
+          </div>
+          ${group.participants.map(participant => renderParticipant(participant, lomba)).join('')}
+        </div>
+      `;
+    }
+
+    function renderParticipant(participant, lomba) {
+      const isWinner = participant.status === 'Menang';
+      const isEliminated = participant.status === 'Kalah';
+      const badge = isWinner ? '<span class="winner-badge">MENANG</span>' : 
+                   isEliminated ? '<span class="eliminated-badge">KALAH</span>' : '';
+      
+      return `
+        <div class="participant">
+          <div class="participant-info">
+            <div class="participant-name">${participant.Nama}${badge}</div>
+            <div class="participant-details">
+              ${participant.umur} tahun • ${participant.kupon} • Status: ${participant.status}
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-menang" 
+                    onclick="updateResult('${participant.kupon}', '${lomba}', 'Menang')"
+                    ${isWinner || isEliminated ? 'disabled' : ''}>
+              Menang
+            </button>
+            <button class="btn btn-kalah" 
+                    onclick="updateResult('${participant.kupon}', '${lomba}', 'Kalah')"
+                    ${isWinner || isEliminated ? 'disabled' : ''}>
+              Kalah
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    async function updateResult(kupon, lomba, hasil) {
+      try {
+        console.log('Updating result:', { kupon, lomba, hasil });
+        
+        // Find the participant row ID
+        const participantIndex = currentData.findIndex(p => p.Kupon === kupon);
+        if (participantIndex === -1) {
+          throw new Error('Participant not found');
+        }
+        
+        // Method 1: Try PATCH with row index
+        const updateUrl = `${API_URL}/${participantIndex}`;
+        const payload = { [lomba]: hasil };
+        
+        console.log('Update URL:', updateUrl);
+        console.log('Payload:', payload);
+        
+        try {
+          const response = await fetch(updateUrl, {
+            method: 'PATCH',
+            headers: { 
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          console.log('Response status:', response.status);
+          
+          if (response.ok) {
+            // Update local data
+            currentData[participantIndex][lomba] = hasil;
+            alert(`✅ Hasil "${hasil}" berhasil dikirim untuk ${kupon}`);
+            
+            // Refresh tournament view
+            setTimeout(() => {
+              generateTournament(currentLomba);
+            }, 1000);
+            return;
+          }
+        } catch (patchError) {
+          console.log('PATCH failed, trying POST method:', patchError);
+        }
+        
+        // Method 2: Try POST method (add new row)
+        try {
+          const postPayload = {
+            Kupon: kupon,
+            [lomba]: hasil
+          };
+          
+          const postResponse = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postPayload)
+          });
+          
+          console.log('POST Response status:', postResponse.status);
+          
+          if (postResponse.ok) {
+            // Update local data
+            currentData[participantIndex][lomba] = hasil;
+            alert(`✅ Hasil "${hasil}" berhasil dikirim untuk ${kupon} (via POST)`);
+            
+            // Refresh tournament view
+            setTimeout(() => {
+              generateTournament(currentLomba);
+            }, 1000);
+            return;
+          }
+        } catch (postError) {
+          console.log('POST also failed:', postError);
+        }
+        
+        // Method 3: Manual update (fallback)
+        console.log('API methods failed, using manual update');
+        currentData[participantIndex][lomba] = hasil;
+        alert(`⚠️ Hasil "${hasil}" diupdate secara lokal untuk ${kupon}. Data mungkin tidak tersimpan di server.`);
+        
+        // Refresh tournament view
+        setTimeout(() => {
+          generateTournament(currentLomba);
+        }, 500);
+        
+      } catch (error) {
+        console.error('Error updating result:', error);
+        alert('❌ Gagal mengirim hasil: ' + error.message + '\n\nCoba periksa koneksi internet atau URL API.');
       }
     }
+
+    // Initialize the application
+    loadInitialData();
   </script>
 </body>
 </html>
