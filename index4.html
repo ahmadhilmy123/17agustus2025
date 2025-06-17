@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bracket Lomba</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+    h2 {
+      color: #333;
+      margin-top: 40px;
+    }
+    .lomba-container {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .lomba-title {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    .peserta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .btn-group button {
+      margin-left: 5px;
+      padding: 4px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn-menang { background-color: #4caf50; color: white; }
+    .btn-kalah { background-color: #f44336; color: white; }
+  </style>
+</head>
+<body>
+  <h1>🎯 Bracket Lomba</h1>
+  <div id="bracket">Loading...</div>
+
+  <script>
+    const API_URL = 'https://api.sheetbest.com/sheets/0d434f8c-aeb0-493e-a72a-052683c6e7d8';
+
+    const rentangUmur = {
+      "Lomba Bendera": [3, 5],
+      "Lomba Nangkep Ikan": [3, 5],
+      "Lomba Stocking": [6, 8],
+      "Lomba Paku": [6, 8],
+      "Lomba Pindahin Gelas Pake Balon": [6, 8],
+      "Lomba Balap Karung": [9, 15],
+      "Lomba Octopus [4 orang]": [9, 15],
+      "Lomba Tiup Gelas [4 orang]": [9, 15],
+      "Lomba Voli Air [4 orang]": [9, 15],
+      "Lomba Lari Bawa Balon": [18, 60],
+      "Lomba Makeup": [18, 60],
+      "Lomba Sedotan ke Botol": [18, 60],
+      "Lomba Estafet Kardus [4 orang]": [18, 60],
+      "Lomba Kerupuk Sarung": [3, 99],
+      "Lomba Biskuit": [3, 99]
+    };
+
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => {
+        const umurMap = {};
+        data.forEach(p => {
+          const umur = parseInt(p.Umur);
+          const nama = `${p.Nama} (${umur} th)`;
+          const kupon = p.Kupon || "TANPA-ID";
+
+          [p.Lomba_1, p.Lomba_2].forEach(lomba => {
+            if (!lomba || lomba === "-") return;
+            const [min, max] = rentangUmur[lomba] || [];
+            if (umur >= min && umur <= max) {
+              if (!umurMap[umur]) umurMap[umur] = {};
+              if (!umurMap[umur][lomba]) umurMap[umur][lomba] = [];
+              umurMap[umur][lomba].push({ nama, kupon });
+            }
+          });
+        });
+
+        const umurTersortir = Object.keys(umurMap).sort((a, b) => a - b);
+        const container = document.getElementById('bracket');
+        container.innerHTML = '';
+
+        umurTersortir.forEach(umur => {
+          container.innerHTML += `<h2>👧 Usia ${umur} Tahun</h2>`;
+          const lombaMap = umurMap[umur];
+          for (const lomba in lombaMap) {
+            const pesertaHTML = lombaMap[lomba]
+              .map(p => `
+                <div class="peserta">
+                  ${p.nama}
+                  <div class="btn-group">
+                    <button class="btn-menang" onclick="kirimHasil('${p.kupon}', '${lomba}', 'Menang')">Menang</button>
+                    <button class="btn-kalah" onclick="kirimHasil('${p.kupon}', '${lomba}', 'Kalah')">Kalah</button>
+                  </div>
+                </div>
+              `).join('');
+            container.innerHTML += `
+              <div class="lomba-container">
+                <div class="lomba-title">${lomba}</div>
+                ${pesertaHTML}
+              </div>
+            `;
+          }
+        });
+
+        Object.keys(rentangUmur).forEach(lomba => {
+          buatBracketLanjutan(data, lomba);
+        });
+      })
+      .catch(err => {
+        document.getElementById('bracket').innerHTML = `<p style="color:red;">❌ Gagal mengambil data.</p>`;
+        console.error(err);
+      });
+
+    function kirimHasil(kupon, lomba, hasil) {
+      const updateUrl = `${API_URL}/Kupon/*${kupon}*`;
+      const payload = { [lomba]: hasil };
+
+      fetch(updateUrl, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("Gagal update");
+        return res.json();
+      })
+      .then(() => {
+        alert(`✅ Hasil "${hasil}" berhasil dikirim untuk kupon ${kupon}`);
+        location.reload();
+      })
+      .catch(err => {
+        console.error(err);
+        alert("❌ Gagal mengirim hasil.");
+      });
+    }
+
+    function buatBracketLanjutan(data, lomba) {
+      const pemenang = data.filter(p => (p[lomba] || '').toLowerCase() === 'menang');
+      if (pemenang.length < 2) return;
+
+      const container = document.getElementById('bracket');
+      container.innerHTML += `<h2>🏆 Babak Lanjutan: ${lomba}</h2>`;
+
+      for (let i = 0; i < pemenang.length; i += 2) {
+        const peserta1 = pemenang[i];
+        const peserta2 = pemenang[i + 1];
+
+        if (!peserta2) {
+          container.innerHTML += `<p>${peserta1.Nama} langsung lolos (bye)</p>`;
+          continue;
+        }
+
+        container.innerHTML += `
+          <div class="lomba-container">
+            <div class="peserta">${peserta1.Nama}
+              <div class="btn-group">
+                <button class="btn-menang" onclick="kirimHasil('${peserta1.Kupon}', 'Babak_${lomba}', 'Menang')">Menang</button>
+                <button class="btn-kalah" onclick="kirimHasil('${peserta1.Kupon}', 'Babak_${lomba}', 'Kalah')">Kalah</button>
+              </div>
+            </div>
+            <div class="peserta">${peserta2.Nama}
+              <div class="btn-group">
+                <button class="btn-menang" onclick="kirimHasil('${peserta2.Kupon}', 'Babak_${lomba}', 'Menang')">Menang</button>
+                <button class="btn-kalah" onclick="kirimHasil('${peserta2.Kupon}', 'Babak_${lomba}', 'Kalah')">Kalah</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>
