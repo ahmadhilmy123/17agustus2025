@@ -437,7 +437,7 @@
         /* Registration Section */
          .container1 {
             max-width: 800px;
-            margin: 0 auto;
+            margin:  25px auto;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             padding: 40px;
@@ -1358,7 +1358,320 @@
         margin-top: 0;
         }
         
+/* keluh kesah */
 
+        .container2 {
+            background: linear-gradient(135deg, #943a02 0%, #730000 100%);
+            margin: 0 auto;
+            padding: 0 2rem;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .section-title1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgb(255, 255, 255);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .form-section, .messages-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        .form-title, .messages-title {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .setup-info {
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid rgba(255, 193, 7, 0.5);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .setup-info strong {
+            color: #ffc107;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.02);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .form-select option {
+            background: #333;
+            color: white;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: white;
+            margin: 1rem 0;
+        }
+
+        .success-message, .error-message {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message {
+            background: rgba(76, 175, 80, 0.8);
+            color: white;
+        }
+
+        .error-message {
+            background: rgba(244, 67, 54, 0.8);
+            color: white;
+        }
+
+        .messages-container {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .message-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+
+        .message-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .message-item.keluhan {
+            border-left-color: #ff6b6b;
+        }
+
+        .message-item.saran {
+            border-left-color: #feca57;
+        }
+
+        .message-item.pertanyaan {
+            border-left-color: #48cae4;
+        }
+
+        .message-item.lainnya {
+            border-left-color: #c77dff;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .message-type {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: white;
+        }
+
+        .message-date {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .message-name {
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .message-email {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1rem;
+        }
+
+        .message-content {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+
+        .no-messages {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-style: italic;
+            padding: 2rem;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+        }
+
+        .refresh-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(72, 202, 228, 0.8);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(72, 202, 228, 1);
+        }
+
+        /* Custom Scrollbar */
+        .messages-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .messages-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .messages-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+             .stats-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1679,6 +1992,8 @@
         </form>
     </div>
 
+
+
  <section class="hasil-section" id="hasil">
          <div class="custom-heading">
         🏆 HASIL PERLOMBAAN
@@ -1703,6 +2018,100 @@
             <button class="pagination-btn" id="nextBtn" onclick="changePage(1)">Selanjutnya →</button>
         </div>
     </section>
+
+      <div class="container2">
+        <div class="section-header">
+            <h2 class="section-title1">Keluhan & Pesan</h2>
+        </div>
+
+        <div class="main-content">
+            <!-- Form Section -->
+            <div class="form-section">
+                <h3 class="form-title">📝 Kirim Pesan</h3>
+                
+                <div class="setup-info">
+                    <strong>🔗 Jika Ada Kritik Dan Saran:</strong> Silahkan kirim kan Kritik Dan Saran Untuk Kami Supaya Untuk Lebih Maju
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    ✅ Pesan berhasil dikirim dan tersimpan ke Google Sheets!
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    ❌ Gagal mengirim pesan. Pastikan koneksi internet dan setup Google Sheets sudah benar.
+                </div>
+
+                <div class="loading" id="loadingMessage">
+                    ⏳ Mengirim pesan ke Google Sheets...
+                </div>
+
+                <form id="messageForm">
+                    <div class="form-group">
+                        <label class="form-label" for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" class="form-input" placeholder="Masukkan nama lengkap" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="contoh@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="tipe">Tipe Pesan</label>
+                        <select id="tipe" class="form-select" required>
+                            <option value="">Pilih tipe pesan</option>
+                            <option value="keluhan">Keluhan</option>
+                            <option value="saran">Saran</option>
+                            <option value="pertanyaan">Pertanyaan</option>
+                            <option value="lainnya">Lainnya</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="subjek">Subjek</label>
+                        <input type="text" id="subjek" class="form-input" placeholder="Subjek pesan" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="pesan">Pesan</label>
+                        <textarea id="pesan" class="form-textarea" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">Kirim Pesan</button>
+                </form>
+            </div>
+
+            <!-- Messages Section -->
+            <div class="messages-section">
+                <h3 class="messages-title">💬 Pesan dari Google Sheets</h3>
+                
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalMessages">0</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="keluhanCount">0</span>
+                        <span class="stat-label">Keluhan</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="saranCount">0</span>
+                        <span class="stat-label">Saran</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="pertanyaanCount">0</span>
+                        <span class="stat-label">Pertanyaan</span>
+                    </div>
+                </div>
+
+                <button class="refresh-btn" id="refreshBtn" onclick="loadMessagesFromSheets()">🔄 Refresh Data</button>
+
+                <div class="messages-container" id="messagesContainer">
+                    <div class="no-messages">Loading pesan dari Google Sheets...</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
      <footer id="kontak" class="footer">
@@ -2950,6 +3359,160 @@ setupLombaValidation();
         document.getElementById('prevBtn').addEventListener('click', () => changePage(-1));
         document.getElementById('nextBtn').addEventListener('click', () => changePage(1));
     });
+</script>
+
+  <script>
+    // ============================================
+    // KONFIGURASI URL SheetBest
+    // ============================================
+    const GOOGLE_SCRIPT_URL = 'https://api.sheetbest.com/sheets/221831d0-5cfb-40c9-8ded-8a13a6ff9776';
+
+    // ============================================
+    // FUNGSI UNTUK MENGIRIM DATA KE GOOGLE SHEETS
+    // ============================================
+    async function sendToGoogleSheets(data) {
+        try {
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            return { success: true };
+        } catch (error) {
+            console.error('Error sending to Google Sheets:', error);
+            return { success: false, error: error.message };
+        }
+    }
+
+    // ============================================
+    // FUNGSI UNTUK MENGAMBIL DATA DARI GOOGLE SHEETS
+    // ============================================
+    async function loadMessagesFromSheets() {
+        try {
+            const response = await fetch(GOOGLE_SCRIPT_URL);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            displayMessages(data);
+            updateStats(data);
+        } catch (error) {
+            console.error('Error loading from Google Sheets:', error);
+            document.getElementById('messagesContainer').innerHTML =
+                '<div class="no-messages">❌ Gagal memuat data dari Google Sheets.<br>Pastikan setup sudah benar.</div>';
+        }
+    }
+
+    // ============================================
+    // TAMPILAN PESAN
+    // ============================================
+    function displayMessages(messages) {
+        const container = document.getElementById('messagesContainer');
+        if (!messages || messages.length === 0) {
+            container.innerHTML = '<div class="no-messages">Belum ada pesan di Google Sheets</div>';
+            return;
+        }
+
+        container.innerHTML = messages.map(msg => `
+            <div class="message-item ${msg.tipe}">
+                <div class="message-header">
+                    <span class="message-type">${msg.tipe}</span>
+                    <span class="message-date">${msg.tanggal}</span>
+                </div>
+                <div class="message-name">${msg.nama}</div>
+                <div class="message-email">${msg.email}</div>
+                <div class="message-content">
+                    <strong>${msg.subjek}</strong><br>
+                    ${msg.pesan}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // ============================================
+    // TAMPILAN STATISTIK
+    // ============================================
+    function updateStats(messages) {
+        const total = messages.length;
+        const keluhan = messages.filter(msg => msg.tipe === 'keluhan').length;
+        const saran = messages.filter(msg => msg.tipe === 'saran').length;
+        const pertanyaan = messages.filter(msg => msg.tipe === 'pertanyaan').length;
+
+        document.getElementById('totalMessages').textContent = total;
+        document.getElementById('keluhanCount').textContent = keluhan;
+        document.getElementById('saranCount').textContent = saran;
+        document.getElementById('pertanyaanCount').textContent = pertanyaan;
+    }
+
+    // ============================================
+    // NOTIFIKASI STATUS
+    // ============================================
+    function showMessage(type, message = '') {
+        const successMsg = document.getElementById('successMessage');
+        const errorMsg = document.getElementById('errorMessage');
+        const loadingMsg = document.getElementById('loadingMessage');
+
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'none';
+        loadingMsg.style.display = 'none';
+
+        if (type === 'success') {
+            successMsg.style.display = 'block';
+            setTimeout(() => successMsg.style.display = 'none', 5000);
+        } else if (type === 'error') {
+            errorMsg.textContent = message;
+            errorMsg.style.display = 'block';
+            setTimeout(() => errorMsg.style.display = 'none', 5000);
+        } else if (type === 'loading') {
+            loadingMsg.style.display = 'block';
+        }
+    }
+
+    // ============================================
+    // EVENT LISTENER UNTUK FORM
+    // ============================================
+    document.getElementById('messageForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById('submitBtn');
+        const originalText = submitBtn.textContent;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Mengirim...';
+        showMessage('loading');
+
+        const formData = {
+            nama: document.getElementById('nama').value,
+            email: document.getElementById('email').value,
+            tipe: document.getElementById('tipe').value,
+            subjek: document.getElementById('subjek').value,
+            pesan: document.getElementById('pesan').value,
+            tanggal: new Date().toLocaleString('id-ID')
+        };
+
+        const result = await sendToGoogleSheets(formData);
+
+        if (result.success) {
+            showMessage('success');
+            this.reset();
+            setTimeout(loadMessagesFromSheets, 2000);
+        } else {
+            showMessage('error', 'Gagal mengirim pesan: ' + (result.error || 'Unknown error'));
+        }
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    });
+
+    // ============================================
+    // INISIALISASI SAAT LOAD
+    // ============================================
+    document.addEventListener('DOMContentLoaded', loadMessagesFromSheets);
+    setInterval(loadMessagesFromSheets, 60000);
 </script>
 
    
