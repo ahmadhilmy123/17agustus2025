@@ -538,64 +538,191 @@
 
         /* Footer */
         .footer {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: #FFFFFF;
-            padding: 3rem 0 1rem;
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FF0000, #ff6b6b, #FF0000);
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr 1fr 1fr 1.2fr;
+            gap: 3rem;
             margin-bottom: 2rem;
         }
 
         .footer-section h3 {
-            color: #FF0000;
-            margin-bottom: 1rem;
+            color: #FFFFFF;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
-        .footer-section p,
-        .footer-section a {
-            color: #ccc;
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #b8b8b8;
             text-decoration: none;
-            line-height: 1.6;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.2rem 0;
         }
 
-        .footer-section a:hover {
+        .footer-links a:hover {
             color: #FF0000;
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            color: #b8b8b8;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-info strong {
+            color: #FFFFFF;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .newsletter-description {
+            color: #b8b8b8;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            font-size: 0.9rem;
+        }
+
+        .email-input::placeholder {
+            color: #999;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #FF0000;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .subscribe-btn {
+            padding: 0.8rem 1.5rem;
+            background: #FF0000;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .subscribe-btn:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
         }
 
         .social-links {
             display: flex;
             gap: 1rem;
-            margin-top: 1rem;
         }
 
         .social-links a {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 40px;
             height: 40px;
-            background: #FF0000;
-            color: #FFFFFF;
-            text-align: center;
-            line-height: 40px;
-            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #b8b8b8;
+            border-radius: 8px;
             transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2rem;
         }
 
         .social-links a:hover {
+            background: #FF0000;
+            color: #FFFFFF;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255,0,0,0.3);
         }
 
         .footer-bottom {
-            border-top: 1px solid #333;
-            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
             text-align: center;
-            color: #999;
+            color: #888;
+            font-size: 0.85rem;
         }
 
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            
+            .newsletter-section {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .email-form {
+                flex-direction: column;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+        }
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -1198,38 +1325,39 @@
         }
 
         .hasil-section {
-  padding: 3rem 1rem;
-  background: linear-gradient(to right, #f0f4ff, #ffffff);
-  text-align: center; /* PENTING: agar teks anaknya ketengah */
-}
+            padding: 3rem 1rem;
+            background: linear-gradient(to right, #f0f4ff, #ffffff);
+            text-align: center; /* PENTING: agar teks anaknya ketengah */
+            }
 
-.custom-heading {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #1d3557;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  display: inline-block;
-  position: relative;
-  margin: 0 auto 0.5rem auto; /* Supaya benar-benar ketengah */
-}
+        .custom-heading {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #1d3557;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: inline-block;
+        position: relative;
+        margin: 0 auto 0.5rem auto; /* Supaya benar-benar ketengah */
+        }
 
-.custom-heading::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 4px;
-  background-color: #ff595e;
-  margin: 0.5rem auto 0; /* Garis bawahnya juga ketengah */
-  border-radius: 2px;
-}
+        .custom-heading::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background-color: #ff595e;
+        margin: 0.5rem auto 0; /* Garis bawahnya juga ketengah */
+        border-radius: 2px;
+        }
 
-.subtitle {
-  font-size: 1rem;
-  color: #444;
-  font-weight: 500;
-  margin-top: 0;
-}
+        .subtitle {
+        font-size: 1rem;
+        color: #444;
+        font-weight: 500;
+        margin-top: 0;
+        }
+        
 
     </style>
 </head>
@@ -1331,7 +1459,7 @@
                         <div class="info-icon">📅</div>
                         <div>
                             <strong>Tanggal Acara:</strong><br>
-                            17 Agustus 2025
+                            Comming Soon
                         </div>
                     </div>
                     <div class="info-item">
@@ -1577,36 +1705,70 @@
     </section>
 
     <!-- Footer -->
-    <footer id="kontak" class="footer">
+     <footer id="kontak" class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Kontak Panitia</h3>
-                    <p>📞 +6283128446613 (Bani)</p>
-                    <p>📞 +6285282520521 (Ilham)</p>
-                    <p>📍 Jl. Waruajay 1B</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Media Sosial</h3>
-                    <div class="social-links">
-                        <a href="#" title="Facebook">📘</a>
-                        <a href="#" title="Instagram">📷</a>
-                        <a href="#" title="Twitter">🐦</a>
-                        <a href="#" title="YouTube">📺</a>
+                    <h3>Kontak</h3>
+                    <div class="contact-info">
+                        <strong>📞 Koordinator Utama</strong>
+                        +6283128446613 (Bani)
+                    </div>
+                    <div class="contact-info">
+                        <strong>📞 Wakil Koordinator</strong>
+                        +6285282520521 (Ilham)
+                    </div>
+                    <div class="contact-info">
+                        <strong>📍 Alamat</strong>
+                        Jl. Warujaya 1B
                     </div>
                 </div>
                 
                 <div class="footer-section">
+                    <h3>Acara</h3>
+                    <ul class="footer-links">
+                        <li><a href="#pendaftaran">Pendaftaran</a></li>
+                        <li><a href="#lomba">Perlombaan</a></li>
+                        <li><a href="#jadwal">Jadwal Acara</a></li>
+                        <li><a href="#galeri">Galeri</a></li>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
                     <h3>Informasi</h3>
-                    <p>Pendaftaran: 13 Juli - 15 Agustus 2025</p>
-                    <p>Acara: 17 Agustus 2025</p>
-                    <p>Waktu: 08:00 WIB / Selesai</p>
+                    <ul class="footer-links">
+                        <li><a href="#syarat">Syarat & Ketentuan</a></li>
+                        <li><a href="#panduan">Panduan Peserta</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#kontak">Hubungi Kami</a></li>
+                        <li><a href="#kebijakan">Kebijakan</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <div class="newsletter-section">
+                        <h3>Newsletter</h3>
+                        <p class="newsletter-description">
+                            Dapatkan update terbaru seputar acara 17 Agustus dan kegiatan Karang Taruna 07/022.
+                        </p>
+                        <div class="email-form">
+                            <input type="email" class="email-input" placeholder="Email Anda">
+                            <button class="subscribe-btn">SUBSCRIBE</button>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" title="Facebook">📘</a>
+                            <a href="#" title="Instagram">📷</a>
+                            <a href="#" title="Twitter">🐦</a>
+                            <a href="#" title="YouTube">📺</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Karang Taruna 07/022. Dirgahayu Indonesia ke-80!</p>
+                <p>&copy; 2025 Karang Taruna 07/022. Dirgahayu Indonesia ke-80! 🇮🇩</p>
+                <p>Pendaftaran: 13 Juli - 15 Agustus 2025 | Acara: 17 Agustus 2025 | Waktu: 08:00 WIB</p>
             </div>
         </div>
     </footer>
@@ -2106,14 +2268,14 @@ const lombaList = [
   // Umur 3–5 tahun
   { 
     nama: "Lomba Bendera", 
-    deskripsi: "Mengenali dan menyusun bendera dengan cepat.", 
+    deskripsi: "Mengambil Dan Memindahkan Bendera Dari Botol A Ke Botol B.", 
     icon: "🚩", 
     kategori: "Umur 3–5 tahun",
     gambar: "https://a.okezone.com/photos/2023/08/06//93171/429646_highres.jpg"
   },
   { 
     nama: "Lomba Nangkep Ikan", 
-    deskripsi: "Menangkap ikan kecil dari kolam buatan.", 
+    deskripsi: "Mengambil Dan Menangkap ikan kecil dari kolam buatan.", 
     icon: "🐟", 
     kategori: "Umur 3–5 tahun",
     gambar: "https://tkalkalamsurabaya.wordpress.com/wp-content/uploads/2012/04/lomba-menangkap-ikan-di-bak.jpg"
@@ -2122,7 +2284,7 @@ const lombaList = [
   // Umur 6–8 tahun
   { 
     nama: "Lomba Stocking", 
-    deskripsi: "Permainan lucu dengan stocking di kepala dan bola!", 
+    deskripsi: "permainan memasukkan sedotan ke dalam sumpit dengan menggunakan stocking sebagai alat penutup wajah", 
     icon: "🧦", 
     kategori: "Umur 6–8 tahun",
     gambar: "https://cdn.idntimes.com/content-images/post/20220816/2-22da20c1cce56bc8dd84bb8e71dfc794.jpg"
@@ -2166,7 +2328,7 @@ const lombaList = [
   },
   { 
     nama: "Voli Air", 
-    deskripsi: "Main voli pakai air dan ember, pasti basah!", 
+    deskripsi: "permainan dengan memegang sarung dan berusaha menangkap/melempar balon air yang tiap tim nya berisi 4 orang!", 
     icon: "🏐", 
     kategori: "Umur 9–15 tahun",
     gambar: "https://www.man1banyuwangi.sch.id/upload/imagecache/22961190DSC_0405(1)-800x534.jpg"
@@ -2175,7 +2337,7 @@ const lombaList = [
   // Ibu-ibu
   { 
     nama: "Lari Bawa Balon", 
-    deskripsi: "Lari sambil jaga balon tetap utuh!", 
+    deskripsi: "Lari sambil jaga 3 balon tetap utuh!", 
     icon: "🎈", 
     kategori: "Ibu-ibu",
     gambar: "https://pwmu.co/wp-content/uploads/2019/08/Almadany-tugas.jpg"
@@ -2411,24 +2573,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 lombaDipilih += `\n🎯 Lomba 2: ${data.lomba2}`;
             }
             
-            const message = `🎉 *PENDAFTARAN LOMBA 17 AGUSTUS* 🎉
+            const message = `🎉 *PENDAFTARAN LOMBA 17 AGUSTUS 2025* 🎉
 
-🎫 *KUPON PENDAFTARAN: ${kuponCode}*
+            🎫 *KUPON PENDAFTARAN: ${kuponCode}*
 
-📝 *Data Pendaftar:*
-👤 Nama: ${data.nama}
-🎂 Umur: ${data.umur} tahun
-🏠 Alamat: ${data.alamat}
-👨‍👩‍👧‍👦 Nama Orang Tua: ${data.namaOrangTua}
-📱 No. Telepon: ${data.telepon}
+            📝 *Data Pendaftar:*
+            👤 Nama: ${data.nama}
+            🎂 Umur: ${data.umur} tahun
+            🏠 Alamat: ${data.alamat}
+            👨‍👩‍👧‍👦 Nama Orang Tua: ${data.namaOrangTua}
+            📱 No. Telepon: ${data.telepon}
 
-🏆 *Lomba yang Dipilih:*
-${lombaDipilih}
+            🏆 *Lomba yang Dipilih:*
+            ${lombaDipilih}
 
-📅 Tanggal daftar: ${tanggal}
+            📅 Tanggal daftar: ${tanggal}
 
-Terima kasih telah mendaftar! 🙏
-Simpan KUPON ini sebagai bukti pendaftaran.`;
+            Terima kasih telah mendaftar! 🙏
+            *Lomba Ini Khusus DI Wilayah RT 07/022*
+            *Setiap Perkartu Keluarga Diwajibkan Membayar RP.30.000*
+            Simpan KUPON ini sebagai bukti pendaftaran.`;
             
             // Encode message for URL
             const encodedMessage = encodeURIComponent(message);
@@ -2508,7 +2672,7 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Umur: 3–5 tahun",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "bendera",
-        status: "Segera Diumumkan",
+        status: "Cooming Soon",
         statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-15T17:00:00"
@@ -2518,8 +2682,8 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Umur: 3–5 tahun",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "ikan",
-        status: "Sedang Berlangsung",
-        statusClass: "status-ongoing",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-16T17:00:00"
     },
@@ -2530,7 +2694,7 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Umur: 6–8 tahun",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "stocking",
-        status: "Pendaftaran Dibuka",
+        status: "Cooming Soon",
         statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-17T17:00:00"
@@ -2540,7 +2704,7 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Umur: 6–8 tahun",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "paku",
-        status: "Segera",
+        status: "Cooming Soon",
         statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-17T17:00:00"
@@ -2550,7 +2714,7 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Umur: 6–8 tahun",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "balon",
-        status: "Segera Dimulai",
+        status: "Cooming Soon",
         statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-18T17:00:00"
@@ -2562,7 +2726,7 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Umur: 9–15 tahun",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "karung",
-        status: "Audisi Dibuka",
+        status: "Cooming Soon",
         statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-18T17:00:00"
@@ -2572,7 +2736,7 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Umur: 9–15 tahun (4 orang)",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "octopus",
-        status: "Segera Diumumkan",
+        status: "Cooming Soo",
         statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-19T17:00:00"
@@ -2582,8 +2746,9 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Umur: 9–15 tahun (4 orang)",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "tiup",
-        status: "Sedang Berlangsung",
-        statusClass: "status-ongoing",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        // statusClass: "status-ongoing",
         isCompleted: false,
         deadline: "2025-08-19T17:00:00"
     },
@@ -2592,7 +2757,7 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Umur: 9–15 tahun (4 orang)",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "voliair",
-        status: "Pendaftaran Dibuka",
+        status: "Cooming Soon",
         statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-20T17:00:00"
@@ -2604,7 +2769,7 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Kategori: Ibu-Ibu",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "laribalon",
-        status: "Segera Dimulai",
+        status: "Cooming Soon",
         statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-21T17:00:00"
@@ -2614,7 +2779,7 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Kategori: Ibu-Ibu",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "makeup",
-        status: "Audisi Dibuka",
+        status: "Cooming Soon",
         statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-21T17:00:00"
@@ -2624,7 +2789,7 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Kategori: Ibu-Ibu",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "sedotan",
-        status: "Segera Diumumkan",
+        status: "Cooming Soon",
         statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-22T17:00:00"
@@ -2634,7 +2799,7 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Kategori: Ibu-Ibu (4 orang)",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "estafet",
-        status: "Segera Dimulai",
+        status: "Cooming Soon",
         statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-22T17:00:00"
@@ -2646,7 +2811,7 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Kategori: Semua Umur",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "kerupuk",
-        status: "Audisi Dibuka",
+        status: "Cooming Soon",
         statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-23T17:00:00"
@@ -2656,7 +2821,7 @@ Simpan KUPON ini sebagai bukti pendaftaran.`;
         date: "Kategori: Semua Umur",
         winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
         countdownId: "biskuit",
-        status: "Segera Diumumkan",
+        status: "Cooming Soon",
         statusClass: "status-upcoming",
         isCompleted: false,
         deadline: "2025-08-23T17:00:00"
