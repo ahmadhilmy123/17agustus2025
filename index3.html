@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Peserta Lomba 17 Agustus</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { color: #d40000; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #aaa; padding: 10px; text-align: left; }
+    th { background-color: #f4f4f4; }
+    .statistik { margin-top: 30px; padding: 15px; background: #fdf0f0; border: 1px solid #e0a; }
+  </style>
+</head>
+<body>
+
+  <h1>📋 Daftar Peserta Lomba 17 Agustus 2025</h1>
+  <div id="statistik" class="statistik"></div>
+  <table id="tabelPeserta">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Umur</th>
+        <th>Alamat</th>
+        <th>Ortu</th>
+        <th>Lomba 1</th>
+        <th>Lomba 2</th>
+        <th>No Telepone</th>
+        <th>Kupon</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data peserta akan ditampilkan di sini -->
+    </tbody>
+  </table>
+
+  <script>
+    const API_URL = 'https://api.sheetbest.com/sheets/2994e308-fe40-40a5-b6f1-a0074b5f2a40';
+
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(data => {
+        const tbody = document.querySelector('#tabelPeserta tbody');
+        const statistikDiv = document.getElementById('statistik');
+
+        let htmlRows = '';
+        const lombaCount = {};
+        const umurCount = {};
+
+        data.forEach((peserta, index) => {
+          htmlRows += `
+            <tr>
+              <td>${index + 1}</td>
+              <td>${peserta.Nama}</td>
+              <td>${peserta.Umur}</td>
+              <td>${peserta.Alamat}</td>
+              <td>${peserta.Nama_Orang_Tua}</td>
+              <td>${peserta.Lomba_1}</td>
+              <td>${peserta.Lomba_2 || '-'}</td>
+              <td>${peserta.Telepon}</td>
+              <td>${peserta.Kupon || '-'}</td>
+            </tr>
+          `;
+
+          // Hitung statistik lomba
+          if (peserta.Lomba_1) {
+            lombaCount[peserta.Lomba_1] = (lombaCount[peserta.Lomba_1] || 0) + 1;
+          }
+          if (peserta.Lomba_2) {
+            lombaCount[peserta.Lomba_2] = (lombaCount[peserta.Lomba_2] || 0) + 1;
+          }
+
+          // Hitung kelompok umur
+          const umur = parseInt(peserta.Umur);
+          const kelompok = umur <= 5 ? '3–5 tahun' : umur <= 8 ? '6–8 tahun' : '9–15 tahun';
+          umurCount[kelompok] = (umurCount[kelompok] || 0) + 1;
+        });
+
+        tbody.innerHTML = htmlRows;
+
+        // Tampilkan statistik
+        const totalPeserta = data.length;
+        const lombaFavorit = Object.entries(lombaCount)
+          .sort((a, b) => b[1] - a[1])[0];
+
+        statistikDiv.innerHTML = `
+          <h3>📊 Statistik</h3>
+          <p>Total Peserta: <strong>${totalPeserta}</strong></p>
+          <p>Lomba Terfavorit: <strong>${lombaFavorit ? lombaFavorit[0] + ' (' + lombaFavorit[1] + ' peserta)' : '-'}</strong></p>
+          <p>Kelompok Umur:</p>
+          <ul>
+            ${Object.entries(umurCount).map(([group, count]) => `<li>${group}: ${count} peserta</li>`).join('')}
+          </ul>
+        `;
+      })
+      .catch(error => {
+        console.error('Gagal mengambil data:', error);
+        document.getElementById('statistik').textContent = '❌ Gagal memuat data dari Google Sheet.';
+      });
+  </script>
+
+</body>
+</html>

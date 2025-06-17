@@ -2474,108 +2474,107 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener('scroll', revealOnScroll);
 </script>
-  <script>
-        // Ganti dengan nomor WhatsApp tujuan (tanpa tanda + dan spasi)
-        const WHATSAPP_NUMBER = '62895401111425'; // Ganti dengan nomor WA yang dituju
-        
-        // Function to generate kupon code
-        function generateKuponCode(nama, tahun) {
-            // Ambil 3 huruf pertama dari nama (uppercase)
-            const namaCode = nama.toUpperCase().replace(/[^A-Z]/g, '').substring(0, 3);
-            
-            // Generate random 4 digit number
-            const randomNum = Math.floor(1000 + Math.random() * 9000);
-            
-            // Gabungkan: NAMA + TAHUN + RANDOM
-            return `${namaCode}${tahun}${randomNum}`;
-        }
-        
-        // Function to validate age for lomba
-        function validateLombaAge(lomba, umur) {
-            if (!lomba || lomba === '') return true; // Skip if no lomba selected
-            
-            if ((lomba === 'Lomba Bendera' || lomba === 'Lomba Nangkep Ikan') && (umur < 3 || umur > 5)) {
-                return false;
-            }
-            if ((lomba === 'Lomba Stocking' || lomba === 'Lomba Paku' || lomba === 'Lomba Pindahin Gelas Pake Balon') && (umur < 6 || umur > 8)) {
-                return false;
-            }
-            if ((lomba === 'Lomba Balap Karung' || lomba === 'Lomba Octopus [4 orang]' || lomba === 'Lomba Tiup Gelas [4 orang]' || lomba === 'Lomba Voli Air [4 orang]') && (umur < 9 || umur > 15)) {
-                return false;
-            }
-            
-            return true;
-        }
-        
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = {};
-            
-            for (let [key, value] of formData.entries()) {
-                data[key] = value;
-            }
-            
-            // Simple validation
-            if (!data.nama || !data.umur || !data.alamat || !data.namaOrangTua || !data.telepon || !data.lomba1) {
-                alert('Mohon lengkapi semua field yang diperlukan!');
-                return;
-            }
-            
-            // Check if lomba1 and lomba2 are the same
-            if (data.lomba2 && data.lomba1 === data.lomba2) {
-                alert('Lomba pertama dan kedua tidak boleh sama!');
-                return;
-            }
-            
-            // Phone number validation (basic)
-            const phoneRegex = /^[0-9+\-\s]+$/;
-            if (!phoneRegex.test(data.telepon)) {
-                alert('Format nomor telepon tidak valid!');
-                return;
-            }
-            
-            // Age validation for specific competitions
-            const umur = parseInt(data.umur);
-            
-            // Validate lomba 1
-            if (!validateLombaAge(data.lomba1, umur)) {
-                alert(`Lomba pertama "${data.lomba1}" tidak sesuai dengan umur ${umur} tahun!`);
-                return;
-            }
-            
-            // Validate lomba 2 if selected
-            if (data.lomba2 && !validateLombaAge(data.lomba2, umur)) {
-                alert(`Lomba kedua "${data.lomba2}" tidak sesuai dengan umur ${umur} tahun!`);
-                return;
-            }
-            
-            // Generate kupon code
-            const currentYear = new Date().getFullYear();
-            const kuponCode = generateKuponCode(data.nama, currentYear);
-            
-            // Display kupon
-            document.getElementById('kuponCode').textContent = kuponCode;
-            document.getElementById('kuponDisplay').style.display = 'block';
-            
-            // Create WhatsApp message
-            const today = new Date();
-            const tanggal = today.toLocaleDateString('id-ID', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            });
-            
-            let lombaDipilih = `🏆 Lomba 1: ${data.lomba1}`;
-            if (data.lomba2) {
-                lombaDipilih += `\n🎯 Lomba 2: ${data.lomba2}`;
-            }
-            
-const message = `🎉 *PENDAFTARAN LOMBA 17 AGUSTUS 2025* 🎉
 
- 🎫 *KUPON PENDAFTARAN: ${kuponCode}*
+<script>
+const WHATSAPP_NUMBER = '62895401111425'; // Nomor WA tujuan
+
+// Fungsi buat kode kupon
+function generateKuponCode(nama, tahun) {
+    const namaCode = nama.toUpperCase().replace(/[^A-Z]/g, '').substring(0, 3);
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    return `${namaCode}${tahun}${randomNum}`;
+}
+
+// Validasi umur untuk lomba tertentu
+function validateLombaAge(lomba, umur) {
+    if (!lomba || lomba === '') return true;
+
+    if ((lomba === 'Lomba Bendera' || lomba === 'Lomba Nangkep Ikan') && (umur < 3 || umur > 5)) return false;
+    if ((lomba === 'Lomba Stocking' || lomba === 'Lomba Paku' || lomba === 'Lomba Pindahin Gelas Pake Balon') && (umur < 6 || umur > 8)) return false;
+    if ((lomba === 'Lomba Balap Karung' || lomba.includes('[4 orang]')) && (umur < 9 || umur > 15)) return false;
+
+    return true;
+}
+
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const data = {};
+    for (let [key, value] of formData.entries()) data[key] = value;
+
+    // Validasi dasar
+    if (!data.nama || !data.umur || !data.alamat || !data.namaOrangTua || !data.telepon || !data.lomba1) {
+        alert('Mohon lengkapi semua field yang diperlukan!');
+        return;
+    }
+
+    if (data.lomba2 && data.lomba1 === data.lomba2) {
+        alert('Lomba pertama dan kedua tidak boleh sama!');
+        return;
+    }
+
+    const phoneRegex = /^[0-9+\-\s]+$/;
+    if (!phoneRegex.test(data.telepon)) {
+        alert('Format nomor telepon tidak valid!');
+        return;
+    }
+
+    const umur = parseInt(data.umur);
+
+    if (!validateLombaAge(data.lomba1, umur)) {
+        alert(`Lomba pertama "${data.lomba1}" tidak sesuai dengan umur ${umur} tahun!`);
+        return;
+    }
+
+    if (data.lomba2 && !validateLombaAge(data.lomba2, umur)) {
+        alert(`Lomba kedua "${data.lomba2}" tidak sesuai dengan umur ${umur} tahun!`);
+        return;
+    }
+
+    // Generate kupon
+    const tahun = new Date().getFullYear();
+    const kuponCode = generateKuponCode(data.nama, tahun);
+
+    // Tampilkan kupon
+    document.getElementById('kuponCode').textContent = kuponCode;
+    document.getElementById('kuponDisplay').style.display = 'block';
+
+    const tanggal = new Date().toLocaleDateString('id-ID', {
+        day: 'numeric', month: 'long', year: 'numeric'
+    });
+
+    // Kirim ke Sheet.best
+    fetch("https://api.sheetbest.com/sheets/2994e308-fe40-40a5-b6f1-a0074b5f2a40", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            Nama: data.nama,
+            Umur: data.umur,
+            Alamat: data.alamat,
+            Nama_Orang_Tua: data.namaOrangTua,
+            Telepon: data.telepon,
+            Lomba_1: data.lomba1,
+            Lomba_2: data.lomba2 || "-",
+            Kupon: kuponCode,
+            Tanggal_Daftar: tanggal
+        })
+    })
+    .then(res => res.json())
+    .then(res => {
+        console.log("Tersimpan di Google Sheet:", res);
+    })
+    .catch(err => {
+        console.error("Gagal simpan ke Google Sheet:", err);
+    });
+
+    // Format pesan WhatsApp
+    let lombaText = `🏆 Lomba 1: ${data.lomba1}`;
+    if (data.lomba2) lombaText += `\n🎯 Lomba 2: ${data.lomba2}`;
+
+    const message = `🎉 *PENDAFTARAN LOMBA 17 AGUSTUS 2025* 🎉
+
+🎫 *KUPON PENDAFTARAN: ${kuponCode}*
 
 📝 *Data Pendaftar:*
 👤 Nama: ${data.nama}
@@ -2585,83 +2584,71 @@ const message = `🎉 *PENDAFTARAN LOMBA 17 AGUSTUS 2025* 🎉
 📱 No. Telepon: ${data.telepon}
 
 🏆 *Lomba yang Dipilih:*
-${lombaDipilih}
+${lombaText}
 
 📅 Tanggal daftar: ${tanggal}
 
 Terima kasih telah mendaftar! 🙏
 *Lomba Ini Khusus DI Wilayah RT 07/022*
 *Setiap Perkartu Keluarga Diwajibkan Membayar RP.30.000*
- Simpan KUPON ini sebagai bukti pendaftaran.`;
-            
-            // Encode message for URL
-            const encodedMessage = encodeURIComponent(message);
-            
-            // Create WhatsApp URL
-            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-            
-            // Open WhatsApp
-            window.open(whatsappURL, '_blank');
-            
-            // Show success message
-            document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('successMessage').innerHTML = '✅ Data pendaftaran sedang dikirim ke WhatsApp. Silakan kirim pesan yang sudah disiapkan!<br>🎫 Kupon pendaftaran Anda telah dibuat!';
-            
-            // Reset form after 5 seconds
-            setTimeout(() => {
-                this.reset();
-                document.getElementById('successMessage').style.display = 'none';
-                document.getElementById('kuponDisplay').style.display = 'none';
-            }, 8000);
-            
-            // Scroll to kupon display
-            document.getElementById('kuponDisplay').scrollIntoView({ behavior: 'smooth' });
-        });
+Simpan KUPON ini sebagai bukti pendaftaran.`;
 
-        // Real-time age validation for lomba selection
-        function setupAgeValidation() {
-            document.getElementById('umur').addEventListener('change', function() {
-                const lomba1Select = document.getElementById('lomba1');
-                const lomba2Select = document.getElementById('lomba2');
-                const umur = parseInt(this.value);
-                
-                // Reset lomba 1 if age doesn't match
-                if (lomba1Select.value && !validateLombaAge(lomba1Select.value, umur)) {
-                    lomba1Select.value = '';
-                    alert('Pilihan lomba pertama di-reset karena tidak sesuai dengan umur yang dimasukkan.');
-                }
-                
-                // Reset lomba 2 if age doesn't match
-                if (lomba2Select.value && !validateLombaAge(lomba2Select.value, umur)) {
-                    lomba2Select.value = '';
-                    alert('Pilihan lomba kedua di-reset karena tidak sesuai dengan umur yang dimasukkan.');
-                }
-            });
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+
+    document.getElementById('successMessage').style.display = 'block';
+    document.getElementById('successMessage').innerHTML = '✅ Data pendaftaran sedang dikirim ke WhatsApp.<br>🎫 Kupon Anda telah dibuat!';
+
+    setTimeout(() => {
+        this.reset();
+        document.getElementById('successMessage').style.display = 'none';
+        document.getElementById('kuponDisplay').style.display = 'none';
+    }, 8000);
+
+    document.getElementById('kuponDisplay').scrollIntoView({ behavior: 'smooth' });
+});
+
+// Validasi usia dinamis
+function setupAgeValidation() {
+    document.getElementById('umur').addEventListener('change', function() {
+        const umur = parseInt(this.value);
+        const lomba1Select = document.getElementById('lomba1');
+        const lomba2Select = document.getElementById('lomba2');
+
+        if (lomba1Select.value && !validateLombaAge(lomba1Select.value, umur)) {
+            lomba1Select.value = '';
+            alert('Pilihan lomba pertama di-reset karena tidak sesuai umur.');
         }
-        
-        // Prevent selecting same lomba
-        function setupLombaValidation() {
-            document.getElementById('lomba1').addEventListener('change', function() {
-                const lomba2Select = document.getElementById('lomba2');
-                if (this.value && this.value === lomba2Select.value) {
-                    lomba2Select.value = '';
-                    alert('Lomba kedua tidak boleh sama dengan lomba pertama!');
-                }
-            });
-            
-            document.getElementById('lomba2').addEventListener('change', function() {
-                const lomba1Select = document.getElementById('lomba1');
-                if (this.value && this.value === lomba1Select.value) {
-                    this.value = '';
-                    alert('Lomba kedua tidak boleh sama dengan lomba pertama!');
-                }
-            });
+        if (lomba2Select.value && !validateLombaAge(lomba2Select.value, umur)) {
+            lomba2Select.value = '';
+            alert('Pilihan lomba kedua di-reset karena tidak sesuai umur.');
         }
-        
-        // Initialize validations
-        setupAgeValidation();
-        setupLombaValidation();
-    </script>
+    });
+}
+
+// Validasi lomba sama
+function setupLombaValidation() {
+    document.getElementById('lomba1').addEventListener('change', function() {
+        const lomba2Select = document.getElementById('lomba2');
+        if (this.value && this.value === lomba2Select.value) {
+            lomba2Select.value = '';
+            alert('Lomba kedua tidak boleh sama dengan lomba pertama!');
+        }
+    });
+
+    document.getElementById('lomba2').addEventListener('change', function() {
+        const lomba1Select = document.getElementById('lomba1');
+        if (this.value && this.value === lomba1Select.value) {
+            this.value = '';
+            alert('Lomba kedua tidak boleh sama dengan lomba pertama!');
+        }
+    });
+}
+
+// Aktifkan validasi
+setupAgeValidation();
+setupLombaValidation();
+</script>
+
 
     <script>
     // Data kompetisi
