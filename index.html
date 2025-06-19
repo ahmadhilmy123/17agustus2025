@@ -1244,34 +1244,137 @@
             opacity: 1;
         }
 
-        /* Gallery Section */
-        .galeri-section {
-        padding: 2rem;
-        background: #f4f4f4;
-        text-align: center;
-        }
+    /* Gallery Section */
+.galeri-section {
+    padding: 2rem;
+    background: #f4f4f4;
+    text-align: center;
+}
 
-        .swiper {
-        width: 90%;
-        margin: 1rem auto;
-        }
+.galeri-section h2 {
+    margin: 2rem 0 1rem 0;
+    color: #333;
+    font-size: 1.8rem;
+}
 
-        .swiper-slide img {
-        width: 100%;
-        height: 280px;     
-        object-fit: cover;  
-        object-position: center;
-        border-radius: 12px;
-        }
+.galeri-section h2:first-child {
+    margin-top: 0;
+}
 
-        @media (max-width: 768px) {
-        .swiper-slide img {
-            height: 150px;
-            width: 120px;
-            padding: 0 16px;
-            object-fit: cover;
-        }
-        }
+/* Swiper Container */
+.lombaSwiper, .puncakSwiper {
+    width: 90%;
+    margin: 1rem auto 3rem auto;
+    max-width: 1200px;
+    padding: 20px 0;
+}
+
+.swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+.swiper-slide {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.swiper-slide img:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation Buttons */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #007bff;
+    background: rgba(255,255,255,0.8);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-top: -20px;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Pagination */
+.swiper-pagination {
+    bottom: -10px;
+}
+
+.swiper-pagination-bullet {
+    background: #333;
+    opacity: 0.5;
+    width: 10px;
+    height: 10px;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #007bff;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .galeri-section {
+        padding: 1rem;
+    }
+    
+    .galeri-section h2 {
+        font-size: 1.5rem;
+        margin: 1.5rem 0 1rem 0;
+    }
+    
+    .lombaSwiper, .puncakSwiper {
+        width: 95%;
+        margin: 1rem auto 2rem auto;
+    }
+    
+    .swiper-slide img {
+        height: 200px;
+        border-radius: 8px;
+    }
+    
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 35px;
+        height: 35px;
+        margin-top: -17px;
+    }
+    
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .swiper-slide img {
+        height: 180px;
+    }
+    
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none; /* Sembunyikan tombol navigasi di layar sangat kecil */
+    }
+}
+
 
 
         .pagination {
@@ -2605,7 +2708,7 @@
     <audio id="backgroundMusic" src="lagu.mp3" loop preload="auto"></audio>
 
 
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script>
         // Mobile menu toggle
@@ -4051,7 +4154,104 @@ setupLombaValidation();
                 document.getElementById('registrationForm').reset();
             }, 5000);
         });
+
+
+        // Initialize Swiper untuk Galeri Lomba
+// Initialize Swiper untuk Galeri Lomba
+const lombaSwiper = new Swiper('.lombaSwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+        delay: 300,
+        disableOnInteraction: true,
+        reverseDirection: true // <- arah ke kiri
+    },
+    navigation: {
+        nextEl: '.lombaSwiper .swiper-button-next',
+        prevEl: '.lombaSwiper .swiper-button-prev',
+    },
+    pagination: {
+        el: '.lombaSwiper .swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+    },
+    breakpoints: {
+        480: { slidesPerView: 2, spaceBetween: 20 },
+        768: { slidesPerView: 3, spaceBetween: 30 },
+        1024: { slidesPerView: 4, spaceBetween: 30 }
+    }
+});
+
+// Initialize Swiper untuk Galeri Malam Puncak
+const puncakSwiper = new Swiper('.puncakSwiper', {
+    // Slides per view
+    slidesPerView: 1,
+    spaceBetween: 20,
+    
+    // Enable loop
+    loop: true,
+    
+    // Enable autoplay (dengan delay berbeda)
+    autoplay: {
+        delay: 300,
+        disableOnInteraction: false,
+    },
+    
+    // Navigation arrows
+    navigation: {
+        nextEl: '.puncakSwiper .swiper-button-next',
+        prevEl: '.puncakSwiper .swiper-button-prev',
+    },
+    
+    // Pagination
+    pagination: {
+        el: '.puncakSwiper .swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+    },
+    
+    // Responsive breakpoints
+    breakpoints: {
+        // when window width is >= 480px
+        480: {
+            slidesPerView: 2,
+            spaceBetween: 20
+        },
+        // when window width is >= 768px
+        768: {
+            slidesPerView: 3,
+            spaceBetween: 30
+        },
+        // when window width is >= 1024px
+        1024: {
+            slidesPerView: 4,
+            spaceBetween: 30
+        }
+    }
+});
+
+// Optional: Pause autoplay when user hovers over swiper
+document.querySelectorAll('.lombaSwiper, .puncakSwiper').forEach(swiperEl => {
+    swiperEl.addEventListener('mouseenter', () => {
+        if (swiperEl.classList.contains('lombaSwiper')) {
+            lombaSwiper.autoplay.stop();
+        } else {
+            puncakSwiper.autoplay.stop();
+        }
+    });
+    
+    swiperEl.addEventListener('mouseleave', () => {
+        if (swiperEl.classList.contains('lombaSwiper')) {
+            lombaSwiper.autoplay.start();
+        } else {
+            puncakSwiper.autoplay.start();
+        }
+    });
+});
+        
     </script>
+    
 
    
 
