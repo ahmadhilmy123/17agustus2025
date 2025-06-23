@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selamat Datang</title>
+    <title>Selamat Datang - Katar</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,8 +14,8 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 50%, #ffffff 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,102 +24,212 @@
             position: relative;
         }
 
-        .bg-pattern {
+        /* Animated Gradient Background */
+        .gradient-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            background: linear-gradient(
+                45deg,
+                #046c83 0%,
+                #4ecdc4 25%,
+                #30adc9 50%,
+                #006081 75%,
+                #1eccf3 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
             z-index: 1;
         }
 
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Overlay */
+        .glass-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(80px);
+            z-index: 2;
+        }
+
+        /* Floating Particles */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.7; }
+        }
+
+        /* Main Content */
         .splash-container {
             text-align: center;
             color: white;
             z-index: 10;
             position: relative;
+            max-width: 600px;
+            padding: 40px;
         }
 
         .logo-container {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             position: relative;
         }
 
+        /* Ultra Modern Logo */
         .logo {
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%);
-            border-radius: 50%;
+            width: 240px;
+            height: 240px;
             margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .logo-ring:nth-child(2) {
+            width: 120%;
+            height: 120%;
+            border-color: rgba(255, 255, 255, 0.05);
+            animation-duration: 30s;
+            animation-direction: reverse;
+        }
+
+        .logo-ring:nth-child(3) {
+            width: 80%;
+            height: 80%;
+            border-color: rgba(255, 255, 255, 0.08);
+            animation-duration: 25s;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-core {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.25) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0.05) 100%
+            );
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(20px);
-            border: 3px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            animation: gentlePulse 3s infinite ease-in-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 2px 0 rgba(255, 255, 255, 0.2),
+                0 0 60px rgba(255, 255, 255, 0.1);
             position: relative;
+            z-index: 5;
+            animation: logoAppear 2s ease-out 0.5s both, logoPulse 4s ease-in-out infinite 2s;
             overflow: hidden;
         }
 
-        .logo::before {
+        .logo-core::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(220,38,38,0.1), transparent);
-            animation: shimmer 4s infinite;
-        }
-
-        .logo-image {
-            width: 160px;
-            height: 160px;
-            object-fit: contain;
-            z-index: 2;
-            position: relative;
-            animation: logoAppear 2s ease-out 0.5s both;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-            transition: all 0.3s ease;
-        }
-
-        .logo-image:hover {
-            transform: scale(1.05) rotate(2deg);
-            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.2));
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 70%
+            );
+            animation: shimmer 3s ease-in-out infinite;
         }
 
         .logo-placeholder {
-            width: 160px;
-            height: 160px;
-            background: linear-gradient(135deg, #dc2626, #991b1b);
+            width: 140px;
+            height: 140px;
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            z-index: 2;
             position: relative;
-            animation: logoAppear 2s ease-out 0.5s both;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+            filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        .logo-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
             text-align: center;
             line-height: 1.2;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #0571ab 0%, #0b57ca 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
         }
 
         @keyframes logoAppear {
             0% { 
                 opacity: 0; 
                 transform: scale(0.3) rotate(-10deg);
-                filter: blur(10px);
+                filter: blur(20px);
             }
             60% { 
                 opacity: 0.8; 
-                transform: scale(1.1) rotate(2deg);
-                filter: blur(2px);
+                transform: scale(1.05) rotate(2deg);
+                filter: blur(5px);
             }
             100% { 
                 opacity: 1; 
@@ -126,95 +238,21 @@
             }
         }
 
-        .welcome-text {
-            font-size: 42px;
-            font-weight: 300;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-            animation: fadeInUp 1.2s ease-out;
-            text-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        .welcome-text .highlight {
-            font-weight: 700;
-            background: linear-gradient(135deg, #ffffff, #f8fafc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .tagline {
-            font-size: 16px;
-            opacity: 0.9;
-            margin-bottom: 50px;
-            letter-spacing: 1px;
-            animation: fadeInUp 1.2s ease-out 0.3s both;
-            font-weight: 300;
-        }
-
-        .loading-container {
-            width: 280px;
-            margin: 0 auto;
-        }
-
-        .loading-bar {
-            width: 100%;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 2px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .loading-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #ffffff, #f1f5f9, #ffffff);
-            border-radius: 2px;
-            width: 0%;
-            animation: loading 3.5s ease-out forwards;
-            box-shadow: 0 0 10px rgba(255,255,255,0.5);
-        }
-
-        .loading-text {
-            font-size: 14px;
-            opacity: 0.8;
-            animation: fadeInUp 1.2s ease-out 0.6s both;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-
-        .decorative-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 2;
-        }
-
-        .star {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.6);
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            animation: twinkle 4s infinite ease-in-out;
-        }
-
-        .floating-shape {
-            position: absolute;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-            border-radius: 50%;
-            animation: float 8s infinite linear;
-        }
-
-        .fade-out {
-            animation: fadeOut 1s ease-out forwards;
-        }
-
-        @keyframes gentlePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+        @keyframes logoPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.3),
+                    inset 0 2px 0 rgba(255, 255, 255, 0.2),
+                    0 0 60px rgba(255, 255, 255, 0.1);
+            }
+            50% { 
+                transform: scale(1.02);
+                box-shadow: 
+                    0 12px 40px rgba(0, 0, 0, 0.4),
+                    inset 0 2px 0 rgba(255, 255, 255, 0.3),
+                    0 0 80px rgba(255, 255, 255, 0.2);
+            }
         }
 
         @keyframes shimmer {
@@ -222,101 +260,415 @@
             100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
-        @keyframes fadeInUp {
+        /* Typography */
+        .welcome-text {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            animation: textAppear 1.5s ease-out 1s both;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #e0f2fe 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .welcome-text::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: lineGrow 1s ease-out 2s both;
+        }
+
+        .highlight {
+            font-weight: 600;
+            background: linear-gradient(135deg, #208dd5 0%, #0899ed 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .tagline {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+            animation: textAppear 1.5s ease-out 1.3s both;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes textAppear {
             from {
                 opacity: 0;
-                transform: translateY(40px);
+                transform: translateY(30px);
+                filter: blur(10px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
+                filter: blur(0px);
             }
+        }
+
+        @keyframes lineGrow {
+            from { width: 0; opacity: 0; }
+            to { width: 80px; opacity: 1; }
+        }
+
+        /* Ultra Modern Loading */
+        .loading-container {
+            width: 320px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .loading-track {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, 
+                #0988f0 0%, 
+                #039097 25%, 
+                #06666d 50%, 
+                #31aac2 75%, 
+                #1586ff 100%
+            );
+            background-size: 200% 100%;
+            border-radius: 2px;
+            width: 0%;
+            animation: 
+                loading 4s ease-out forwards,
+                progressShimmer 2s ease-in-out infinite;
+            box-shadow: 
+                0 0 20px rgba(102, 126, 234, 0.5),
+                0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         @keyframes loading {
             0% { width: 0%; }
-            60% { width: 75%; }
+            20% { width: 30%; }
+            40% { width: 60%; }
+            80% { width: 90%; }
             100% { width: 100%; }
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
-            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+        @keyframes progressShimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
-        @keyframes float {
-            from {
-                transform: translateY(100vh) translateX(0px);
-                opacity: 0;
-            }
-            10%, 90% {
-                opacity: 0.4;
-            }
-            to {
-                transform: translateY(-100px) translateX(50px);
-                opacity: 0;
-            }
+        .loading-text {
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.9;
+            animation: textAppear 1.5s ease-out 1.6s both;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Debug Panel Styles */
+        .debug-trigger {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+        }
+
+        .debug-trigger:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .debug-trigger::before {
+            content: '⚙️';
+            font-size: 18px;
+            animation: spin 8s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .debug-panel {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            width: 340px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            z-index: 999;
+            backdrop-filter: blur(40px);
+            color: white;
+            font-size: 12px;
+            line-height: 1.5;
+            transform: translateY(-20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 70vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .debug-panel.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .debug-panel h3 {
+            margin-bottom: 20px;
+            color: #1272cc;
+            font-size: 16px;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .debug-info {
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .debug-info strong {
+            color: #4ecdc4;
+            display: inline-block;
+            min-width: 100px;
+            font-weight: 600;
+        }
+
+        .debug-controls {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .debug-btn {
+            background: linear-gradient(135deg, #06cff7 0%, #0463b6 100%);
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .debug-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .debug-btn:hover::before {
+            left: 100%;
+        }
+
+        .debug-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .debug-btn.secondary {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+        }
+
+        .debug-btn.secondary:hover {
+            box-shadow: 0 8px 20px rgba(100, 116, 139, 0.4);
+        }
+
+        .debug-log {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            max-height: 120px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .debug-log div {
+            margin-bottom: 4px;
+            opacity: 0.9;
+            padding: 2px 0;
+        }
+
+        .debug-log .success { color: #22c55e; }
+        .debug-log .error { color: #ef4444; }
+        .debug-log .warning { color: #f59e0b; }
+        .debug-log .info { color: #3b82f6; }
+
+        /* Fade out animation */
+        .fade-out {
+            animation: fadeOut 1.5s ease-out forwards;
         }
 
         @keyframes fadeOut {
             to {
                 opacity: 0;
                 visibility: hidden;
-                transform: scale(0.95);
+                transform: scale(0.9);
+                filter: blur(10px);
             }
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
             .welcome-text {
-                font-size: 32px;
+                font-size: 36px;
+                letter-spacing: 2px;
             }
             
             .logo {
-                width: 180px;
-                height: 180px;
+                width: 200px;
+                height: 200px;
             }
             
-            .logo-image {
-                width: 140px;
-                height: 140px;
+            .logo-core {
+                width: 150px;
+                height: 150px;
             }
-
+            
             .logo-placeholder {
-                width: 140px;
-                height: 140px;
-                font-size: 18px;
+                width: 120px;
+                height: 120px;
             }
             
             .loading-container {
-                width: 240px;
+                width: 280px;
             }
 
             .tagline {
                 font-size: 14px;
                 padding: 0 20px;
             }
+
+            .debug-panel {
+                width: calc(100vw - 40px);
+                right: 20px;
+                left: 20px;
+            }
+
+            .splash-container {
+                padding: 20px;
+            }
         }
 
         @media (max-width: 480px) {
             .welcome-text {
                 font-size: 28px;
-                letter-spacing: 1px;
+            }
+            
+            .logo {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .logo-core {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .logo-placeholder {
+                width: 100px;
+                height: 100px;
+            }
+
+            .loading-container {
+                width: 240px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-pattern"></div>
-    <div class="decorative-elements"></div>
+    <div class="gradient-bg"></div>
+    <div class="glass-overlay"></div>
+    <div class="particles-container" id="particles"></div>
+    
+    <!-- Debug Trigger -->
+    <div class="debug-trigger" onclick="toggleDebug()"></div>
+    
+    <!-- Debug Panel -->
+    <div class="debug-panel" id="debugPanel">
+        <h3>🔧 Debug Panel</h3>
+        
+        <div class="debug-info">
+            <strong>URL:</strong> <span id="currentUrl"></span><br>
+            <strong>Target:</strong> <span id="redirectUrl"></span><br>
+            <strong>First:</strong> <span id="firstVisit"></span><br>
+            <strong>Status:</strong> <span id="status">Initializing...</span><br>
+            <strong>Timer:</strong> <span id="timer">0s</span>
+        </div>
+        
+        <div class="debug-controls">
+            <button class="debug-btn" onclick="skipSplash()">Skip</button>
+            <button class="debug-btn secondary" onclick="testRedirect()">Test URL</button>
+            <button class="debug-btn secondary" onclick="resetSplash()">Reset</button>
+            <button class="debug-btn secondary" onclick="toggleParticles()">Particles</button>
+        </div>
+        
+        <div class="debug-log" id="debugLog"></div>
+    </div>
     
     <div class="splash-container" id="splashScreen">
         <div class="logo-container">
             <div class="logo">
-                <!-- Ganti src dengan path logo KATAR kamu -->
-                <img src="images/logo-katar.png" alt="KATAR Logo" class="logo-image" id="logoImage">
-                <!-- Fallback jika gambar tidak load -->
-                <div class="logo-placeholder" id="logoPlaceholder" style="display: none;">
-                    KATAR<br>LOGO
+                <div class="logo-ring"></div>
+                <div class="logo-ring"></div>
+                <div class="logo-ring"></div>
+                <div class="logo-core">
+                    <div class="logo-placeholder">
+                        <img src="images/logo-katar.png" alt="Katar Logo" class="logo-image" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="logo-fallback" style="display: none;">
+                            KATAR<br>LOGO
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -325,72 +677,155 @@
         <p class="tagline">Menyambut Anda dengan kehangatan Indonesia</p>
         
         <div class="loading-container">
-            <div class="loading-bar">
+            <div class="loading-track">
                 <div class="loading-progress"></div>
             </div>
-            <p class="loading-text" id="loadingText">Mempersiapkan...</p>
+            <p class="loading-text" id="loadingText">Mempersiapkan pengalaman terbaik...</p>
         </div>
     </div>
 
     <script>
         // Konfigurasi
         const config = {
-            redirectUrl: 'index1.html', // Ganti dengan URL website kamu
-            loadingDuration: 3500, // 3.5 detik
-            fadeOutDuration: 1000 // 1 detik
+            redirectUrl: 'index1.html',
+            loadingDuration: 3500,
+            fadeOutDuration: 1000,
+            debugMode: false, // Default off
+            splashKey: 'katar_splash_shown'
         };
 
-        // Loading text yang berganti-ganti
+        // Debug system
+        let debugLogs = [];
+        let debugVisible = false;
+        let startTime = Date.now();
+        let timerInterval;
+
+        // Loading text
         const loadingTexts = [
             'Mempersiapkan...',
-            'Menyiapkan pengalaman terbaik...',
-            'Hampir siap...',
+            'Mengecek sistem...',
+            'Menyiapkan halaman...',
             'Selamat datang!'
         ];
 
         let currentTextIndex = 0;
         const loadingTextElement = document.getElementById('loadingText');
 
-        // Fungsi untuk membuat bintang dekoratif
-        function createStars() {
-            const container = document.querySelector('.decorative-elements');
+        function debugLog(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = `[${timestamp}] ${message}`;
             
-            for (let i = 0; i < 8; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                const size = Math.random() * 6 + 4;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 4 + 's';
-                star.style.animationDuration = (Math.random() * 2 + 3) + 's';
-                
-                container.appendChild(star);
+            debugLogs.push({ message: logEntry, type });
+            
+            // Keep only last 20 logs
+            if (debugLogs.length > 20) {
+                debugLogs.shift();
+            }
+            
+            updateDebugLog();
+            console.log('🔧 Debug:', message);
+        }
+
+        function updateDebugLog() {
+            const logElement = document.getElementById('debugLog');
+            logElement.innerHTML = debugLogs
+                .map(log => `<div class="${log.type}">${log.message}</div>`)
+                .join('');
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+
+        function toggleDebug() {
+            debugVisible = !debugVisible;
+            const panel = document.getElementById('debugPanel');
+            
+            if (debugVisible) {
+                panel.classList.add('show');
+                config.debugMode = true;
+                updateDebugInfo('Debug panel opened');
+                startTimer();
+            } else {
+                panel.classList.remove('show');
+                config.debugMode = false;
+                stopTimer();
             }
         }
 
-        // Fungsi untuk membuat bentuk mengambang
-        function createFloatingShapes() {
-            const container = document.querySelector('.decorative-elements');
-            
-            for (let i = 0; i < 6; i++) {
-                const shape = document.createElement('div');
-                shape.className = 'floating-shape';
-                
-                const size = Math.random() * 20 + 10;
-                shape.style.width = size + 'px';
-                shape.style.height = size + 'px';
-                shape.style.left = Math.random() * 100 + '%';
-                shape.style.animationDelay = Math.random() * 8 + 's';
-                shape.style.animationDuration = (Math.random() * 4 + 6) + 's';
-                
-                container.appendChild(shape);
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                document.getElementById('timer').textContent = elapsed + 's';
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
             }
         }
 
-        // Fungsi untuk mengupdate loading text
+        function updateDebugInfo(status) {
+            if (!config.debugMode) return;
+            
+            document.getElementById('currentUrl').textContent = window.location.href;
+            document.getElementById('redirectUrl').textContent = config.redirectUrl;
+            document.getElementById('firstVisit').textContent = isFirstVisit() ? 'YES' : 'NO';
+            document.getElementById('status').textContent = status;
+            
+            debugLog(status);
+        }
+
+        function isFirstVisit() {
+            const splashShown = localStorage.getItem(config.splashKey);
+            const fromReload = sessionStorage.getItem('from_reload');
+            
+            if (fromReload) {
+                sessionStorage.removeItem('from_reload');
+                localStorage.removeItem(config.splashKey);
+                return true;
+            }
+            
+            return !splashShown;
+        }
+
+        function markSplashShown() {
+            localStorage.setItem(config.splashKey, 'true');
+            sessionStorage.setItem('from_splash', 'true');
+        }
+
+        function skipSplash() {
+            debugLog('Manual skip triggered', 'warning');
+            markSplashShown();
+            redirectToWebsite();
+        }
+
+        function testRedirect() {
+            debugLog('Testing redirect URL...', 'info');
+            
+            fetch(config.redirectUrl)
+                .then(response => {
+                    if (response.ok) {
+                        debugLog('✅ Redirect URL accessible', 'success');
+                        alert('File ' + config.redirectUrl + ' ditemukan!');
+                    } else {
+                        debugLog('❌ Redirect URL not found (404)', 'error');
+                        alert('File ' + config.redirectUrl + ' tidak ditemukan!\nPastikan nama file benar.');
+                    }
+                })
+                .catch(error => {
+                    debugLog('❌ Network error: ' + error.message, 'error');
+                    alert('Error: ' + error.message);
+                });
+        }
+
+        function resetSplash() {
+            localStorage.removeItem(config.splashKey);
+            sessionStorage.removeItem('from_splash');
+            sessionStorage.removeItem('from_reload');
+            
+            debugLog('Splash reset - reloading...', 'warning');
+            setTimeout(() => location.reload(), 1000);
+        }
+
         function updateLoadingText() {
             if (currentTextIndex < loadingTexts.length - 1) {
                 currentTextIndex++;
@@ -403,62 +838,75 @@
             }
         }
 
-        // Fungsi redirect ke website
         function redirectToWebsite() {
             const splashScreen = document.getElementById('splashScreen');
+            debugLog('Starting redirect...', 'info');
+            
             splashScreen.classList.add('fade-out');
             
             setTimeout(() => {
+                debugLog('Redirecting to: ' + config.redirectUrl, 'success');
                 window.location.href = config.redirectUrl;
             }, config.fadeOutDuration);
         }
 
-        // Fungsi untuk handle logo loading
-        function handleLogoLoad() {
-            const logoImage = document.getElementById('logoImage');
-            const logoPlaceholder = document.getElementById('logoPlaceholder');
-            
-            logoImage.addEventListener('error', function() {
-                // Jika gambar gagal load, tampilkan placeholder
-                logoImage.style.display = 'none';
-                logoPlaceholder.style.display = 'flex';
-            });
-            
-            logoImage.addEventListener('load', function() {
-                // Jika gambar berhasil load, sembunyikan placeholder
-                logoPlaceholder.style.display = 'none';
-                logoImage.style.display = 'block';
-            });
-        }
-
-        // Inisialisasi
         function init() {
-            handleLogoLoad();
-            createStars();
-            createFloatingShapes();
+            debugLog('Initializing splash screen...', 'info');
             
-            // Style transition untuk loading text
+            if (!isFirstVisit()) {
+                debugLog('Not first visit - direct redirect', 'info');
+                document.body.style.display = 'none';
+                window.location.href = config.redirectUrl;
+                return;
+            }
+            
+            debugLog('First visit - showing splash', 'success');
+            markSplashShown();
+            
             loadingTextElement.style.transition = 'opacity 0.3s ease';
             
-            // Update loading text secara berkala
             const textInterval = setInterval(updateLoadingText, config.loadingDuration / 4);
             
-            // Redirect setelah loading selesai
             setTimeout(() => {
                 clearInterval(textInterval);
+                debugLog('Auto redirect triggered', 'info');
                 redirectToWebsite();
             }, config.loadingDuration);
         }
 
-        // Jalankan ketika halaman dimuat
+        // Event listeners
         window.addEventListener('load', init);
 
-        // Backup redirect jika ada masalah
-        setTimeout(() => {
-            if (window.location.href.includes('example.com') === false) {
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') skipSplash();
+            if (e.key === 'F12' || (e.key === 'd' && e.ctrlKey)) {
+                e.preventDefault();
+                toggleDebug();
+            }
+            if (e.key === 'r' && e.ctrlKey && e.shiftKey) {
+                e.preventDefault();
+                resetSplash();
+            }
+        });
+
+        // Prevent back button loop
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted && !isFirstVisit()) {
+                debugLog('Page restored from cache - redirecting', 'info');
                 window.location.href = config.redirectUrl;
             }
-        }, config.loadingDuration + 2000);
+        });
+
+        // Click outside to close debug panel
+        document.addEventListener('click', function(e) {
+            const panel = document.getElementById('debugPanel');
+            const trigger = document.querySelector('.debug-trigger');
+            
+            if (debugVisible && !panel.contains(e.target) && !trigger.contains(e.target)) {
+                toggleDebug();
+            }
+        });
     </script>
 </body>
 </html>

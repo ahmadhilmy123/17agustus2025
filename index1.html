@@ -4302,9 +4302,59 @@ document.querySelectorAll('.lombaSwiper, .puncakSwiper').forEach(swiperEl => {
         }
     });
 });
-    </script>
-    
 
+
+    </script>
+  
+  <script>
+// Script untuk index1.html - reload balik ke splash
+(function() {
+    const config = {
+        splashUrl: 'index.html', // File splash screen lo
+        debugMode: true
+    };
+    
+    function debugLog(message) {
+        if (config.debugMode) {
+            console.log('🏠 Index1 Debug:', message);
+        }
+    }
+    
+    // Cek kalau ini reload
+    window.addEventListener('load', function() {
+        const wasReloaded = performance.navigation.type === performance.navigation.TYPE_RELOAD;
+        const fromSplash = sessionStorage.getItem('from_splash');
+        
+        debugLog('Index1 loaded');
+        debugLog('Was reloaded: ' + wasReloaded);
+        debugLog('From splash: ' + fromSplash);
+        
+        // Kalau reload dan bukan dari splash, balik ke splash
+        if (wasReloaded && !fromSplash) {
+            debugLog('Reload detected - redirecting to splash');
+            // Reset splash flag biar splash muncul lagi
+            localStorage.removeItem('katar_splash_shown');
+            sessionStorage.removeItem('from_splash');
+            window.location.href = config.splashUrl;
+            return;
+        }
+    
+        if (fromSplash) {
+            sessionStorage.removeItem('from_splash');
+            debugLog('Cleared from_splash flag');
+        }
+        
+        debugLog('Index1 ready for normal use');
+    });
+    
+    // Set flag sebelum unload (untuk halaman lain)
+    window.addEventListener('beforeunload', function() {
+        debugLog('User leaving index1');
+    });
+    
+    debugLog('Index1 reload-to-splash handler initialized');
+})();
+</script>
    
 
 </body>
