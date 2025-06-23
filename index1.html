@@ -1,0 +1,4311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17 Agustus 2025 - Lomba Kemerdekaan Indonesia</title>
+    <!-- Swiper CSS -->
+     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+       /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #d00000, #ffffff);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #d00000, #ffffff);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li {
+            margin: 0;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            background: transparent;
+            transition: all 0.3s ease-in-out;
+            font-family: 'Poppins', sans-serif;
+            display: block;
+        }
+
+        .nav-menu a:hover {
+            background: #fff;
+            color: #d00000;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #ffffff;
+            margin: 3px 0;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        /* Hamburger Animation */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+.hero {
+    background: linear-gradient(to bottom, rgba(255,0,0,0.7), rgba(255,255,255,0.7)), url('images/p1.JPG') center/cover no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Lapisan efek jika mau tambahkan blur atau gelap */
+.overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+/* Konten Hero */
+.hero-content {
+    max-width: 800px;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+    color: #fff;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.6);
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: #fff3f3;
+    font-weight: 500;
+    animation: fadeInUp 1s ease-out 0.3s both;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(45deg, #FF0000, #FF4444);
+    color: #FFFFFF;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255,0,0,0.3);
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255,0,0,0.4);
+}
+
+/* Animasi */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+        /* Floating decorations */
+        .decoration {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .balloon {
+            width: 40px;
+            height: 60px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .balloon.red { background: #FF0000; }
+        .balloon.white { background: #FFFFFF; border: 2px solid #FF0000; }
+
+        .balloon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .balloon:nth-child(2) { top: 60%; right: 15%; animation-delay: 1s; }
+        .balloon:nth-child(3) { top: 40%; left: 5%; animation-delay: 2s; }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #FF0000;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #FF0000, #FFFFFF);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-info {
+            background: #FFFFFF;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #FF0000;
+        }
+
+        .info-item {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #FF0000, #FF4444);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #FF4444;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .about-info h3 {
+            color: #FF0000;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .highlight-card h3 {
+            color: #FF0000;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .highlight-card p {
+            color: #444;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* Animasi muncul dari kanan */
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+
+        /* Lomba Section */
+        .lomba {
+            padding: 5rem 0;
+            background: #FFFFFF;
+        }
+
+        .lomba-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .lomba-card {
+            background: #FFFFFF;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 5px solid #FF0000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lomba-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,0,0,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+
+        .lomba-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .lomba-card:hover::before {
+            animation: shine 0.7s ease-in-out;
+        }
+
+        .lomba-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #FF0000, #FF4444);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #FFFFFF;
+        }
+
+        .lomba-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #FF0000;
+        }
+
+        .lomba-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .daftar-btn {
+            background: linear-gradient(45deg, #FF0000, #FF4444);
+            color: #FFFFFF;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .daftar-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,0,0,0.3);
+        }
+
+        /* Registration Section */
+         .container1 {
+            max-width: 800px;
+            margin:  25px auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+          .section-title {
+            text-align: center;
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .kupon-display {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 3px dashed #FF6B35;
+            display: none;
+        }
+        
+        .lomba-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .lomba-title {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .countdown-container {
+            text-align: center;
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .countdown-title {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .time-block {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            min-width: 80px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e74c3c;
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .countdown-message {
+            color: white;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .registration-form {
+            opacity: 0.5;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .registration-form.enabled {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .lomba-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 5px solid #3498db;
+        }
+
+        .lomba-title {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        /* coldwn */
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .success-message, .kupon-display {
+            display: none;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .kupon-display h3 {
+            margin-bottom: 15px;
+        }
+
+        .disabled-overlay {
+            position: relative;
+        }
+
+        .disabled-overlay::before {
+            content: "🔒 Pendaftaran Belum Dibuka";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(231, 76, 60, 0.9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            z-index: 10;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .container1 {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .countdown-timer {
+                gap: 10px;
+            }
+            
+            .time-block {
+                min-width: 60px;
+                padding: 10px;
+            }
+            
+            .time-number {
+                font-size: 1.5rem;
+            }
+        }
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #FFFFFF;
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FF0000, #ff6b6b, #FF0000);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1.2fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #FFFFFF;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #b8b8b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.2rem 0;
+        }
+
+        .footer-links a:hover {
+            color: #FF0000;
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            color: #b8b8b8;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-info strong {
+            color: #FFFFFF;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .newsletter-description {
+            color: #b8b8b8;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            font-size: 0.9rem;
+        }
+
+        .email-input::placeholder {
+            color: #999;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #FF0000;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .subscribe-btn {
+            padding: 0.8rem 1.5rem;
+            background: #FF0000;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .subscribe-btn:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #b8b8b8;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: #FF0000;
+            color: #FFFFFF;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            
+            .newsletter-section {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .email-form {
+                flex-direction: column;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+        }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                top: -50%;
+                right: -50%;
+            }
+            100% {
+                top: 150%;
+                right: 150%;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: rgba(255,0,0,0.95);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .lomba-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .decoration {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+         
+        /* Music Player Styles */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #FF0000, #FFFFFF);
+            border-radius: 50px;
+            padding: 15px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            max-width: 280px;
+            cursor: pointer;
+        }
+
+        .music-player:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .music-player.collapsed {
+            max-width: 70px;
+            padding: 15px;
+            border-radius: 50px;
+        }
+
+        .music-player.collapsed .music-info {
+            display: none;
+        }
+
+        .music-player.collapsed .volume-control {
+            display: none;
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .music-toggle {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-toggle:hover {
+            background: rgba(255,255,255,1);
+            transform: scale(1.1);
+        }
+
+        .volume-control {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .volume-control:hover {
+            background: rgba(255,255,255,1);
+            transform: scale(1.1);
+        }
+
+        .music-info {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 0;
+            transition: all 0.3s ease;
+        }
+
+        .song-title {
+            font-size: 0.85rem;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .song-artist {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .music-progress {
+            width: 100%;
+            height: 3px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            width: 0%;
+            transition: width 0.1s ease;
+            border-radius: 2px;
+        }
+
+        /* Responsive - Mobile Mode */
+        @media (max-width: 768px) {
+            .music-player {
+                bottom: 15px;
+                right: 15px;
+                max-width: 60px;
+                padding: 12px;
+                border-radius: 50px;
+            }
+            
+            .music-player.expanded {
+                max-width: 250px;
+                padding: 12px 16px;
+                border-radius: 50px;
+            }
+            
+            .music-player .music-info {
+                display: none;
+            }
+            
+            .music-player .volume-control {
+                display: none;
+            }
+            
+            .music-player.expanded .music-info {
+                display: flex;
+                font-size: 0.75rem;
+            }
+            
+            .music-player.expanded .volume-control {
+                display: flex;
+            }
+            
+            .music-player.expanded .song-title {
+                font-size: 0.8rem;
+            }
+
+            /* Pulse animation untuk mobile */
+            .music-player:not(.expanded) {
+                animation: pulse 2s infinite;
+            }
+
+            @keyframes pulse {
+                0% { box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+                50% { box-shadow: 0 10px 30px rgba(255,0,0,0.5); }
+                100% { box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+            }
+        }
+
+        /* Notification styles */
+        .music-notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 9998;
+            transform: translateX(350px);
+            transition: transform 0.5s ease;
+            max-width: 300px;
+        }
+
+        .music-notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification-text {
+            flex: 1;
+            font-size: 0.9rem;
+        }
+
+        .close-notification {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-notification:hover {
+            opacity: 1;
+        }
+
+    /* Gallery Section */
+        .galeri-section {
+    padding: 2rem;
+    background: #f4f4f4;
+    text-align: center;
+}
+
+.galeri-section h2 {
+    margin: 2rem 0 1rem 0;
+    color: #333;
+    font-size: 1.8rem;
+}
+
+.galeri-section h2:first-child {
+    margin-top: 0;
+}
+
+/* Swiper Container */
+.lombaSwiper, .puncakSwiper {
+    width: 90%;
+    margin: 1rem auto 3rem auto;
+    max-width: 1200px;
+    padding: 20px 0;
+}
+
+.swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+.swiper-slide {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.swiper-slide img:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation Buttons */
+.swiper-button-next, .swiper-button-prev {
+    color: #007bff;
+    background: rgba(255,255,255,0.8);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-top: -20px;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Pagination */
+.swiper-pagination {
+    bottom: -10px;
+}
+
+.swiper-pagination-bullet {
+    background: #333;
+    opacity: 0.5;
+    width: 10px;
+    height: 10px;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #007bff;
+}
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) {
+    .swiper-slide img {
+        height: 250px;
+    }
+}
+
+/* Mobile responsiveness - 3 slides per view */
+@media (max-width: 768px) {
+    .galeri-section {
+        padding: 3rem;
+    }
+    
+    .galeri-section h2 {
+        font-size: 1.5rem;
+        margin: 1.5rem 0 1rem 0;
+    }
+    
+    .lombaSwiper, .puncakSwiper {
+        width: 95%;
+        margin: 1rem auto 2rem auto;
+        padding: 15px 0;
+    }
+    
+    .swiper-slide {
+        padding: 0 4px; /* Spacing between slides */
+    }
+    
+    .swiper-slide img {
+        height: 160px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 32px;
+        height: 32px;
+        margin-top: -16px;
+        background: rgba(255,255,255,0.9);
+    }
+    
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 12px;
+    }
+    
+    .swiper-pagination {
+        bottom: -5px;
+    }
+    
+    .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+        margin: 0 3px;
+    }
+}
+
+/* Small mobile - tetap 3 slides tapi lebih compact */
+@media (max-width: 480px) {
+    .lombaSwiper, .puncakSwiper {
+        width: 98%;
+        padding: 10px 0;
+    }
+    
+    .swiper-slide {
+        padding: 0 2px;
+    }
+    
+    .swiper-slide img {
+        height: 270px;
+        border-radius: 6px;
+    }
+    
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 28px;
+        height: 28px;
+        margin-top: -14px;
+    }
+    
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 10px;
+    }
+}
+
+
+        .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+        gap: 1rem;
+        }
+
+        .pagination button {
+        background-color: #e63946;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .pagination button:hover {
+        background-color: #d62828;
+        transform: scale(1.05);
+        }
+
+        .pagination button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+        }
+
+        #page-info {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #333;
+        }
+
+        
+        
+        .competition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .competition-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .competition-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .competition-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .competition-date {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        .winners-podium {
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            margin: 25px 0;
+            gap: 15px;
+        }
+
+        .podium-place {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .winner-name {
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .coming-soon-text {
+            color: #999;
+            font-style: italic;
+        }
+
+        .podium-base {
+            width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .podium-base.first {
+            height: 70px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #333;
+        }
+
+        .podium-base.second {
+            height: 55px;
+            background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
+            color: #333;
+        }
+
+        .podium-base.third {
+            height: 40px;
+            background: linear-gradient(135deg, #cd7f32, #daa520);
+        }
+
+        .countdown-timer {
+            margin: 20px 0;
+        }
+
+        .countdown-timer h4 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .countdown-display {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .countdown-item {
+            text-align: center;
+        }
+
+        .countdown-number {
+            display: block;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .status-upcoming {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .status-ongoing {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            color: #333;
+        }
+
+        .status-completed {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+        }
+
+        /* Pagination Styles */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .pagination-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .pagination-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .pagination-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .pagination-info {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .page-numbers {
+            display: flex;
+            gap: 8px;
+        }
+
+        .page-number {
+            background: rgba(255, 255, 255, 0.7);
+            color: #333;
+            border: 2px solid transparent;
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-number:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.1);
+        }
+
+        .page-number.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .competition-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .pagination-container {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .countdown-display {
+                gap: 8px;
+            }
+            
+            .countdown-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        .hasil-section {
+            padding: 3rem 1rem;
+            background: linear-gradient(to right, #f0f4ff, #ffffff);
+            text-align: center; /* PENTING: agar teks anaknya ketengah */
+            }
+
+        .custom-heading {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #1d3557;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: inline-block;
+        position: relative;
+        margin: 0 auto 0.5rem auto; /* Supaya benar-benar ketengah */
+        }
+
+        .custom-heading::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background-color: #ff595e;
+        margin: 0.5rem auto 0; /* Garis bawahnya juga ketengah */
+        border-radius: 2px;
+        }
+
+        .subtitle {
+        font-size: 1rem;
+        color: #444;
+        font-weight: 500;
+        margin-top: 0;
+        }
+        
+/* keluh kesah */
+
+        .container2 {
+            background: linear-gradient(135deg, #943a02 0%, #730000 100%);
+            margin: 0 auto;
+            padding: 0 2rem;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .section-title1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgb(255, 255, 255);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .form-section, .messages-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        .form-title, .messages-title {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .setup-info {
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid rgba(255, 193, 7, 0.5);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .setup-info strong {
+            color: #ffc107;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.02);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .form-select option {
+            background: #333;
+            color: white;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: white;
+            margin: 1rem 0;
+        }
+
+        .success-message, .error-message {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message {
+            background: rgba(76, 175, 80, 0.8);
+            color: white;
+        }
+
+        .error-message {
+            background: rgba(244, 67, 54, 0.8);
+            color: white;
+        }
+
+        .messages-container {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .message-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+
+        .message-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .message-item.keluhan {
+            border-left-color: #ff6b6b;
+        }
+
+        .message-item.saran {
+            border-left-color: #feca57;
+        }
+
+        .message-item.pertanyaan {
+            border-left-color: #48cae4;
+        }
+
+        .message-item.lainnya {
+            border-left-color: #c77dff;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .message-type {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: white;
+        }
+
+        .message-date {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .message-name {
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .message-email {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1rem;
+        }
+
+        .message-content {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+
+        .no-messages {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-style: italic;
+            padding: 2rem;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+        }
+
+        .refresh-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(72, 202, 228, 0.8);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(72, 202, 228, 1);
+        }
+
+        /* Custom Scrollbar */
+        .messages-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .messages-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .messages-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+             .stats-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+      <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🇮🇩 KATAR 07</div>
+            <ul class="nav-menu">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#lomba">Lomba</a></li>
+                <li><a href="#galery">Galery</a></li>
+                <li><a href="#daftar">Daftar</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero">
+        <div class="overlay"></div>
+
+        <!-- Dekorasi Balon -->
+        <div class="decoration balloon red"></div>
+        <div class="decoration balloon white"></div>
+        <div class="decoration balloon red"></div>
+
+        <!-- Konten Hero -->
+        <div class="hero-content">
+            <h1>Dirgahayu Republik Indonesia ke-80!</h1>
+            <p>
+            Ayo kita rayakan semangat kemerdekaan ke-80 Republik Indonesia dengan penuh suka cita.  
+            Rangkai kebersamaan lewat berbagai lomba tradisional, hiburan rakyat, dan semangat gotong royong.
+            </p>
+            <a href="#lomba" class="cta-button">Lihat Lomba</a>
+        </div>
+</section>
+
+
+    <!-- About Section -->
+    <section id="tentang" class="about">
+        <div class="container">
+            <h2 class="section-title reveal">Tentang Acara</h2>
+            <div class="about-content">
+                <div class="about-text reveal">
+                    <p>
+                        Dalam rangka memperingati Hari Kemerdekaan Republik Indonesia ke-80, 
+                        kami mengadakan berbagai lomba tradisional yang penuh dengan semangat 
+                        kemerdekaan dan kebersamaan. Acara ini terbuka untuk seluruh masyarakat 
+                        dari berbagai kalangan usia.
+                    </p>
+                    <p>
+                        Mari bergabung bersama kami dalam merayakan kemerdekaan Indonesia dengan 
+                        penuh sukacita dan mempererat tali persaudaraan antar warga.
+                    </p>
+                </div>
+                <div class="about-info reveal-right">
+                    <h3>🎉 Lomba 17 Agustus 2025</h3>
+                    <div class="info-item">
+                        <div class="info-icon">📅</div>
+                        <div>
+                            <strong>Tanggal Acara:</strong><br>
+                            17 Agustus 2025
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <div>
+                            <strong>Waktu:</strong><br>
+                            08:00 WIB / Selesai
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div>
+                            <strong>Tempat:</strong><br>
+                                jl. Warujaya 1B, Depok
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📝</div>
+                        <div>
+                            <strong>Pendaftaran:</strong><br>
+                            13 Juli - 15 Agustus 2025
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-card reveal-right">
+                <h3>🎉 Malam Puncak</h3>
+                <div class="info-item">
+                        <div class="info-icon">📅</div>
+                        <div>
+                            <strong>Tanggal Acara:</strong><br>
+                            Comming Soon
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <div>
+                            <strong>Waktu:</strong><br>
+                            20:00 - 23:00 WIB
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div>
+                            <strong>Tempat:</strong><br>
+                                JL. Warujaya V Depan Rumah Pak yamin, Depok
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📝</div>
+                        <div>
+                            <strong>Pendaftaran Pentas Seni:</strong><br>
+                            17 - 23 Agustus 2025
+                        </div>
+                    </div>
+                <p></p>
+            </div>
+
+              <div class="about-text reveal">
+                  <p>
+                    Malam Puncak 17 Agustus merupakan momen spesial penutup rangkaian perayaan kemerdekaan yang penuh makna. 
+                    Acara ini akan diisi dengan berbagai penampilan menarik dari warga, pembagian hadiah lomba, dan hiburan rakyat 
+                    yang meriah. 
+                    </p>
+                    <p>
+                    Suasana kebersamaan dan semangat nasionalisme akan terasa kuat, menjadikan malam tersebut sebagai malam 
+                    yang tak terlupakan bagi seluruh warga RT 07/022 . Yuk, ajak keluarga dan tetangga untuk hadir dan menikmati kemeriahan bersama!
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Lomba Section -->
+  <section id="lomba" class="lomba">
+  <div class="container">
+    <h2 class="section-title reveal">Jenis Lomba</h2>
+    <div id="lomba-grid" class="lomba-grid"></div>
+    <div class="pagination">
+      <button onclick="prevPage()">⟨ Prev</button>
+      <span id="page-info"></span>
+      <button onclick="nextPage()">Next ⟩</button>
+    </div>
+  </div>
+</section>
+<div id="lomba-modal" style="position:fixed; top:0; left:0; width:100%; height:100%;
+  background-color:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center; display:none;">
+  <div id="lomba-modal-content" style="background:#fff; padding:20px; border-radius:10px; max-width:400px; margin:auto;">
+    <!-- Isi detail lomba akan muncul di sini -->
+  </div>
+</div>
+
+<section id="galery" class="galeri-section">
+  <h2>📸 Galeri Lomba</h2>
+  <div class="swiper lombaSwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="images/1.jpg" alt="Lomba 1"></div>
+      <div class="swiper-slide"><img src="images/2.jpg" alt="Lomba 2"></div>
+      <div class="swiper-slide"><img src="images/3.jpg" alt="Lomba 3"></div>
+      <div class="swiper-slide"><img src="images/4.jpg" alt="Lomba 4"></div>
+      <div class="swiper-slide"><img src="images/5.jpg" alt="Lomba 5"></div>
+      <div class="swiper-slide"><img src="images/6.jpg" alt="Lomba 1"></div>
+      <div class="swiper-slide"><img src="images/7.jpg" alt="Lomba 2"></div>
+      <div class="swiper-slide"><img src="images/8.jpg" alt="Lomba 3"></div>
+      <div class="swiper-slide"><img src="images/9.jpg" alt="Lomba 4"></div>
+      <div class="swiper-slide"><img src="images/10.jpg" alt="Lomba 5"></div>
+    </div>
+  </div>
+
+  <h2>🌙 Galeri Malam Puncak</h2>
+  <div class="swiper puncakSwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="images/p1.JPG" alt="Puncak 1"></div>
+      <div class="swiper-slide"><img src="images/p2.JPG" alt="Puncak 2"></div>
+      <div class="swiper-slide"><img src="images/p3.JPG" alt="Puncak 3"></div>
+      <div class="swiper-slide"><img src="images/p4.JPG" alt="Puncak 4"></div>
+      <div class="swiper-slide"><img src="images/p5.JPG" alt="Puncak 5"></div>
+      <div class="swiper-slide"><img src="images/p6.JPG" alt="Puncak 6"></div>
+      <div class="swiper-slide"><img src="images/p7.JPG" alt="Puncak 7"></div>
+      <div class="swiper-slide"><img src="images/p8.JPG" alt="Puncak 8"></div>
+      <div class="swiper-slide"><img src="images/p9.JPG" alt="Puncak 9"></div>
+      <div class="swiper-slide"><img src="images/p10.JPG" alt="Puncak 10"></div>
+    </div>
+  </div>
+</section>
+
+    <!-- Registration Section -->
+     <!-- <div id="daftar" class="container1">
+        <h2 class="section-title">🏆 Daftar Lomba 17 Agustus 🏆</h2>
+        
+        <div class="success-message" id="successMessage">
+            Pendaftaran berhasil! Terima kasih telah mendaftar.
+        </div>
+        
+        <div class="kupon-display" id="kuponDisplay">
+            <h3>🎫 KUPON PENDAFTARAN 🎫</h3>
+            <div id="kuponCode" style="font-size: 1.5rem; margin: 10px 0;"></div>
+            <small>Simpan kupon ini sebagai bukti pendaftaran</small>
+        </div>
+        
+        <form class="registration-form" id="registrationForm">
+            <div class="form-group">
+                <label for="nama">👤 Nama Lengkap</label>
+                <input type="text" id="nama" name="nama" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="umur">🎂 Umur</label>
+                <input type="number" id="umur" name="umur" min="3" max="80" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="alamat">🏠 Alamat</label>
+                <textarea id="alamat" name="alamat" required placeholder="Masukkan alamat lengkap..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="namaOrangTua">👨‍👩‍👧‍👦 Nama Orang Tua</label>
+                <input type="text" id="namaOrangTua" name="namaOrangTua" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="telepon">📱 Nomor Telepon</label>
+                <input type="tel" id="telepon" name="telepon" required placeholder="08xxxxxxxxxx">
+            </div>
+            
+            <div class="lomba-section">
+                <h3 class="lomba-title">🏆 Lomba Pertama (Wajib)</h3>
+                <div class="form-group">
+                    <label for="lomba1">Pilih Lomba Pertama</label>
+                    <select id="lomba1" name="lomba1" required>
+                        <option value="">-- Pilih Lomba Pertama --</option>
+                        
+                        <optgroup label="🎈 Umur 3-5 tahun">
+                            <option value="Lomba Bendera">Lomba Bendera</option>
+                            <option value="Lomba Nangkep Ikan">Lomba Nangkep Ikan</option>
+                        </optgroup>
+                        
+                        <optgroup label="🎯 Umur 6-8 tahun">
+                            <option value="Lomba Stocking">Lomba Stocking</option>
+                            <option value="Lomba Paku">Lomba Paku</option>
+                            <option value="Lomba Pindahin Gelas Pake Balon">Lomba Pindahin Gelas Pake Balon</option>
+                        </optgroup>
+                        
+                        <optgroup label="🏃 Umur 9-15 tahun">
+                            <option value="Lomba Balap Karung">Lomba Balap Karung</option>
+                            <option value="Lomba Octopus [4 orang]">Lomba Octopus [4 orang]</option>
+                            <option value="Lomba Tiup Gelas [4 orang]">Lomba Tiup Gelas [4 orang]</option>
+                            <option value="Lomba Voli Air [4 orang]">Lomba Voli Air [4 orang]</option>
+                        </optgroup>
+                        
+                        <optgroup label="👩 Lomba Ibu-Ibu">
+                            <option value="Lomba Lari Bawa Balon">Lomba Lari Bawa Balon</option>
+                            <option value="Lomba Makeup">Lomba Makeup</option>
+                            <option value="Lomba Sedotan ke Botol">Lomba Sedotan ke Botol</option>
+                            <option value="Lomba Estafet Kardus [4 orang]">Lomba Estafet Kardus [4 orang]</option>
+                        </optgroup>
+                        
+                        <optgroup label="🌟 Universal (Semua Umur)">
+                            <option value="Lomba Kerupuk Sarung">Lomba Kerupuk Sarung</option>
+                            <option value="Lomba Biskuit">Lomba Biskuit</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="lomba-section">
+                <h3 class="lomba-title">🎯 Lomba Kedua (Opsional)</h3>
+                <div class="form-group">
+                    <label for="lomba2">Pilih Lomba Kedua (Opsional)</label>
+                    <select id="lomba2" name="lomba2">
+                        <option value="">-- Pilih Lomba Kedua (Opsional) --</option>
+                        
+                        <optgroup label="🎈 Umur 3-5 tahun">
+                            <option value="Lomba Bendera">Lomba Bendera</option>
+                            <option value="Lomba Nangkep Ikan">Lomba Nangkep Ikan</option>
+                        </optgroup>
+                        
+                        <optgroup label="🎯 Umur 6-8 tahun">
+                            <option value="Lomba Stocking">Lomba Stocking</option>
+                            <option value="Lomba Paku">Lomba Paku</option>
+                            <option value="Lomba Pindahin Gelas Pake Balon">Lomba Pindahin Gelas Pake Balon</option>
+                        </optgroup>
+                        
+                        <optgroup label="🏃 Umur 9-15 tahun">
+                            <option value="Lomba Balap Karung">Lomba Balap Karung</option>
+                            <option value="Lomba Octopus [4 orang]">Lomba Octopus [4 orang]</option>
+                            <option value="Lomba Tiup Gelas [4 orang]">Lomba Tiup Gelas [4 orang]</option>
+                            <option value="Lomba Voli Air [4 orang]">Lomba Voli Air [4 orang]</option>
+                        </optgroup>
+                        
+                        <optgroup label="👩 Lomba Ibu-Ibu">
+                            <option value="Lomba Lari Bawa Balon">Lomba Lari Bawa Balon</option>
+                            <option value="Lomba Makeup">Lomba Makeup</option>
+                            <option value="Lomba Sedotan ke Botol">Lomba Sedotan ke Botol</option>
+                            <option value="Lomba Estafet Kardus [4 orang]">Lomba Estafet Kardus [4 orang]</option>
+                        </optgroup>
+                        
+                        <optgroup label="🌟 Universal (Semua Umur)">
+                            <option value="Lomba Kerupuk Sarung">Lomba Kerupuk Sarung</option>
+                            <option value="Lomba Biskuit">Lomba Biskuit</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">🚀 Daftar Sekarang</button>
+        </form>
+    </div> -->
+ <div id="daftar" class="container1">
+        <h2 class="section-title">🏆 Daftar Lomba 17 Agustus 🏆</h2>
+        
+        <div class="countdown-container">
+            <h3 class="countdown-title">⏰ Pendaftaran Dibuka Dalam:</h3>
+            <div class="countdown-timer" id="countdownTimer">
+                <div class="time-block">
+                    <span class="time-number" id="days">00</span>
+                    <span class="time-label">Hari</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-number" id="hours">00</span>
+                    <span class="time-label">Jam</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-number" id="minutes">00</span>
+                    <span class="time-label">Menit</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-number" id="seconds">00</span>
+                    <span class="time-label">Detik</span>
+                </div>
+            </div>
+            <p class="countdown-message" id="countdownMessage">Pendaftaran akan dibuka pada tanggal 13 Juli 2025</p>
+        </div>
+        
+        <div class="success-message" id="successMessage">
+            Pendaftaran berhasil! Terima kasih telah mendaftar.
+        </div>
+        
+        <div class="kupon-display" id="kuponDisplay">
+            <h3>🎫 KUPON PENDAFTARAN 🎫</h3>
+            <div id="kuponCode" style="font-size: 1.5rem; margin: 10px 0;"></div>
+            <small>Simpan kupon ini sebagai bukti pendaftaran</small>
+        </div>
+        
+        <div class="disabled-overlay" id="formOverlay">
+            <form class="registration-form" id="registrationForm">
+                <div class="form-group">
+                    <label for="nama">👤 Nama Lengkap</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="umur">🎂 Umur</label>
+                    <input type="number" id="umur" name="umur" min="3" max="80" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="alamat">🏠 Alamat</label>
+                    <textarea id="alamat" name="alamat" required placeholder="Masukkan alamat lengkap..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="namaOrangTua">👨‍👩‍👧‍👦 Nama Orang Tua</label>
+                    <input type="text" id="namaOrangTua" name="namaOrangTua" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telepon">📱 Nomor Telepon</label>
+                    <input type="tel" id="telepon" name="telepon" required placeholder="08xxxxxxxxxx">
+                </div>
+                
+                <div class="lomba-section">
+                    <h3 class="lomba-title">🏆 Lomba Pertama (Wajib)</h3>
+                    <div class="form-group">
+                        <label for="lomba1">Pilih Lomba Pertama</label>
+                        <select id="lomba1" name="lomba1" required>
+                            <option value="">-- Pilih Lomba Pertama --</option>
+                            
+                            <optgroup label="🎈 Umur 3-5 tahun">
+                                <option value="Lomba Bendera">Lomba Bendera</option>
+                                <option value="Lomba Nangkep Ikan">Lomba Nangkep Ikan</option>
+                            </optgroup>
+                            
+                            <optgroup label="🎯 Umur 6-8 tahun">
+                                <option value="Lomba Stocking">Lomba Stocking</option>
+                                <option value="Lomba Paku">Lomba Paku</option>
+                                <option value="Lomba Pindahin Gelas Pake Balon">Lomba Pindahin Gelas Pake Balon</option>
+                            </optgroup>
+                            
+                            <optgroup label="🏃 Umur 9-15 tahun">
+                                <option value="Lomba Balap Karung">Lomba Balap Karung</option>
+                                <option value="Lomba Octopus [4 orang]">Lomba Octopus [4 orang]</option>
+                                <option value="Lomba Tiup Gelas [4 orang]">Lomba Tiup Gelas [4 orang]</option>
+                                <option value="Lomba Voli Air [4 orang]">Lomba Voli Air [4 orang]</option>
+                            </optgroup>
+                            
+                            <optgroup label="👩 Lomba Ibu-Ibu">
+                                <option value="Lomba Lari Bawa Balon">Lomba Lari Bawa Balon</option>
+                                <option value="Lomba Makeup">Lomba Makeup</option>
+                                <option value="Lomba Sedotan ke Botol">Lomba Sedotan ke Botol</option>
+                                <option value="Lomba Estafet Kardus [4 orang]">Lomba Estafet Kardus [4 orang]</option>
+                            </optgroup>
+                            
+                            <optgroup label="🌟 Universal (Semua Umur)">
+                                <option value="Lomba Kerupuk Sarung">Lomba Kerupuk Sarung</option>
+                                <option value="Lomba Biskuit">Lomba Biskuit</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="lomba-section">
+                    <h3 class="lomba-title">🎯 Lomba Kedua (Opsional)</h3>
+                    <div class="form-group">
+                        <label for="lomba2">Pilih Lomba Kedua (Opsional)</label>
+                        <select id="lomba2" name="lomba2">
+                            <option value="">-- Pilih Lomba Kedua (Opsional) --</option>
+                            
+                            <optgroup label="🎈 Umur 3-5 tahun">
+                                <option value="Lomba Bendera">Lomba Bendera</option>
+                                <option value="Lomba Nangkep Ikan">Lomba Nangkep Ikan</option>
+                            </optgroup>
+                            
+                            <optgroup label="🎯 Umur 6-8 tahun">
+                                <option value="Lomba Stocking">Lomba Stocking</option>
+                                <option value="Lomba Paku">Lomba Paku</option>
+                                <option value="Lomba Pindahin Gelas Pake Balon">Lomba Pindahin Gelas Pake Balon</option>
+                            </optgroup>
+                            
+                            <optgroup label="🏃 Umur 9-15 tahun">
+                                <option value="Lomba Balap Karung">Lomba Balap Karung</option>
+                                <option value="Lomba Octopus [4 orang]">Lomba Octopus [4 orang]</option>
+                                <option value="Lomba Tiup Gelas [4 orang]">Lomba Tiup Gelas [4 orang]</option>
+                                <option value="Lomba Voli Air [4 orang]">Lomba Voli Air [4 orang]</option>
+                            </optgroup>
+                            
+                            <optgroup label="👩 Lomba Ibu-Ibu">
+                                <option value="Lomba Lari Bawa Balon">Lomba Lari Bawa Balon</option>
+                                <option value="Lomba Makeup">Lomba Makeup</option>
+                                <option value="Lomba Sedotan ke Botol">Lomba Sedotan ke Botol</option>
+                                <option value="Lomba Estafet Kardus [4 orang]">Lomba Estafet Kardus [4 orang]</option>
+                            </optgroup>
+                            
+                            <optgroup label="🌟 Universal (Semua Umur)">
+                                <option value="Lomba Kerupuk Sarung">Lomba Kerupuk Sarung</option>
+                                <option value="Lomba Biskuit">Lomba Biskuit</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn" disabled>🚀 Daftar Sekarang</button>
+            </form>
+        </div>
+    </div>
+
+
+
+ <section class="hasil-section" id="hasil">
+         <div class="custom-heading">
+        🏆 HASIL PERLOMBAAN
+    </div>
+    <p class="subtitle">Pengumuman Juara dan Pemenang Setiap Kompetisi</p>
+        
+        <div class="competition-grid" id="competitionGrid">
+            <!-- Competition cards will be inserted here by JavaScript -->
+        </div>
+
+        <div class="pagination-container">
+            <button class="pagination-btn" id="prevBtn" onclick="changePage(-1)">← Sebelumnya</button>
+            
+            <div class="page-numbers" id="pageNumbers">
+                <!-- Page numbers will be inserted here -->
+            </div>
+            
+            <div class="pagination-info">
+                <span id="pageInfo">Halaman 1 dari 3</span>
+            </div>
+            
+            <button class="pagination-btn" id="nextBtn" onclick="changePage(1)">Selanjutnya →</button>
+        </div>
+    </section>
+
+      <div class="container2">
+        <div class="section-header">
+            <h2 class="section-title1">Keluhan & Pesan</h2>
+        </div>
+
+        <div class="main-content">
+            <!-- Form Section -->
+            <div class="form-section">
+                <h3 class="form-title">📝 Kirim Pesan</h3>
+                
+                <div class="setup-info">
+                    <strong>🔗 Jika Ada Kritik Dan Saran:</strong> Silahkan kirim kan Kritik Dan Saran Untuk Kami Supaya Untuk Lebih Maju
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    ✅ Pesan berhasil dikirim dan tersimpan ke Google Sheets!
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    ❌ Gagal mengirim pesan. Pastikan koneksi internet dan setup Google Sheets sudah benar.
+                </div>
+
+                <div class="loading" id="loadingMessage">
+                    ⏳ Mengirim pesan ke Google Sheets...
+                </div>
+
+                <form id="messageForm">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Nama Lengkap</label>
+                        <input type="text" id="name" class="form-input" placeholder="Masukkan nama lengkap" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="contoh@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="tipe">Tipe Pesan</label>
+                        <select id="tipe" class="form-select" required>
+                            <option value="">Pilih tipe pesan</option>
+                            <option value="apresiasi">Apresiasi</option>
+                            <option value="saran">Saran</option>
+                            <option value="keluhan">Keluhan</option>
+                            <option value="lainnya">Lainnya</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="subjek">Subjek</label>
+                        <input type="text" id="subjek" class="form-input" placeholder="Subjek pesan" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="pesan">Pesan</label>
+                        <textarea id="pesan" class="form-textarea" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">Kirim Pesan</button>
+                </form>
+            </div>
+
+            <!-- Messages Section -->
+            <div class="messages-section">
+                <h3 class="messages-title">💬 Pesan Masyarakat</h3>
+                
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalMessages">0</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="apresiasiCount">0</span>
+                        <span class="stat-label">Apresiasi</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="saranCount">0</span>
+                        <span class="stat-label">Saran</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="keluhanCount">0</span>
+                        <span class="stat-label">Keluhan</span>
+                    </div>
+                </div>
+
+                <button class="refresh-btn" id="refreshBtn" onclick="loadMessagesFromSheets()">🔄 Refresh Data</button>
+
+                <div class="messages-container" id="messagesContainer">
+                    <div class="no-messages">Loading pesan</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+     <footer id="kontak" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <div class="contact-info">
+                        <strong>📞 Koordinator Utama</strong>
+                        +6283128446613 (Bani)
+                    </div>
+                    <div class="contact-info">
+                        <strong>📞 Wakil Koordinator</strong>
+                        +6285282520521 (Ilham)
+                    </div>
+                    <div class="contact-info">
+                        <strong>📍 Alamat</strong>
+                        Jl. Warujaya 1B
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Acara</h3>
+                    <ul class="footer-links">
+                        <li><a href="#pendaftaran">Pendaftaran</a></li>
+                        <li><a href="#lomba">Perlombaan</a></li>
+                        <li><a href="#jadwal">Jadwal Acara</a></li>
+                        <li><a href="#galeri">Galeri</a></li>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Informasi</h3>
+                    <ul class="footer-links">
+                        <li><a href="#syarat">Syarat & Ketentuan</a></li>
+                        <li><a href="#panduan">Panduan Peserta</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#kontak">Hubungi Kami</a></li>
+                        <li><a href="#kebijakan">Kebijakan</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <div class="newsletter-section">
+                        <h3>Newsletter</h3>
+                        <p class="newsletter-description">
+                            Dapatkan update terbaru seputar acara 17 Agustus dan kegiatan Karang Taruna 07/022.
+                        </p>
+                        <div class="email-form">
+                            <input type="email" class="email-input" placeholder="Email Anda">
+                            <button class="subscribe-btn">SUBSCRIBE</button>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" title="Facebook">📘</a>
+                            <a href="#" title="Instagram">📷</a>
+                            <a href="#" title="Twitter">🐦</a>
+                            <a href="#" title="YouTube">📺</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Karang Taruna 07/022. Dirgahayu Indonesia ke-80! 🇮🇩</p>
+                <p>Pendaftaran: 13 Juli - 15 Agustus 2025 | Acara: 17 Agustus 2025 | Waktu: 08:00 WIB</p>
+            </div>
+        </div>
+    </footer>
+
+     <!-- Music Player -->
+       <div class="music-player" id="musicPlayer">
+        <div class="music-controls">
+            <button class="music-toggle" id="playPauseBtn" title="Play/Pause">
+                ▶️
+            </button>
+            <button class="volume-control" id="volumeBtn" title="Mute/Unmute">
+                🔊
+            </button>
+        </div>
+        <div class="music-info">
+            <div class="song-title" id="songTitle">Merah Putih</div>
+            <div class="song-artist" id="songArtist">Lagu semangat Indonesia</div>
+            <div class="music-progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Notification -->
+    <div class="music-notification" id="musicNotification">
+        <div class="notification-content">
+            <div class="notification-text">
+                🎵 Lagu "Merah Putih" sedang diputar untuk mengenang perjuangan kemerdekaan!
+            </div>
+            <button class="close-notification" onclick="closeNotification()">×</button>
+        </div>
+    </div>
+
+    <!-- Hidden audio -->
+    <audio id="backgroundMusic" src="lagu.mp3" loop preload="auto"></audio>
+
+
+   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal(); // Initial check
+
+        // Registration form handling
+        const registrationForm = document.getElementById('registrationForm');
+        
+        registrationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (data.nama && data.email && data.telepon && data.usia && data.lomba && data.alamat) {
+                alert(`Terima kasih ${data.nama}! Pendaftaran untuk lomba ${data.lomba} telah berhasil. Kami akan menghubungi Anda melalui email untuk konfirmasi lebih lanjut.`);
+                this.reset();
+            } else {
+                alert('Mohon lengkapi semua field yang diperlukan.');
+            }
+        });
+
+        // Function to handle direct registration from lomba cards
+        function daftar(namaLomba) {
+            document.getElementById('lomba').value = namaLomba;
+            document.getElementById('daftar').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'linear-gradient(135deg, rgba(255,0,0,0.95), rgba(255,255,255,0.95))';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, #FF0000, #FFFFFF)';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+
+        // Add floating animation to decorative elements
+        const balloons = document.querySelectorAll('.balloon');
+        balloons.forEach((balloon, index) => {
+            balloon.style.animationDelay = `${index * 0.5}s`;
+        });
+
+        // Add entrance animation for hero elements
+        window.addEventListener('load', function() {
+            const heroElements = document.querySelectorAll('.hero-content h1, .hero-content p, .cta-button');
+            heroElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.3}s`;
+            });
+        });
+
+        // Add particles effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.cssText = `
+                position: fixed;
+                width: 6px;
+                height: 6px;
+                background: ${Math.random() > 0.5 ? '#FF0000' : '#FFFFFF'};
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 1;
+                left: ${Math.random() * window.innerWidth}px;
+                top: ${window.innerHeight + 10}px;
+                animation: particleFloat ${3 + Math.random() * 4}s linear forwards;
+            `;
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                if (document.body.contains(particle)) {
+                    document.body.removeChild(particle);
+                }
+            }, 7000);
+        }
+
+        // Add particle animation CSS
+        const particleStyle = document.createElement('style');
+        particleStyle.textContent = `
+            @keyframes particleFloat {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-${window.innerHeight + 100}px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(particleStyle);
+
+        // Create particles periodically
+        setInterval(createParticle, 500);
+
+        // Add interactive hover effects for cards
+        document.querySelectorAll('.lomba-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add typing effect for hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect after page load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const heroTitle = document.querySelector('.hero h1');
+                const originalText = heroTitle.textContent;
+                typeWriter(heroTitle, originalText, 150);
+            }, 500);
+        });
+
+        // Add countdown timer for registration
+        function updateCountdown() {
+            const registrationEnd = new Date('2025-08-15T23:59:59');
+            const now = new Date();
+            const timeLeft = registrationEnd - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                const countdownElement = document.getElementById('countdown');
+                if (countdownElement) {
+                    countdownElement.innerHTML = `
+                        <div class="countdown-item">
+                            <span class="countdown-number">${days}</span>
+                            <span class="countdown-label">Hari</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number">${hours}</span>
+                            <span class="countdown-label">Jam</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number">${minutes}</span>
+                            <span class="countdown-label">Menit</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number">${seconds}</span>
+                            <span class="countdown-label">Detik</span>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Add form validation with better UX
+        const inputs = document.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.value.trim() === '' && this.hasAttribute('required')) {
+                    this.style.borderColor = '#FF0000';
+                    this.style.boxShadow = '0 0 5px rgba(255, 0, 0, 0.3)';
+                } else {
+                    this.style.borderColor = '#28a745';
+                    this.style.boxShadow = '0 0 5px rgba(40, 167, 69, 0.3)';
+                }
+            });
+
+            input.addEventListener('focus', function() {
+                this.style.borderColor = '#007bff';
+                this.style.boxShadow = '0 0 5px rgba(0, 123, 255, 0.3)';
+            });
+        });
+
+        // Add loading state for form submission
+        registrationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Mendaftar...';
+            submitBtn.disabled = true;
+            
+            // Simulate processing time
+            setTimeout(() => {
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                if (data.nama && data.email && data.telepon && data.usia && data.lomba && data.alamat) {
+                    // Show success message with animation
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'success-message';
+                    successMessage.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: linear-gradient(45deg, #28a745, #20c997);
+                        color: white;
+                        padding: 2rem;
+                        border-radius: 15px;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                        z-index: 9999;
+                        text-align: center;
+                        animation: successPop 0.5s ease-out;
+                    `;
+                    successMessage.innerHTML = `
+                        <h3>🎉 Pendaftaran Berhasil!</h3>
+                        <p>Terima kasih ${data.nama}!<br>
+                        Pendaftaran untuk lomba <strong>${data.lomba}</strong> telah berhasil.<br>
+                        Kami akan menghubungi Anda melalui email untuk konfirmasi.</p>
+                        <button onclick="this.parentElement.remove();" style="
+                            background: white;
+                            color: #28a745;
+                            border: none;
+                            padding: 0.5rem 1rem;
+                            border-radius: 25px;
+                            margin-top: 1rem;
+                            cursor: pointer;
+                            font-weight: bold;
+                        ">Tutup</button>
+                    `;
+                    
+                    document.body.appendChild(successMessage);
+                    
+                    // Add success animation CSS
+                    const successStyle = document.createElement('style');
+                    successStyle.textContent = `
+                        @keyframes successPop {
+                            0% {
+                                transform: translate(-50%, -50%) scale(0.5);
+                                opacity: 0;
+                            }
+                            100% {
+                                transform: translate(-50%, -50%) scale(1);
+                                opacity: 1;
+                            }
+                        }
+                    `;
+                    document.head.appendChild(successStyle);
+                    
+                    this.reset();
+                    
+                    // Auto close after 5 seconds
+                    setTimeout(() => {
+                        if (document.body.contains(successMessage)) {
+                            successMessage.remove();
+                        }
+                    }, 5000);
+                } else {
+                    alert('Mohon lengkapi semua field yang diperlukan.');
+                }
+                
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Add scroll progress indicator
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #FF0000, #FFFFFF, #FF0000);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        `;
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+
+        console.log('🇮🇩 Website 17 Agustus 2025 loaded successfully! Dirgahayu Indonesia ke-80!');
+        class MusicPlayer {
+            constructor() {
+                this.audio = document.getElementById('backgroundMusic');
+                this.playPauseBtn = document.getElementById('playPauseBtn');
+                this.volumeBtn = document.getElementById('volumeBtn');
+                this.progressBar = document.getElementById('progressBar');
+                this.songTitle = document.getElementById('songTitle');
+                this.songArtist = document.getElementById('songArtist');
+                this.musicPlayer = document.getElementById('musicPlayer');
+                this.notification = document.getElementById('musicNotification');
+                
+                this.isPlaying = false;
+                this.isMuted = false;
+                this.isExpanded = false;
+                
+                this.init();
+            }
+            
+            init() {
+                this.audio.volume = 0.5;
+                
+                // Event listeners untuk kontrol
+                this.playPauseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.togglePlay();
+                });
+                
+                this.volumeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.toggleMute();
+                });
+                
+                // Progress bar update
+                this.audio.addEventListener('timeupdate', () => {
+                    if (this.audio.duration) {
+                        const progress = (this.audio.currentTime / this.audio.duration) * 100;
+                        this.progressBar.style.width = progress + '%';
+                    }
+                });
+                
+                // Audio events
+                this.audio.addEventListener('ended', () => {
+                    this.isPlaying = false;
+                    this.playPauseBtn.textContent = '▶️';
+                });
+                
+                // Mobile expand/collapse functionality
+                this.musicPlayer.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        // Hanya jika bukan tombol yang diklik
+                        if (!e.target.closest('.music-toggle') && !e.target.closest('.volume-control')) {
+                            this.toggleExpand();
+                        }
+                    }
+                });
+                
+                // Window resize handler
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768) {
+                        this.musicPlayer.classList.remove('expanded');
+                        this.isExpanded = false;
+                    }
+                });
+                
+                // Click outside to collapse on mobile
+                document.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768 && this.isExpanded) {
+                        if (!this.musicPlayer.contains(e.target)) {
+                            this.toggleExpand();
+                        }
+                    }
+                });
+            }
+            
+            togglePlay() {
+                if (this.isPlaying) {
+                    this.audio.pause();
+                    this.playPauseBtn.textContent = '▶️';
+                    this.isPlaying = false;
+                } else {
+                    this.audio.play().then(() => {
+                        this.playPauseBtn.textContent = '⏸️';
+                        this.isPlaying = true;
+                        this.showNotification();
+                    }).catch((err) => {
+                        console.warn("Tidak bisa memutar audio:", err);
+                        // Fallback untuk demo
+                        this.playPauseBtn.textContent = '⏸️';
+                        this.isPlaying = true;
+                        this.showNotification();
+                        this.simulateProgress();
+                    });
+                }
+            }
+            
+            toggleMute() {
+                this.audio.muted = !this.audio.muted;
+                this.isMuted = this.audio.muted;
+                this.volumeBtn.textContent = this.audio.muted ? '🔇' : '🔊';
+            }
+            
+            toggleExpand() {
+                this.isExpanded = !this.isExpanded;
+                if (this.isExpanded) {
+                    this.musicPlayer.classList.add('expanded');
+                } else {
+                    this.musicPlayer.classList.remove('expanded');
+                }
+            }
+            
+            showNotification() {
+                this.notification.classList.add('show');
+                setTimeout(() => {
+                    this.closeNotification();
+                }, 5000);
+            }
+            
+            closeNotification() {
+                this.notification.classList.remove('show');
+            }
+            
+            // Fallback simulation jika audio tidak tersedia
+            simulateProgress() {
+                if (this.isPlaying && !this.audio.duration) {
+                    let progress = 0;
+                    const interval = setInterval(() => {
+                        if (!this.isPlaying) {
+                            clearInterval(interval);
+                            return;
+                        }
+                        progress += 0.5;
+                        this.progressBar.style.width = progress + '%';
+                        if (progress >= 100) {
+                            clearInterval(interval);
+                            this.isPlaying = false;
+                            this.playPauseBtn.textContent = '▶️';
+                            this.progressBar.style.width = '0%';
+                        }
+                    }, 100);
+                }
+            }
+        }
+        
+        // Global function untuk close notification
+        function closeNotification() {
+            document.getElementById('musicNotification').classList.remove('show');
+        }
+        
+        // Start after interaction
+        let musicPlayer;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            musicPlayer = new MusicPlayer();
+            
+            // Autoplay workaround: play after user interacts
+            const startMusic = () => {
+                musicPlayer.audio.play().then(() => {
+                    musicPlayer.isPlaying = true;
+                    musicPlayer.playPauseBtn.textContent = '⏸️';
+                    musicPlayer.showNotification();
+                }).catch((err) => {
+                    console.warn("Autoplay diblokir. Menunggu interaksi pengguna.");
+                });
+                
+                document.removeEventListener('click', startMusic);
+                document.removeEventListener('keydown', startMusic);
+            };
+            
+            // Uncomment jika ingin autoplay
+            document.addEventListener('click', startMusic);
+            document.addEventListener('keydown', startMusic);
+        });
+
+
+    </script>
+
+<script>
+const lombaList = [
+  // Umur 3–5 tahun
+  { 
+    nama: "Lomba Bendera", 
+    deskripsi: "Mengambil Dan Memindahkan Bendera Dari Botol A Ke Botol B.", 
+    icon: "🚩", 
+    kategori: "Umur 3–5 tahun",
+    gambar: "https://a.okezone.com/photos/2023/08/06//93171/429646_highres.jpg"
+  },
+  { 
+    nama: "Lomba Nangkep Ikan", 
+    deskripsi: "Mengambil Dan Menangkap ikan kecil dari kolam buatan.", 
+    icon: "🐟", 
+    kategori: "Umur 3–5 tahun",
+    gambar: "https://tkalkalamsurabaya.wordpress.com/wp-content/uploads/2012/04/lomba-menangkap-ikan-di-bak.jpg"
+  },
+
+  // Umur 6–8 tahun
+  { 
+    nama: "Lomba Stocking", 
+    deskripsi: "permainan memasukkan sedotan ke dalam sumpit dengan menggunakan stocking sebagai alat penutup wajah", 
+    icon: "🧦", 
+    kategori: "Umur 6–8 tahun",
+    gambar: "https://cdn.idntimes.com/content-images/post/20220816/2-22da20c1cce56bc8dd84bb8e71dfc794.jpg"
+  },
+  { 
+    nama: "Lomba Paku", 
+    deskripsi: "Memasukkan paku ke dalam botol dengan cepat.", 
+    icon: "🪛", 
+    kategori: "Umur 6–8 tahun",
+    gambar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREhF5hMbyyPM6OKo7R1hqInctHjML8I4v-Rw&s"
+  },
+  { 
+    nama: "Pindah Gelas Pake Balon", 
+    deskripsi: "Memindahkan gelas hanya dengan hembusan balon.", 
+    icon: "🎈", 
+    kategori: "Umur 6–8 tahun",
+    gambar: "https://i.ytimg.com/vi/BDv0yLn2ckU/maxresdefault.jpg"
+  },
+
+  // Umur 9–15 tahun
+  { 
+    nama: "Balap Karung", 
+    deskripsi: "Lomba lari dengan karung, uji kecepatan & keseimbangan.", 
+    icon: "🏃", 
+    kategori: "Umur 9–15 tahun",
+    gambar: "https://cdn.rri.co.id/berita/Mamuju/t/1723508592691-_5d85129e-f785-4acb-a9bb-28e1e19fd1b1/4msltmlei4ryr4t.jpeg"
+  },
+  { 
+    nama: "Lomba Octopus", 
+    deskripsi: "Permainan tim 4 orang penuh koordinasi dan seru!", 
+    icon: "🐙", 
+    kategori: "Umur 9–15 tahun",
+    gambar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe98sf927YZAjAIYhmr6lnqlDcYI5VN8A7qw&s"
+  },
+  { 
+    nama: "Tiup Gelas", 
+    deskripsi: "Bekerjasama meniup gelas dari ujung ke ujung.", 
+    icon: "🥤", 
+    kategori: "Umur 9–15 tahun",
+    gambar: "https://i.ytimg.com/vi/0Hs7BTsnQeg/sddefault.jpg"
+  },
+  { 
+    nama: "Voli Air", 
+    deskripsi: "permainan dengan memegang sarung dan berusaha menangkap/melempar balon air yang tiap tim nya berisi 4 orang!", 
+    icon: "🏐", 
+    kategori: "Umur 9–15 tahun",
+    gambar: "https://www.man1banyuwangi.sch.id/upload/imagecache/22961190DSC_0405(1)-800x534.jpg"
+  },
+
+  // Ibu-ibu
+  { 
+    nama: "Lari Bawa Balon", 
+    deskripsi: "Lari sambil jaga 3 balon tetap utuh!", 
+    icon: "🎈", 
+    kategori: "Ibu-ibu",
+    gambar: "https://pwmu.co/wp-content/uploads/2019/08/Almadany-tugas.jpg"
+  },
+  { 
+    nama: "Lomba Makeup", 
+    deskripsi: "Makeup cepat dan lucu, bisa bareng anak!", 
+    icon: "💄", 
+    kategori: "Ibu-ibu",
+    gambar: "https://cdn.timesmedia.co.id/images/2018/08/13/Lomba-Merias-Wajah-c.jpg"
+  },
+  { 
+    nama: "Sedotan ke Botol", 
+    deskripsi: "Isi botol dengan air dari sedotan, uji konsentrasi!", 
+    icon: "🥤", 
+    kategori: "Ibu-ibu",
+    gambar: "https://asset-2.tstatic.net/kupang/foto/bank/images/hut-ri-oks-4.jpg"
+  },
+  { 
+    nama: "Estafet Kardus", 
+    deskripsi: "Kerja tim bawa kardus sambung menyambung!", 
+    icon: "📦", 
+    kategori: "Ibu-ibu",
+    gambar: "https://www.infopublik.id/resources/album/peringatan-hut-ke-78-ri/DSC_4604_compressed.JPG"
+  },
+
+  // Universal
+  { 
+    nama: "Kerupuk Sarung", 
+    deskripsi: "Makan kerupuk dari dalam sarung!", 
+    icon: "🍘", 
+    kategori: "Universal (Semua Umur)",
+    gambar: "https://i.ytimg.com/vi/d9h_HJoeP4c/maxresdefault.jpg"
+  },
+  { 
+    nama: "Lomba Biskuit", 
+    deskripsi: "Geser biskuit dari dahi ke mulut tanpa tangan!", 
+    icon: "🍪", 
+    kategori: "Universal (Semua Umur)",
+    gambar: "https://i0.wp.com/pwmu.co/wp-content/uploads/2019/08/Lomba-makan-roti.jpg?fit=686%2C492&ssl=1"
+  },
+];
+
+let currentPage = 1;
+const itemsPerPage = 6;
+
+function renderLombaPage(page) {
+  const lombaGrid = document.getElementById("lomba-grid");
+  const pageInfo = document.getElementById("page-info");
+  lombaGrid.innerHTML = "";
+
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const currentItems = lombaList.slice(start, end);
+
+  currentItems.forEach((lomba) => {
+    const card = document.createElement("div");
+    card.className = "lomba-card reveal";
+    card.innerHTML = `
+      <div class="lomba-icon">${lomba.icon}</div>
+      <h3>${lomba.nama}</h3>
+      <p>${lomba.deskripsi}</p>
+      <button class="daftar-btn" onclick="showDetail('${lomba.nama.replace(/'/g, "\\'")}')">Lihat Detail</button>
+    `;
+    lombaGrid.appendChild(card);
+  });
+
+  pageInfo.textContent = `Halaman ${page} dari ${Math.ceil(lombaList.length / itemsPerPage)}`;
+}
+
+function nextPage() {
+  if (currentPage < Math.ceil(lombaList.length / itemsPerPage)) {
+    currentPage++;
+    renderLombaPage(currentPage);
+  }
+}
+
+function prevPage() {
+  if (currentPage > 1) {
+    currentPage--;
+    renderLombaPage(currentPage);
+  }
+}
+
+function showDetail(namaLomba) {
+  const lomba = lombaList.find(item => item.nama === namaLomba);
+  if (!lomba) return;
+
+  const modal = document.getElementById("lomba-modal");
+  const modalContent = document.getElementById("lomba-modal-content");
+
+  modalContent.innerHTML = `
+    <div style="text-align: center;">
+      <img src="${lomba.gambar}" alt="${lomba.nama}" style="width: 100%; max-width: 350px; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+      <h3>${lomba.icon} ${lomba.nama}</h3>
+      <p><strong>Deskripsi:</strong> ${lomba.deskripsi}</p>
+      <p><strong>Kategori Peserta:</strong> ${lomba.kategori}</p>
+      <button class="daftar-btn" onclick="closeModal()">Tutup</button>
+    </div>
+  `;
+  modal.style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("lomba-modal").style.display = "none";
+}
+
+// Initialize page on load
+document.addEventListener('DOMContentLoaded', function() {
+  renderLombaPage(1);
+});
+// Jalankan saat halaman dimuat
+document.addEventListener("DOMContentLoaded", function () {
+  renderLombaPage(currentPage);
+});
+
+  renderLombaPage(currentPage);
+
+   const revealRight = document.querySelectorAll('.reveal-right');
+
+    function revealOnScroll() {
+        revealRight.forEach((el) => {
+            const windowHeight = window.innerHeight;
+            const revealTop = el.getBoundingClientRect().top;
+            const revealPoint = 150;
+
+            if (revealTop < windowHeight - revealPoint) {
+                el.classList.add('active');
+            } else {
+                el.classList.remove('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+</script>
+
+<script>
+const WHATSAPP_NUMBER = '62895401111425'; // Nomor WA tujuan
+
+// Fungsi buat kode kupon
+function generateKuponCode(nama, tahun) {
+    const namaCode = nama.toUpperCase().replace(/[^A-Z]/g, '').substring(0, 3);
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    return `${namaCode}${tahun}${randomNum}`;
+}
+
+// Validasi umur untuk lomba tertentu
+function validateLombaAge(lomba, umur) {
+    if (!lomba || lomba === '') return true;
+
+    if ((lomba === 'Lomba Bendera' || lomba === 'Lomba Nangkep Ikan') && (umur < 3 || umur > 5)) return false;
+    if ((lomba === 'Lomba Stocking' || lomba === 'Lomba Paku' || lomba === 'Lomba Pindahin Gelas Pake Balon') && (umur < 6 || umur > 8)) return false;
+    if ((lomba === 'Lomba Balap Karung' || lomba.includes('[4 orang]')) && (umur < 9 || umur > 15)) return false;
+
+    return true;
+}
+
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const data = {};
+    for (let [key, value] of formData.entries()) data[key] = value;
+
+    // Validasi dasar
+    if (!data.nama || !data.umur || !data.alamat || !data.namaOrangTua || !data.telepon || !data.lomba1) {
+        alert('Mohon lengkapi semua field yang diperlukan!');
+        return;
+    }
+
+    if (data.lomba2 && data.lomba1 === data.lomba2) {
+        alert('Lomba pertama dan kedua tidak boleh sama!');
+        return;
+    }
+
+    const phoneRegex = /^[0-9+\-\s]+$/;
+    if (!phoneRegex.test(data.telepon)) {
+        alert('Format nomor telepon tidak valid!');
+        return;
+    }
+
+    const umur = parseInt(data.umur);
+
+    if (!validateLombaAge(data.lomba1, umur)) {
+        alert(`Lomba pertama "${data.lomba1}" tidak sesuai dengan umur ${umur} tahun!`);
+        return;
+    }
+
+    if (data.lomba2 && !validateLombaAge(data.lomba2, umur)) {
+        alert(`Lomba kedua "${data.lomba2}" tidak sesuai dengan umur ${umur} tahun!`);
+        return;
+    }
+
+    // Generate kupon
+    const tahun = new Date().getFullYear();
+    const kuponCode = generateKuponCode(data.nama, tahun);
+
+    // Tampilkan kupon
+    document.getElementById('kuponCode').textContent = kuponCode;
+    document.getElementById('kuponDisplay').style.display = 'block';
+
+    const tanggal = new Date().toLocaleDateString('id-ID', {
+        day: 'numeric', month: 'long', year: 'numeric'
+    });
+
+    // Kirim ke Sheet.best
+    fetch("https://api.sheetbest.com/sheets/0d434f8c-aeb0-493e-a72a-052683c6e7d8", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            Nama: data.nama,
+            Umur: data.umur,
+            Alamat: data.alamat,
+            Nama_Orang_Tua: data.namaOrangTua,
+            Telepon: data.telepon,
+            Lomba_1: data.lomba1,
+            Lomba_2: data.lomba2 || "-",
+            Kupon: kuponCode,
+            Tanggal_Daftar: tanggal
+        })
+    })
+    .then(res => res.json())
+    .then(res => {
+        console.log("Tersimpan di Google Sheet:", res);
+    })
+    .catch(err => {
+        console.error("Gagal simpan ke Google Sheet:", err);
+    });
+
+    // Format pesan WhatsApp
+    let lombaText = `🏆 Lomba 1: ${data.lomba1}`;
+    if (data.lomba2) lombaText += `\n🎯 Lomba 2: ${data.lomba2}`;
+
+    const message = `🎉 *PENDAFTARAN LOMBA 17 AGUSTUS 2025* 🎉
+
+🎫 *KUPON PENDAFTARAN: ${kuponCode}*
+
+📝 *Data Pendaftar:*
+👤 Nama: ${data.nama}
+🎂 Umur: ${data.umur} tahun
+🏠 Alamat: ${data.alamat}
+👨‍👩‍👧‍👦 Nama Orang Tua: ${data.namaOrangTua}
+📱 No. Telepon: ${data.telepon}
+
+🏆 *Lomba yang Dipilih:*
+${lombaText}
+
+📅 Tanggal daftar: ${tanggal}
+
+Terima kasih telah mendaftar! 🙏
+*Lomba Ini Khusus DI Wilayah RT 07/022*
+*Setiap Perkartu Keluarga Diwajibkan Membayar RP.30.000*
+Simpan KUPON ini sebagai bukti pendaftaran.`;
+
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+
+    document.getElementById('successMessage').style.display = 'block';
+    document.getElementById('successMessage').innerHTML = '✅ Data pendaftaran sedang dikirim ke WhatsApp.<br>🎫 Kupon Anda telah dibuat!';
+
+    setTimeout(() => {
+        this.reset();
+        document.getElementById('successMessage').style.display = 'none';
+        document.getElementById('kuponDisplay').style.display = 'none';
+    }, 8000);
+
+    document.getElementById('kuponDisplay').scrollIntoView({ behavior: 'smooth' });
+});
+
+// Validasi usia dinamis
+function setupAgeValidation() {
+    document.getElementById('umur').addEventListener('change', function() {
+        const umur = parseInt(this.value);
+        const lomba1Select = document.getElementById('lomba1');
+        const lomba2Select = document.getElementById('lomba2');
+
+        if (lomba1Select.value && !validateLombaAge(lomba1Select.value, umur)) {
+            lomba1Select.value = '';
+            alert('Pilihan lomba pertama di-reset karena tidak sesuai umur.');
+        }
+        if (lomba2Select.value && !validateLombaAge(lomba2Select.value, umur)) {
+            lomba2Select.value = '';
+            alert('Pilihan lomba kedua di-reset karena tidak sesuai umur.');
+        }
+    });
+}
+
+// Validasi lomba sama
+function setupLombaValidation() {
+    document.getElementById('lomba1').addEventListener('change', function() {
+        const lomba2Select = document.getElementById('lomba2');
+        if (this.value && this.value === lomba2Select.value) {
+            lomba2Select.value = '';
+            alert('Lomba kedua tidak boleh sama dengan lomba pertama!');
+        }
+    });
+
+    document.getElementById('lomba2').addEventListener('change', function() {
+        const lomba1Select = document.getElementById('lomba1');
+        if (this.value && this.value === lomba1Select.value) {
+            this.value = '';
+            alert('Lomba kedua tidak boleh sama dengan lomba pertama!');
+        }
+    });
+}
+
+// Aktifkan validasi
+setupAgeValidation();
+setupLombaValidation();
+</script>
+
+
+    <script>
+    // Data kompetisi
+    const competitions = [
+    // Umur 3–5 tahun
+    {
+        title: "🚩 LOMBA BENDERA",
+        date: "Umur: 3–5 tahun",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "bendera",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-15T17:00:00"
+    },
+    {
+        title: "🐟 LOMBA NANGKEP IKAN",
+        date: "Umur: 3–5 tahun",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "ikan",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-16T17:00:00"
+    },
+
+    // Umur 6–8 tahun
+    {
+        title: "🧦 LOMBA STOCKING",
+        date: "Umur: 6–8 tahun",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "stocking",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-17T17:00:00"
+    },
+    {
+        title: "🔨 LOMBA PAKU",
+        date: "Umur: 6–8 tahun",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "paku",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-17T17:00:00"
+    },
+    {
+        title: "🎈 LOMBA PINDAHIN GELAS PAKE BALON",
+        date: "Umur: 6–8 tahun",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "balon",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-18T17:00:00"
+    },
+
+    // Umur 9–15 tahun
+    {
+        title: "🏃 LOMBA BALAP KARUNG",
+        date: "Umur: 9–15 tahun",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "karung",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-18T17:00:00"
+    },
+    {
+        title: "🐙 LOMBA OCTOPUS",
+        date: "Umur: 9–15 tahun (4 orang)",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "octopus",
+        status: "Cooming Soo",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-19T17:00:00"
+    },
+    {
+        title: "💨 LOMBA TIUP GELAS",
+        date: "Umur: 9–15 tahun (4 orang)",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "tiup",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        // statusClass: "status-ongoing",
+        isCompleted: false,
+        deadline: "2025-08-19T17:00:00"
+    },
+    {
+        title: "🏐 LOMBA VOLI AIR",
+        date: "Umur: 9–15 tahun (4 orang)",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "voliair",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-20T17:00:00"
+    },
+
+    // Kategori Ibu-Ibu
+    {
+        title: "🎈 LOMBA LARI BAWA BALON",
+        date: "Kategori: Ibu-Ibu",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "laribalon",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-21T17:00:00"
+    },
+    {
+        title: "💄 LOMBA MAKEUP",
+        date: "Kategori: Ibu-Ibu",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "makeup",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-21T17:00:00"
+    },
+    {
+        title: "🥤 LOMBA SEDOTAN KE BOTOL",
+        date: "Kategori: Ibu-Ibu",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "sedotan",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-22T17:00:00"
+    },
+    {
+        title: "📦 LOMBA ESTAFET KARDUS",
+        date: "Kategori: Ibu-Ibu (4 orang)",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "estafet",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-22T17:00:00"
+    },
+
+    // Universal (semua umur)
+    {
+        title: "🍘 LOMBA KERUPUK SARUNG",
+        date: "Kategori: Semua Umur",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "kerupuk",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-23T17:00:00"
+    },
+    {
+        title: "🍪 LOMBA BISKUIT",
+        date: "Kategori: Semua Umur",
+        winners: ["Coming Soon", "Coming Soon", "Coming Soon"],
+        countdownId: "biskuit",
+        status: "Cooming Soon",
+        statusClass: "status-upcoming",
+        isCompleted: false,
+        deadline: "2025-08-23T17:00:00"
+    }
+];
+
+
+    const itemsPerPage1 = 6;
+    let currentPage1 = 1;
+    const totalPages = Math.ceil(competitions.length / itemsPerPage1);
+
+    function createCompetitionCard(competition, index) {
+        const winnersHtml = competition.winners.map((winner, i) => {
+            const positions = ['second', 'first', 'third'];
+            const numbers = ['2', '1', '3'];
+            const isComingSoon = winner === "Coming Soon";
+
+            return `
+                <div class="podium-place">
+                    <div class="winner-name">
+                        ${isComingSoon ? '<span class="coming-soon-text">Coming Soon</span>' : winner}
+                    </div>
+                    <div class="podium-base ${positions[i]}">
+                        <span class="podium-number">${numbers[i]}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        const countdownHtml = competition.isCompleted
+            ? `<div class="countdown-timer"><h4>🎉 Hasil Telah Diumumkan!</h4><p>Selamat kepada para pemenang!</p></div>`
+            : `<div class="countdown-timer" data-countdown="${competition.countdownId}" data-deadline="${competition.deadline}">
+                <h4>⏰ Countdown Pengumuman:</h4>
+                <div class="countdown-display">
+                    <div class="countdown-item"><span class="countdown-number">00</span><span class="countdown-label">Hari</span></div>
+                    <div class="countdown-item"><span class="countdown-number">00</span><span class="countdown-label">Jam</span></div>
+                    <div class="countdown-item"><span class="countdown-number">00</span><span class="countdown-label">Menit</span></div>
+                    <div class="countdown-item"><span class="countdown-number">00</span><span class="countdown-label">Detik</span></div>
+                </div>
+            </div>`;
+
+        return `
+            <div class="competition-card">
+                <h3 class="competition-title">${competition.title}</h3>
+                <p class="competition-date">${competition.date}</p>
+                <div class="winners-podium">${winnersHtml}</div>
+                ${countdownHtml}
+                <span class="status-badge ${competition.statusClass}">${competition.status}</span>
+            </div>
+        `;
+    }
+
+    function displayPage(page) {
+        const startIndex = (page - 1) * itemsPerPage1;
+        const endIndex = startIndex + itemsPerPage1;
+        const pageCompetitions = competitions.slice(startIndex, endIndex);
+
+        const grid = document.getElementById('competitionGrid');
+        if (!grid) return;
+
+        grid.innerHTML = pageCompetitions.map(createCompetitionCard).join('');
+        startCountdowns();
+    }
+
+    function updatePagination() {
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageInfo = document.getElementById('pageInfo');
+        const pageNumbers = document.getElementById('pageNumbers');
+
+        prevBtn.disabled = currentPage === 1;
+        nextBtn.disabled = currentPage === totalPages;
+        pageInfo.textContent = `Halaman ${currentPage} dari ${totalPages}`;
+
+        pageNumbers.innerHTML = '';
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement('div');
+            btn.className = `page-number ${i === currentPage ? 'active' : ''}`;
+            btn.textContent = i;
+            btn.addEventListener('click', () => goToPage(i));
+            pageNumbers.appendChild(btn);
+        }
+    }
+
+    function changePage(direction) {
+        const newPage = currentPage + direction;
+        if (newPage >= 1 && newPage <= totalPages) {
+            currentPage = newPage;
+            displayPage(currentPage);
+            updatePagination();
+        }
+    }
+
+    function goToPage(page) {
+        if (page >= 1 && page <= totalPages) {
+            currentPage = page;
+            displayPage(currentPage);
+            updatePagination();
+        }
+    }
+
+    function startCountdowns() {
+        const countdownBlocks = document.querySelectorAll('[data-countdown]');
+        countdownBlocks.forEach(block => {
+            const deadline = new Date(block.dataset.deadline);
+            const numberEls = block.querySelectorAll('.countdown-number');
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = deadline - now;
+
+                if (diff <= 0) {
+                    numberEls.forEach(el => el.textContent = "00");
+                    block.innerHTML = "<h4>🎉 Hasil Telah Diumumkan!</h4><p>Selamat kepada para pemenang!</p>";
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / (1000 * 60)) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                numberEls[0].textContent = String(days).padStart(2, '0');
+                numberEls[1].textContent = String(hours).padStart(2, '0');
+                numberEls[2].textContent = String(minutes).padStart(2, '0');
+                numberEls[3].textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+    }
+
+    // Inisialisasi
+    document.addEventListener('DOMContentLoaded', () => {
+        displayPage(1);
+        updatePagination();
+
+        document.getElementById('prevBtn').addEventListener('click', () => changePage(-1));
+        document.getElementById('nextBtn').addEventListener('click', () => changePage(1));
+    });
+</script>
+
+  <script>
+    // ============================================
+    // KONFIGURASI URL SheetBest
+    // ============================================
+    const GOOGLE_SCRIPT_URL = 'https://api.sheetbest.com/sheets/221831d0-5cfb-40c9-8ded-8a13a6ff9776';
+
+    // ============================================
+    // FUNGSI UNTUK MENGIRIM DATA KE GOOGLE SHEETS
+    // ============================================
+    async function sendToGoogleSheets(data) {
+        try {
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            return { success: true };
+        } catch (error) {
+            console.error('Error sending to Google Sheets:', error);
+            return { success: false, error: error.message };
+        }
+    }
+
+    // ============================================
+    // FUNGSI UNTUK MENGAMBIL DATA DARI GOOGLE SHEETS
+    // ============================================
+    async function loadMessagesFromSheets() {
+        try {
+            const response = await fetch(GOOGLE_SCRIPT_URL);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            displayMessages(data);
+            updateStats(data);
+        } catch (error) {
+            console.error('Error loading from Google Sheets:', error);
+            document.getElementById('messagesContainer').innerHTML =
+                '<div class="no-messages">❌ Gagal memuat data dari Google Sheets.<br>Pastikan setup sudah benar.</div>';
+        }
+    }
+
+    // ============================================
+    // TAMPILAN PESAN
+    // ============================================
+    function displayMessages(messages) {
+        const container = document.getElementById('messagesContainer');
+        if (!messages || messages.length === 0) {
+            container.innerHTML = '<div class="no-messages">Belum ada pesan</div>';
+            return;
+        }
+
+        container.innerHTML = messages.map(msg => `
+            <div class="message-item ${msg.tipe}">
+                <div class="message-header">
+                    <span class="message-type">${msg.tipe}</span>
+                    <span class="message-date">${msg.tanggal}</span>
+                </div>
+                <div class="message-name">${msg.name}</div>
+                <div class="message-email">${msg.email}</div>
+                <div class="message-content">
+                    <strong>${msg.subjek}</strong><br>
+                    ${msg.pesan}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // ============================================
+    // TAMPILAN STATISTIK
+    // ============================================
+    function updateStats(messages) {
+        const total = messages.length;
+        const apresiasi = messages.filter(msg => msg.tipe === 'apresiasi').length;
+        const saran = messages.filter(msg => msg.tipe === 'saran').length;
+        const keluhan = messages.filter(msg => msg.tipe === 'keluhan').length;
+
+        document.getElementById('totalMessages').textContent = total;
+        document.getElementById('apresiasiCount').textContent = apresiasi;
+        document.getElementById('saranCount').textContent = saran;
+       document.getElementById('keluhanCount').textContent = keluhan;
+    }
+
+    // ============================================
+    // NOTIFIKASI STATUS
+    // ============================================
+    function showMessage(type, message = '') {
+        const successMsg = document.getElementById('successMessage');
+        const errorMsg = document.getElementById('errorMessage');
+        const loadingMsg = document.getElementById('loadingMessage');
+
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'none';
+        loadingMsg.style.display = 'none';
+
+        if (type === 'success') {
+            successMsg.style.display = 'block';
+            setTimeout(() => successMsg.style.display = 'none', 5000);
+        } else if (type === 'error') {
+            errorMsg.textContent = message;
+            errorMsg.style.display = 'block';
+            setTimeout(() => errorMsg.style.display = 'none', 5000);
+        } else if (type === 'loading') {
+            loadingMsg.style.display = 'block';
+        }
+    }
+
+    // ============================================
+    // EVENT LISTENER UNTUK FORM
+    // ============================================
+    document.getElementById('messageForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById('submitBtn');
+        const originalText = submitBtn.textContent;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Mengirim...';
+        showMessage('loading');
+
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            tipe: document.getElementById('tipe').value,
+            subjek: document.getElementById('subjek').value,
+            pesan: document.getElementById('pesan').value,
+            tanggal: new Date().toLocaleString('id-ID')
+        };
+
+        const result = await sendToGoogleSheets(formData);
+
+        if (result.success) {
+            showMessage('success');
+            this.reset();
+            setTimeout(loadMessagesFromSheets, 2000);
+        } else {
+            showMessage('error', 'Gagal mengirim pesan: ' + (result.error || 'Unknown error'));
+        }
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    });
+
+    // ============================================
+    // INISIALISASI SAAT LOAD
+    // ============================================
+    document.addEventListener('DOMContentLoaded', loadMessagesFromSheets);
+    setInterval(loadMessagesFromSheets, 60000);
+</script>
+ <script>
+        // Set target date to July 13, 2025
+        const targetDate = new Date('2025-07-13T00:00:00').getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            if (distance < 0) {
+                // Registration is open
+                document.getElementById('countdownTimer').style.display = 'none';
+                document.getElementById('countdownMessage').textContent = '🎉 Pendaftaran Sudah Dibuka! Silakan daftar sekarang!';
+                document.getElementById('countdownMessage').style.fontSize = '1.5rem';
+                
+                // Enable the form
+                const form = document.getElementById('registrationForm');
+                const overlay = document.getElementById('formOverlay');
+                const submitBtn = document.getElementById('submitBtn');
+                
+                form.classList.add('enabled');
+                overlay.style.position = 'static';
+                overlay.querySelector('::before') && (overlay.style.display = 'none');
+                submitBtn.disabled = false;
+                
+                // Remove the overlay pseudo-element
+                overlay.classList.remove('disabled-overlay');
+                
+                return;
+            }
+            
+            // Calculate time units
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Update display
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+        
+        // Form submission handler
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const now = new Date().getTime();
+            if (now < targetDate) {
+                alert('Pendaftaran belum dibuka! Silakan tunggu hingga tanggal 13 Juli 2025.');
+                return;
+            }
+            
+            // Generate kupon code
+            const kuponCode = 'LOMBA17-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+            
+            // Show success message and kupon
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('kuponDisplay').style.display = 'block';
+            document.getElementById('kuponCode').textContent = kuponCode;
+            
+            // Hide form
+            document.getElementById('registrationForm').style.display = 'none';
+            
+            // Scroll to top
+            document.getElementById('daftar').scrollIntoView({ behavior: 'smooth' });
+            
+            // Reset form after 5 seconds (for demo purposes)
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('kuponDisplay').style.display = 'none';
+                document.getElementById('registrationForm').style.display = 'block';
+                document.getElementById('registrationForm').reset();
+            }, 5000);
+        });
+
+
+        // Initialize Swiper untuk Galeri Lomba
+
+
+        // Initialize Swiper untuk Galeri Lomba
+const lombaSwiper = new Swiper('.lombaSwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+        delay: 500, // 3 detik (300 terlalu cepat)
+        disableOnInteraction: false, // Ubah ke false agar tetap jalan setelah interaksi
+        reverseDirection: true // Arah ke kiri
+    },
+    navigation: {
+        nextEl: '.lombaSwiper .swiper-button-next',
+        prevEl: '.lombaSwiper .swiper-button-prev',
+    },
+    pagination: {
+        el: '.lombaSwiper .swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+    },
+    breakpoints: {
+        // Mobile kecil
+        320: { 
+            slidesPerView: 1, 
+            spaceBetween: 10 
+        },
+        // Mobile
+        480: { 
+            slidesPerView: 2, 
+            spaceBetween: 15 
+        },
+        // Tablet
+        768: { 
+            slidesPerView: 3, 
+            spaceBetween: 20 
+        },
+        // Desktop
+        1024: { 
+            slidesPerView: 4, 
+            spaceBetween: 30 
+        }
+    }
+});
+
+// Initialize Swiper untuk Galeri Malam Puncak
+const puncakSwiper = new Swiper('.puncakSwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+        delay: 500, // 3.5 detik (berbeda dari lomba)
+        disableOnInteraction: false,
+        // Tidak ada reverseDirection, jadi akan ke kanan (normal)
+    },
+    navigation: {
+        nextEl: '.puncakSwiper .swiper-button-next',
+        prevEl: '.puncakSwiper .swiper-button-prev',
+    },
+    pagination: {
+        el: '.puncakSwiper .swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+    },
+    breakpoints: {
+        // Mobile kecil
+        320: { 
+            slidesPerView: 1, 
+            spaceBetween: 10 
+        },
+        // Mobile
+        480: {
+            slidesPerView: 2,
+            spaceBetween: 15
+        },
+        // Tablet
+        768: {
+            slidesPerView: 3,
+            spaceBetween: 20
+        },
+        // Desktop
+        1024: {
+            slidesPerView: 4,
+            spaceBetween: 30
+        }
+    }
+});
+
+// Pause autoplay saat hover (opsional tapi bagus untuk UX)
+document.querySelectorAll('.lombaSwiper, .puncakSwiper').forEach(swiperEl => {
+    swiperEl.addEventListener('mouseenter', () => {
+        if (swiperEl.classList.contains('lombaSwiper')) {
+            lombaSwiper.autoplay.stop();
+        } else if (swiperEl.classList.contains('puncakSwiper')) {
+            puncakSwiper.autoplay.stop();
+        }
+    });
+    
+    swiperEl.addEventListener('mouseleave', () => {
+        if (swiperEl.classList.contains('lombaSwiper')) {
+            lombaSwiper.autoplay.start();
+        } else if (swiperEl.classList.contains('puncakSwiper')) {
+            puncakSwiper.autoplay.start();
+        }
+    });
+});
+    </script>
+    
+
+   
+
+</body>
+</html>
