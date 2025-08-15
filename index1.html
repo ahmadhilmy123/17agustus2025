@@ -3500,7 +3500,7 @@ function validateLombaAge(lomba, umur) {
 
     if ((lomba === 'Lomba Bendera' || lomba === 'Lomba Nangkep Ikan') && (umur < 3 || umur > 5)) return false;
     if ((lomba === 'Lomba Stocking' || lomba === 'Lomba Paku' || lomba === 'Lomba Pindahin Gelas Pake Balon') && (umur < 6 || umur > 8)) return false;
-    if ((lomba === 'Lomba Balap Karung' || lomba.includes('[4 orang]')) && (umur < 1 || umur > 100)) return false;
+    if ((lomba === 'Lomba Balap Karung' || lomba.includes('[4 orang]')) && (umur < 9 || umur > 15)) return false;
 
     return true;
 }

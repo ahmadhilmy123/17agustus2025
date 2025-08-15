@@ -15,8 +15,11 @@
 <body>
 
   <h1>📋 Daftar Peserta Lomba 17 Agustus 2025</h1>
+  <input type="text" id="searchInput" placeholder="Cari Nama, Kupon, Lomba..." style="width:300px; padding:8px; margin-top:16px; font-size:16px;">
+  <button onclick="doSearch()" style="padding:8px 16px; font-size:16px; background:#d40000; color:#fff; border:none; border-radius:4px; cursor:pointer; margin-left:8px;">Cari</button>
   <div id="statistik" class="statistik"></div>
-  <table id="tabelPeserta">
+  <h2 style="color:#d40000; margin-top:32px;">Tabel Peserta Anak-Anak (Umur < 16)</h2>
+  <table id="tabelAnak">
     <thead>
       <tr>
         <th>No</th>
@@ -28,11 +31,28 @@
         <th>Lomba 2</th>
         <th>No Telepone</th>
         <th>Kupon</th>
+        <th>Pengambilan Snack</th>
       </tr>
     </thead>
-    <tbody>
-      <!-- Data peserta akan ditampilkan di sini -->
-    </tbody>
+    <tbody></tbody>
+  </table>
+  <h2 style="color:#d40000; margin-top:32px;">Tabel Peserta Ibu-Ibu (Umur ≥ 16)</h2>
+  <table id="tabelIbu">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Umur</th>
+        <th>Alamat</th>
+        <th>Ortu</th>
+        <th>Lomba 1</th>
+        <th>Lomba 2</th>
+        <th>No Telepone</th>
+        <th>Kupon</th>
+        <th>Pengambilan Snack</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
   </table>
 
   <script>
@@ -41,17 +61,38 @@
     fetch(API_URL)
       .then(response => response.json())
       .then(data => {
-        const tbody = document.querySelector('#tabelPeserta tbody');
-        const statistikDiv = document.getElementById('statistik');
+        window.allPeserta = data; // simpan global untuk search
+        renderPeserta(data);
+      })
+      .catch(error => {
+        console.error('Gagal mengambil data:', error);
+        document.getElementById('statistik').textContent = '❌ Gagal memuat data dari Google Sheet.';
+      });
 
-        let htmlRows = '';
-        const lombaCount = {};
-        const umurCount = {};
+    // Fungsi render peserta (bisa dipanggil ulang untuk search)
+    function renderPeserta(data) {
+      const tbodyAnak = document.querySelector('#tabelAnak tbody');
+      const tbodyIbu = document.querySelector('#tabelIbu tbody');
+      const statistikDiv = document.getElementById('statistik');
 
-        data.forEach((peserta, index) => {
-          htmlRows += `
+      let htmlRowsAnak = '';
+      let htmlRowsIbu = '';
+      const lombaCount = {};
+      const umurCount = {};
+      let anakNo = 1;
+      let ibuNo = 1;
+
+      data.forEach((peserta) => {
+        const umur = parseInt(peserta.Umur);
+        let kelompok = '';
+        const statusSnack = peserta['Pengambilan Snack'] === 'Sudah' ? 'Sudah' : 'Belum';
+        const selectId = `select_snack_${peserta.Kupon}`;
+        const disabledSnack = statusSnack === 'Sudah' ? 'disabled' : '';
+        if (umur >= 16) {
+          kelompok = 'Ibu-Ibu (16 tahun ke atas)';
+          htmlRowsIbu += `
             <tr>
-              <td>${index + 1}</td>
+              <td>${ibuNo++}</td>
               <td>${peserta.Nama}</td>
               <td>${peserta.Umur}</td>
               <td>${peserta.Alamat}</td>
@@ -60,44 +101,172 @@
               <td>${peserta.Lomba_2 || '-'}</td>
               <td>${peserta.Telepon}</td>
               <td>${peserta.Kupon || '-'}</td>
+              <td style="text-align:center;">
+                <button id="btn_snack_${peserta.Kupon}" onclick="ambilSnack('${peserta.Kupon}')" ${statusSnack === 'Sudah' ? 'disabled' : ''} style="padding:6px 16px; background:#d40000; color:#fff; border:none; border-radius:4px; cursor:pointer; opacity:${statusSnack === 'Sudah' ? '0.6' : '1'};">${statusSnack === 'Sudah' ? 'Sudah Ambil' : 'Ambil'}</button>
+              </td>
             </tr>
           `;
-
-          // Hitung statistik lomba
-          if (peserta.Lomba_1) {
-            lombaCount[peserta.Lomba_1] = (lombaCount[peserta.Lomba_1] || 0) + 1;
+        } else {
+          if (umur <= 5) {
+            kelompok = '3–5 tahun';
+          } else if (umur <= 8) {
+            kelompok = '6–8 tahun';
+          } else {
+            kelompok = '9–15 tahun';
           }
-          if (peserta.Lomba_2) {
-            lombaCount[peserta.Lomba_2] = (lombaCount[peserta.Lomba_2] || 0) + 1;
-          }
+          htmlRowsAnak += `
+            <tr>
+              <td>${anakNo++}</td>
+              <td>${peserta.Nama}</td>
+              <td>${peserta.Umur}</td>
+              <td>${peserta.Alamat}</td>
+              <td>${peserta.Nama_Orang_Tua}</td>
+              <td>${peserta.Lomba_1}</td>
+              <td>${peserta.Lomba_2 || '-'}</td>
+              <td>${peserta.Telepon}</td>
+              <td>${peserta.Kupon || '-'}</td>
+              <td style="text-align:center;">
+                <button id="btn_snack_${peserta.Kupon}" onclick="ambilSnack('${peserta.Kupon}')" ${statusSnack === 'Sudah' ? 'disabled' : ''} style="padding:6px 16px; background:#d40000; color:#fff; border:none; border-radius:4px; cursor:pointer; opacity:${statusSnack === 'Sudah' ? '0.6' : '1'};">${statusSnack === 'Sudah' ? 'Sudah Ambil' : 'Ambil'}</button>
+              </td>
+            </tr>
+          `;
+        }
 
-          // Hitung kelompok umur
-          const umur = parseInt(peserta.Umur);
-          const kelompok = umur <= 5 ? '3–5 tahun' : umur <= 8 ? '6–8 tahun' : '9–15 tahun';
-          umurCount[kelompok] = (umurCount[kelompok] || 0) + 1;
-        });
+        // Hitung statistik lomba
+        if (peserta.Lomba_1) {
+          lombaCount[peserta.Lomba_1] = (lombaCount[peserta.Lomba_1] || 0) + 1;
+        }
+        if (peserta.Lomba_2) {
+          lombaCount[peserta.Lomba_2] = (lombaCount[peserta.Lomba_2] || 0) + 1;
+        }
 
-        tbody.innerHTML = htmlRows;
-
-        // Tampilkan statistik
-        const totalPeserta = data.length;
-        const lombaFavorit = Object.entries(lombaCount)
-          .sort((a, b) => b[1] - a[1])[0];
-
-        statistikDiv.innerHTML = `
-          <h3>📊 Statistik</h3>
-          <p>Total Peserta: <strong>${totalPeserta}</strong></p>
-          <p>Lomba Terfavorit: <strong>${lombaFavorit ? lombaFavorit[0] + ' (' + lombaFavorit[1] + ' peserta)' : '-'}</strong></p>
-          <p>Kelompok Umur:</p>
-          <ul>
-            ${Object.entries(umurCount).map(([group, count]) => `<li>${group}: ${count} peserta</li>`).join('')}
-          </ul>
-        `;
-      })
-      .catch(error => {
-        console.error('Gagal mengambil data:', error);
-        document.getElementById('statistik').textContent = '❌ Gagal memuat data dari Google Sheet.';
+        umurCount[kelompok] = (umurCount[kelompok] || 0) + 1;
       });
+
+      tbodyAnak.innerHTML = htmlRowsAnak;
+      tbodyIbu.innerHTML = htmlRowsIbu;
+
+      // Tampilkan statistik
+      const totalPeserta = data.length;
+      const lombaFavorit = Object.entries(lombaCount)
+        .sort((a, b) => b[1] - a[1])[0];
+
+      statistikDiv.innerHTML = `
+        <h3>📊 Statistik</h3>
+        <p>Total Peserta: <strong>${totalPeserta}</strong></p>
+        <p>Total Perlombaan Diikuti: <strong>${Object.values(lombaCount).reduce((a,b)=>a+b,0)}</strong></p>
+        <p>Lomba Terfavorit: <strong>${lombaFavorit ? lombaFavorit[0] + ' (' + lombaFavorit[1] + ' peserta)' : '-'}</strong></p>
+        <p>Daftar Semua Perlombaan:</p>
+        <ol>
+          ${Object.keys(lombaCount).map((lomba, idx) => `<li>${lomba} (${lombaCount[lomba]} peserta)</li>`).join('')}
+        </ol>
+        <p>Kelompok Umur:</p>
+        <ul>
+          ${Object.entries(umurCount).map(([group, count]) => `<li>${group}: ${count} peserta</li>`).join('')}
+        </ul>
+      `;
+    }
+
+    // Fungsi search
+    function doSearch() {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      if (!window.allPeserta) return;
+      if (!q) {
+        renderPeserta(window.allPeserta);
+        return;
+      }
+      const filtered = window.allPeserta.filter(p =>
+        (p.Nama && p.Nama.toLowerCase().includes(q)) ||
+        (p.Kupon && p.Kupon.toLowerCase().includes(q)) ||
+        (p.Lomba_1 && p.Lomba_1.toLowerCase().includes(q)) ||
+        (p.Lomba_2 && p.Lomba_2.toLowerCase().includes(q))
+      );
+      renderPeserta(filtered);
+    }
+
+    // Fungsi ambil snack via tombol (global scope)
+    function ambilSnack(kupon) {
+      const btn = document.getElementById(`btn_snack_${kupon}`);
+      if (!btn) return;
+      btn.disabled = true;
+      btn.textContent = '⏳ Mengirim...';
+      btn.style.opacity = '0.6';
+      // PATCH ke SheetBest
+      console.log('Ambil snack klik:', kupon);
+      fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+          console.log('SheetBest data:', data);
+          const idx = data.findIndex(p => p.Kupon === kupon);
+          if (idx === -1) {
+            alert('❌ Kupon tidak ditemukan di Sheet!');
+            btn.disabled = false;
+            btn.textContent = 'Ambil';
+            btn.style.opacity = '1';
+            return;
+          }
+          const updateUrl = `${API_URL}/${idx}`;
+          const payload = { 'Pengambilan Snack': 'Sudah' };
+          console.log('PATCH:', updateUrl, payload);
+          fetch(updateUrl, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          })
+          .then(res => {
+            console.log('PATCH response:', res);
+            if (res.ok) {
+              btn.textContent = 'Sudah Ambil';
+              btn.style.opacity = '0.6';
+              btn.disabled = true;
+              alert('✅ Status pengambilan snack berhasil diupdate!');
+            } else {
+              // PATCH gagal, coba POST (update by Kupon)
+              console.log('PATCH gagal, coba POST');
+              fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ Kupon: kupon, 'Pengambilan Snack': 'Sudah' })
+              })
+              .then(postRes => {
+                console.log('POST response:', postRes);
+                if (postRes.ok) {
+                  btn.textContent = 'Sudah Ambil';
+                  btn.style.opacity = '0.6';
+                  btn.disabled = true;
+                  alert('✅ Status pengambilan snack berhasil diupdate! (POST)');
+                } else {
+                  btn.disabled = false;
+                  btn.textContent = 'Ambil';
+                  btn.style.opacity = '1';
+                  alert('❌ Gagal update status snack!');
+                }
+              })
+              .catch((err) => {
+                console.log('POST error:', err);
+                btn.disabled = false;
+                btn.textContent = 'Ambil';
+                btn.style.opacity = '1';
+                alert('❌ Gagal update status snack!');
+              });
+            }
+          })
+          .catch((err) => {
+            console.log('PATCH error:', err);
+            btn.disabled = false;
+            btn.textContent = 'Ambil';
+            btn.style.opacity = '1';
+            alert('❌ Gagal update status snack!');
+          });
+        })
+        .catch((err) => {
+          console.log('SheetBest fetch error:', err);
+          btn.disabled = false;
+          btn.textContent = 'Ambil';
+          btn.style.opacity = '1';
+          alert('❌ Gagal update status snack!');
+        });
+    }
   </script>
 
 </body>

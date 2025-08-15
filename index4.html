@@ -296,7 +296,7 @@
   </div>
 
   <script>
-    const API_URL = 'https://api.sheetbest.com/sheets/0d434f8c-aeb0-493e-a72a-052683c6e7d8';
+    const API_URL = 'https://api.sheetbest.com/sheets/9f07691c-23d8-4fd1-8f07-cebffe656634';
     
     const rentangUmur = {
       "Lomba Bendera": [3, 5],
@@ -322,8 +322,7 @@
     // Helper: mapping kolom sesuai phase
     function getPhaseColumnName(lomba, phaseType) {
       if (phaseType === 'group') return lomba;
-      if (phaseType === 'elimination') return lomba + ' Eliminasi';
-      if (phaseType === 'semifinal') return lomba + ' Semi Final';
+      if (phaseType === 'elimination' || phaseType === 'semifinal') return lomba + ' Eliminasi';
       if (phaseType === 'final') return lomba + ' Final';
       return lomba;
     }
@@ -373,14 +372,69 @@
           categoryDiv.innerHTML = `
             <h3 style="color: #333; margin: 20px 0 10px 0; font-size: 1.2em;">${category}</h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px;">
-              ${lombaByAge[category].map(lomba => `
-                <button class="lomba-btn" onclick="selectLomba('${lomba}')">${lomba}</button>
-              `).join('')}
+              ${lombaByAge[category].map(lomba => {
+                // Deteksi lomba berkelompok (ada kata '[4 orang]')
+                const isKelompok = lomba.includes('[4 orang]');
+                return `
+                  <button class="lomba-btn" onclick="selectLomba('${lomba}')">${lomba}</button>
+                `;
+              }).join('')}
             </div>
           `;
           container.appendChild(categoryDiv);
         }
       });
+// Fitur: Bagi kelompok otomatis untuk lomba berkelompok
+function bagiKelompokOtomatis(lomba) {
+  const [minAge, maxAge] = rentangUmur[lomba];
+  // Ambil peserta sesuai lomba dan rentang umur
+  const peserta = currentData.filter(p => {
+    const umur = parseInt(p.Umur);
+    return umur >= minAge && umur <= maxAge && (p.Lomba_1 === lomba || p.Lomba_2 === lomba);
+  });
+  if (peserta.length < 4) {
+    alert('Peserta kurang dari 4, tidak bisa buat kelompok!');
+    return;
+  }
+  // Kelompok size (default 4)
+  const groupSize = 4;
+  // Sort peserta by umur dan gender (agar rata)
+  const sortedPeserta = [...peserta].sort((a, b) => {
+    // Prioritaskan gender dulu, lalu umur
+    if ((a.Jenis_Kelamin || '') < (b.Jenis_Kelamin || '')) return -1;
+    if ((a.Jenis_Kelamin || '') > (b.Jenis_Kelamin || '')) return 1;
+    return parseInt(a.Umur) - parseInt(b.Umur);
+  });
+  // Bagi ke kelompok
+  const kelompok = [];
+  for (let i = 0; i < sortedPeserta.length; i += groupSize) {
+    kelompok.push(sortedPeserta.slice(i, i + groupSize));
+  }
+  // Tampilkan hasil kelompok di modal/alert
+  let html = `<h3>Hasil Pembagian Kelompok (${lomba})</h3>`;
+  kelompok.forEach((grup, idx) => {
+    html += `<b>Kelompok ${idx+1}:</b><br>`;
+    html += grup.map(p => `${p.Nama} (${p.Umur} th, ${p.Jenis_Kelamin || '-'})`).join('<br>');
+    html += '<br><br>';
+  });
+  // Modal sederhana
+  const modal = document.createElement('div');
+  modal.style.position = 'fixed';
+  modal.style.top = '0';
+  modal.style.left = '0';
+  modal.style.width = '100vw';
+  modal.style.height = '100vh';
+  modal.style.background = 'rgba(0,0,0,0.5)';
+  modal.style.zIndex = '9999';
+  modal.style.display = 'flex';
+  modal.style.alignItems = 'center';
+  modal.style.justifyContent = 'center';
+  modal.innerHTML = `<div style="background:white; padding:32px; border-radius:16px; max-width:500px; text-align:left;">
+    ${html}
+    <button style="margin-top:24px; padding:8px 24px; background:#667eea; color:white; border:none; border-radius:8px; font-size:1em; cursor:pointer;" onclick="this.parentElement.parentElement.remove()">Tutup</button>
+  </div>`;
+  document.body.appendChild(modal);
+}
     }
 
     function selectLomba(lomba) {
@@ -396,7 +450,8 @@
 
     function generateTournament(lomba) {
       const [minAge, maxAge] = rentangUmur[lomba];
-      const participants = currentData.filter(p => {
+      const isKelompok = lomba.includes('[4 orang]');
+      let participants = currentData.filter(p => {
         const umur = parseInt(p.Umur);
         return umur >= minAge && umur <= maxAge && 
                (p.Lomba_1 === lomba || p.Lomba_2 === lomba);
@@ -408,7 +463,7 @@
         [lomba + ' Eliminasi']: p[lomba + ' Eliminasi'] || 'Belum Main',
         [lomba + ' Semi Final']: p[lomba + ' Semi Final'] || 'Belum Main',
         [lomba + ' Final']: p[lomba + ' Final'] || 'Belum Main'
-      })).sort((a, b) => a.umur - b.umur);
+      }));
 
       if (participants.length === 0) {
         document.getElementById('tournamentContainer').innerHTML = 
@@ -417,111 +472,316 @@
         return;
       }
 
-      const tournament = createTournamentStructure(participants, lomba);
-      renderTournament(tournament, lomba);
+      // Jika lomba kelompok, bentuk tim campuran umur
+      if (isKelompok) {
+        // Pisahkan peserta umur kecil dan besar
+        const sorted = [...participants].sort((a, b) => a.umur - b.umur);
+        const n = sorted.length;
+        const groupSize = 4;
+        let teams = [];
+        // Algoritma: ambil 2 peserta termuda + 2 peserta tertua per tim
+        let i = 0, j = n - 1;
+        while (i < j) {
+          let team = [];
+          if (i < j) team.push(sorted[i++]);
+          if (i < j) team.push(sorted[i++]);
+          if (j > i) team.push(sorted[j--]);
+          if (j > i) team.push(sorted[j--]);
+          teams.push(team);
+        }
+        // Jika sisa, masukkan ke tim terakhir
+        if (i === j) {
+          if (teams.length === 0) teams.push([]);
+          teams[teams.length - 1].push(sorted[i]);
+        }
+        // Ubah format ke array of tim
+        participants = teams.map((team, idx) => ({
+          id: `tim-${idx+1}`,
+          namaTim: `Tim ${idx+1}`,
+          anggota: team,
+          status: team.map(p => p[lomba] || 'Belum Main'),
+          [lomba + ' Eliminasi']: team.map(p => p[lomba + ' Eliminasi'] || 'Belum Main'),
+          [lomba + ' Semi Final']: team.map(p => p[lomba + ' Semi Final'] || 'Belum Main'),
+          [lomba + ' Final']: team.map(p => p[lomba + ' Final'] || 'Belum Main')
+        }));
+      }
+
+      const tournament = createTournamentStructure(participants, lomba, isKelompok);
+      renderTournament(tournament, lomba, isKelompok);
       document.getElementById('tournamentContainer').style.display = 'block';
     }
 
-    function createTournamentStructure(participants, lomba) {
+    function createTournamentStructure(participants, lomba, isKelompok = false) {
       const totalParticipants = participants.length;
       const groupSize = 4;
       const initialGroups = [];
 
-      // 1. Buat grup awal (masing-masing 4 peserta)
-      for (let i = 0; i < totalParticipants; i += groupSize) {
-        const group = participants.slice(i, i + groupSize);
-        group.sort((a, b) => {
-          const statusOrder = { 'Menang': 0, 'Kalah': 1, 'Belum Main': 2 };
-          return statusOrder[a.status] - statusOrder[b.status];
+      // 1. Buat grup awal
+      if (isKelompok) {
+        // Setiap grup = 1 tim
+        participants.forEach((tim, idx) => {
+          initialGroups.push({
+            id: `tim-${idx+1}`,
+            participants: tim.anggota,
+            namaTim: tim.namaTim,
+            phase: 'group',
+            completed: false,
+            winner: null
+          });
         });
-        initialGroups.push({
-          id: `group-${Math.floor(i/groupSize) + 1}`,
-          participants: group,
-          phase: 'group',
-          completed: group.some(p => p.status === 'Menang'),
-          winner: group.find(p => p.status === 'Menang')
-        });
-      }
-
-      // 2. Ambil juara 1 dari setiap grup (yang status = 'Menang')
-      const juaraGrup = initialGroups
-        .filter(group => group.winner)
-        .map(group => group.winner);
-
-      // 3. Buat babak eliminasi dari para juara grup
-      const eliminationGroups = [];
-      for (let i = 0; i < juaraGrup.length; i += groupSize) {
-        const group = juaraGrup.slice(i, i + groupSize);
-        eliminationGroups.push({
-          id: `elimination-${Math.floor(i/groupSize) + 1}`,
-          participants: group,
-          phase: 'elimination',
-          completed: group.some(p => (p[lomba + ' Eliminasi'] || 'Belum Main') === 'Menang'),
-          winner: group.find(p => (p[lomba + ' Eliminasi'] || 'Belum Main') === 'Menang')
-        });
-      }
-
-      // 4. Ambil pemenang eliminasi untuk semi final
-      const juaraEliminasi = eliminationGroups
-        .filter(group => group.winner)
-        .map(group => group.winner);
-
-      // 5. Buat Semi Final (jika ada cukup peserta)
-      const semifinalGroups = [];
-      if (juaraEliminasi.length >= 2) {
-        for (let i = 0; i < juaraEliminasi.length; i += 2) {
-          const group = juaraEliminasi.slice(i, i + 2);
-          semifinalGroups.push({
-            id: `semifinal-${Math.floor(i/2) + 1}`,
-            participants: group,
-            phase: 'semifinal',
-            completed: group.some(p => (p[lomba + ' Semi Final'] || 'Belum Main') === 'Menang'),
-            winner: group.find(p => (p[lomba + ' Semi Final'] || 'Belum Main') === 'Menang')
+        // Untuk kelompok, juaraGrup = tim yang status perwakilan 'Menang'
+        var juaraGrup = initialGroups
+          .filter(group => {
+            // Perwakilan tim = anggota kedua (index 1), jika ada
+            const perwakilan = group.participants[1] || group.participants[0];
+            return perwakilan[lomba] === 'Menang';
+          })
+          .map(group => {
+            // Return tim (array anggota)
+            return group.participants;
+          });
+        let semiFinalGroups = [];
+        let finalGroups = [];
+        if (initialGroups.length > 4) {
+          // Semi final: max 4 tim per grup
+          for (let i = 0; i < juaraGrup.length; i += 4) {
+            const group = juaraGrup.slice(i, i + 4);
+            semiFinalGroups.push({
+              id: `semifinal-${Math.floor(i/4) + 1}`,
+              teams: group,
+              phase: 'semifinal',
+              completed: group.some(tim => {
+                const perwakilan = tim[1] || tim[0];
+                return (perwakilan[lomba + ' Semi Final'] || 'Belum Main') === 'Menang';
+              }),
+              winner: group.find(tim => {
+                const perwakilan = tim[1] || tim[0];
+                return (perwakilan[lomba + ' Semi Final'] || 'Belum Main') === 'Menang';
+              })
+            });
+          }
+          // Jika semi final hanya 1 grup (≤4 tim), podium langsung dari semi final
+          if (semiFinalGroups.length === 1) {
+            finalGroups.push({
+              id: 'final',
+              teams: semiFinalGroups[0].teams,
+              phase: 'final',
+              completed: semiFinalGroups[0].teams.some(tim => {
+                const perwakilan = tim[1] || tim[0];
+                return (perwakilan[lomba + ' Semi Final'] || 'Belum Main') === 'Menang';
+              }),
+              winner: semiFinalGroups[0].teams.find(tim => {
+                const perwakilan = tim[1] || tim[0];
+                return (perwakilan[lomba + ' Semi Final'] || 'Belum Main') === 'Menang';
+              }) || null,
+              podiumFromSemiFinal: true
+            });
+          } else {
+            // Jika semi final >1 grup, FINAL diisi juara 1 & 2 dari setiap grup semi final
+            let finalists = [];
+            semiFinalGroups.forEach(group => {
+              // Ambil juara 1 dan 2 dari setiap grup semi final
+              const sorted = [...group.teams].sort((a, b) => {
+                const order = { 'Menang': 0, 'Kalah': 1, 'Belum Main': 2 };
+                const statusA = (a[1] || a[0])[lomba + ' Semi Final'] || 'Belum Main';
+                const statusB = (b[1] || b[0])[lomba + ' Semi Final'] || 'Belum Main';
+                return order[statusA] - order[statusB];
+              });
+              if (sorted[0]) finalists.push(sorted[0]);
+              if (sorted[1]) finalists.push(sorted[1]);
+            });
+            if (finalists.length > 0) {
+              finalGroups.push({
+                id: 'final',
+                teams: finalists,
+                phase: 'final',
+                completed: finalists.some(tim => {
+                  const perwakilan = tim[1] || tim[0];
+                  return (perwakilan[lomba + ' Final'] || 'Belum Main') === 'Menang';
+                }),
+                winner: finalists.find(tim => {
+                  const perwakilan = tim[1] || tim[0];
+                  return (perwakilan[lomba + ' Final'] || 'Belum Main') === 'Menang';
+                }) || null
+              });
+            }
+          }
+        } else if (juaraGrup.length > 0) {
+          // Langsung ke final jika juara grup <= 4
+          finalGroups.push({
+            id: 'final',
+            teams: juaraGrup,
+            phase: 'final',
+            completed: juaraGrup.some(tim => {
+              const perwakilan = tim[1] || tim[0];
+              return (perwakilan[lomba + ' Final'] || 'Belum Main') === 'Menang';
+            }),
+            winner: juaraGrup.find(tim => {
+              const perwakilan = tim[1] || tim[0];
+              return (perwakilan[lomba + ' Final'] || 'Belum Main') === 'Menang';
+            }) || null
           });
         }
+        // Susun phases
+        const phases = [
+          {
+            name: 'Babak Grup',
+            subtitle: `${initialGroups.length} tim, ${totalParticipants} peserta - Juara 1 tiap tim lolos${initialGroups.length > 4 ? ' ke Semi Final' : ' ke FINAL'}`,
+            groups: initialGroups,
+            type: 'group'
+          }
+        ];
+        if (semiFinalGroups.length > 0) {
+          phases.push({
+            name: 'Semi Final',
+            subtitle: `${semiFinalGroups.length} grup, ${juaraGrup.length} tim (Juara Grup)`,
+            groups: semiFinalGroups,
+            type: 'semifinal'
+          });
+        }
+        if (finalGroups.length > 0) {
+          phases.push({
+            name: 'FINAL',
+            subtitle: `Peserta Semi Final bertanding untuk Juara 1, 2, 3`,
+            groups: finalGroups,
+            type: 'final'
+          });
+        }
+        return { phases, lomba };
+      } else {
+        // ...existing code untuk individu...
+        // 1. Buat grup awal
+        for (let i = 0; i < totalParticipants; i += groupSize) {
+          const group = participants.slice(i, i + groupSize);
+          group.sort((a, b) => {
+            const statusOrder = { 'Menang': 0, 'Kalah': 1, 'Belum Main': 2 };
+            return statusOrder[a.status] - statusOrder[b.status];
+          });
+          initialGroups.push({
+            id: `group-${Math.floor(i/groupSize) + 1}`,
+            participants: group,
+            phase: 'group',
+            completed: group.some(p => p.status === 'Menang'),
+            winner: group.find(p => p.status === 'Menang')
+          });
+        }
+        // 2. Ambil juara 1 dari setiap grup (yang status = 'Menang')
+        const juaraGrup = initialGroups
+          .filter(group => group.winner)
+          .map(group => group.winner);
+        let semiFinalGroups = [];
+        let finalGroups = [];
+        if (juaraGrup.length > 4) {
+          // Buat semi-final: grup berisi max 4 peserta
+          for (let i = 0; i < juaraGrup.length; i += 4) {
+            const group = juaraGrup.slice(i, i + 4);
+            semiFinalGroups.push({
+              id: `semifinal-${Math.floor(i/4) + 1}`,
+              participants: group,
+              phase: 'semifinal',
+              completed: group.some(p => (p[lomba + ' Semi Final'] || 'Belum Main') === 'Menang'),
+              winner: group.find(p => (p[lomba + ' Semi Final'] || 'Belum Main') === 'Menang')
+            });
+          }
+          // Jika semi final hanya 1 grup (≤4 orang), podium langsung dari semi final
+          if (semiFinalGroups.length === 1) {
+            finalGroups.push({
+              id: 'final',
+              participants: semiFinalGroups[0].participants.map(p => ({
+                ...p,
+                [lomba + ' Semi Final']: p[lomba + ' Semi Final'] || 'Belum Main'
+              })),
+              phase: 'final',
+              completed: semiFinalGroups[0].participants.some(p => (p[lomba + ' Semi Final'] || 'Belum Main') === 'Menang'),
+              winner: semiFinalGroups[0].participants.find(p => (p[lomba + ' Semi Final'] || 'Belum Main') === 'Menang') || null,
+              podiumFromSemiFinal: true
+            });
+          } else {
+            // Jika semi final >1 grup, FINAL diisi juara 1 & 2 dari setiap grup semi final
+            let finalists = [];
+            semiFinalGroups.forEach(group => {
+              // Ambil juara 1 dan 2 (status 'Menang' dan 'Kalah' pertama)
+              const sorted = [...group.participants].sort((a, b) => {
+                const order = { 'Menang': 0, 'Kalah': 1, 'Belum Main': 2 };
+                return order[(a[lomba + ' Semi Final'] || 'Belum Main')] - order[(b[lomba + ' Semi Final'] || 'Belum Main')];
+              });
+              // Juara 1
+              if (sorted[0]) finalists.push({
+                ...sorted[0],
+                [lomba + ' Final']: sorted[0][lomba + ' Final'] || 'Belum Main'
+              });
+              // Juara 2
+              if (sorted[1]) finalists.push({
+                ...sorted[1],
+                [lomba + ' Final']: sorted[1][lomba + ' Final'] || 'Belum Main'
+              });
+            });
+            if (finalists.length > 0) {
+              finalGroups.push({
+                id: 'final',
+                participants: finalists,
+                phase: 'final',
+                completed: finalists.some(p => (p[lomba + ' Final'] || 'Belum Main') === 'Menang'),
+                winner: finalists.find(p => (p[lomba + ' Final'] || 'Belum Main') === 'Menang') || null
+              });
+            }
+          }
+        } else if (juaraGrup.length > 0) {
+          // Langsung ke final jika juara grup <= 4
+          finalGroups.push({
+            id: 'final',
+            participants: juaraGrup.map(p => ({
+              ...p,
+              [lomba + ' Final']: p[lomba + ' Final'] || 'Belum Main'
+            })),
+            phase: 'final',
+            completed: juaraGrup.some(p => (p[lomba + ' Final'] || 'Belum Main') === 'Menang'),
+            winner: juaraGrup.find(p => (p[lomba + ' Final'] || 'Belum Main') === 'Menang') || null
+          });
+        }
+        // Susun phases
+        const phases = [
+          {
+            name: 'Babak Grup',
+            subtitle: `${initialGroups.length} grup, ${totalParticipants} peserta - Juara 1 tiap grup lolos${juaraGrup.length > 4 ? ' ke Semi Final' : ' ke FINAL'}`,
+            groups: initialGroups,
+            type: 'group'
+          }
+        ];
+        if (semiFinalGroups.length > 0) {
+          phases.push({
+            name: 'Semi Final',
+            subtitle: `${semiFinalGroups.length} grup, ${juaraGrup.length} peserta (Juara Grup)`,
+            groups: semiFinalGroups,
+            type: 'semifinal'
+          });
+        }
+        if (finalGroups.length > 0) {
+          phases.push({
+            name: 'FINAL',
+            subtitle: `Peserta Semi Final bertanding untuk Juara 1, 2, 3`,
+            groups: finalGroups,
+            type: 'final'
+          });
+        }
+        return { phases, lomba };
       }
 
-      // 6. Ambil pemenang semi final untuk final
-      const juaraSemifinal = semifinalGroups
-        .filter(group => group.winner)
-        .map(group => group.winner);
-
-      // 7. Buat Final (jika ada 2 peserta)
-      const finalGroups = [];
-      if (juaraSemifinal.length >= 2) {
-        finalGroups.push({
-          id: 'final',
-          participants: juaraSemifinal.slice(0, 2),
-          phase: 'final',
-          completed: juaraSemifinal.some(p => (p[lomba + ' Final'] || 'Belum Main') === 'Menang'),
-          winner: juaraSemifinal.find(p => (p[lomba + ' Final'] || 'Belum Main') === 'Menang')
-        });
-      }
-
-      // 8. Susun phases
+      // Susun phases
       const phases = [
         {
           name: 'Babak Grup',
-          subtitle: `${initialGroups.length} grup, ${totalParticipants} peserta - Juara 1 tiap grup lolos`,
+          subtitle: `${initialGroups.length} grup, ${totalParticipants} peserta - Juara 1 tiap grup lolos${juaraGrup.length > 4 ? ' ke Semi Final' : ' ke FINAL'}`,
           groups: initialGroups,
           type: 'group'
         }
       ];
 
-      if (eliminationGroups.length > 0) {
-        phases.push({
-          name: 'Babak Eliminasi',
-          subtitle: `${eliminationGroups.length} grup, ${juaraGrup.length} peserta (Juara Grup)`,
-          groups: eliminationGroups,
-          type: 'elimination'
-        });
-      }
-
-      if (semifinalGroups.length > 0) {
+      if (semiFinalGroups.length > 0) {
         phases.push({
           name: 'Semi Final',
-          subtitle: `${semifinalGroups.length} pertandingan, ${juaraEliminasi.length} peserta`,
-          groups: semifinalGroups,
+          subtitle: `${semiFinalGroups.length} grup, ${juaraGrup.length} peserta (Juara Grup)`,
+          groups: semiFinalGroups,
           type: 'semifinal'
         });
       }
@@ -529,7 +789,7 @@
       if (finalGroups.length > 0) {
         phases.push({
           name: 'FINAL',
-          subtitle: `Pertandingan puncak - ${juaraSemifinal.length} peserta`,
+          subtitle: `Peserta Semi Final bertanding untuk Juara 1, 2, 3`,
           groups: finalGroups,
           type: 'final'
         });
@@ -538,7 +798,7 @@
       return { phases, lomba };
     }
 
-    function renderTournament(tournament, lomba) {
+    function renderTournament(tournament, lomba, isKelompok = false) {
       const container = document.getElementById('tournamentContainer');
       const totalParticipants = tournament.phases[0].groups.reduce((sum, group) => sum + group.participants.length, 0);
       const totalGroups = tournament.phases.reduce((sum, phase) => sum + phase.groups.length, 0);
@@ -573,10 +833,54 @@
 
     function renderPhase(phase, lomba, phaseType) {
       const hasGroups = phase.groups && phase.groups.length > 0;
-      const groupsHTML = hasGroups ? 
+      let groupsHTML = hasGroups ? 
         phase.groups.map(group => renderGroup(group, lomba, phaseType)).join('') :
         '<div class="group"><div class="participant"><div class="participant-info"><div class="participant-name">Menunggu pemenang dari babak sebelumnya...</div></div></div></div>';
-      
+
+      // If this is the final phase, add podium display
+      let podiumHTML = '';
+      if (phaseType === 'final' && hasGroups && phase.groups.length > 0) {
+        let isKelompokFinal = phase.groups[0].teams !== undefined;
+        let statusKey = 'Final';
+        if (phase.groups[0].podiumFromSemiFinal) {
+          statusKey = 'Semi Final';
+        }
+        let sorted = [];
+        if (isKelompokFinal) {
+          // Tim: ambil perwakilan dari setiap tim
+          sorted = phase.groups[0].teams.map((tim, idx) => {
+            const perwakilan = tim[1] || tim[0];
+            return {
+              ...perwakilan,
+              podiumStatus: perwakilan[lomba + ' ' + statusKey] || 'Belum Main',
+              namaTim: `Tim ${idx+1}`
+            };
+          }).sort((a, b) => {
+            const order = { 'Menang': 0, 'Kalah': 1, 'Belum Main': 2 };
+            return order[a.podiumStatus] - order[b.podiumStatus];
+          });
+        } else {
+          // Individu
+          let finalists = phase.groups[0].participants;
+          const order = { 'Menang': 0, 'Kalah': 1, 'Belum Main': 2 };
+          sorted = [...finalists].sort((a, b) => order[(a[lomba + ' ' + statusKey] || 'Belum Main')] - order[(b[lomba + ' ' + statusKey] || 'Belum Main')]);
+        }
+        podiumHTML = `
+          <div style="margin:32px 0 0 0; text-align:center;">
+            <h3 style="color:#4CAF50; margin-bottom:16px;">🏅 Podium Juara</h3>
+            <div style="display:flex; justify-content:center; gap:32px;">
+              ${sorted.slice(0,3).map((p, idx) => `
+                <div style="background:#f8f9fa; border-radius:12px; padding:18px 24px; min-width:120px; box-shadow:0 2px 8px rgba(0,0,0,0.07);">
+                  <div style="font-size:2em; font-weight:bold; color:${idx===0?'#FFD700':idx===1?'#C0C0C0':'#CD7F32'};">${idx+1}</div>
+                  <div style="font-size:1.1em; font-weight:600; margin:8px 0;">${p.Nama || '-'}${isKelompokFinal ? `<br><span style='font-size:0.9em; color:#667eea;'>${p.namaTim}</span>` : ''}</div>
+                  <div style="font-size:0.95em; color:#666;">${p.podiumStatus || p[lomba + ' ' + statusKey] || 'Belum Main'}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+
       return `
         <div class="phase">
           <div class="phase-header">
@@ -586,6 +890,7 @@
           <div class="groups-container">
             ${groupsHTML}
           </div>
+          ${podiumHTML}
         </div>
       `;
     }
@@ -602,6 +907,52 @@
         groupTitle = `👥 ${group.id.replace('-', ' ').toUpperCase()}`;
       }
 
+      // Untuk lomba kelompok, tampilkan nama tim dan anggota
+      if (group.namaTim) {
+        // Tombol Menang/Kalah Tim
+        const kolomTim = phaseType === 'group' ? lomba : (phaseType === 'semifinal' ? lomba + ' Semi Final' : lomba + ' Final');
+        const perwakilan = group.participants[1] || group.participants[0];
+        const statusTim = perwakilan[kolomTim] || 'Belum Main';
+        const badge = statusTim === 'Menang' ? '<span class="winner-badge">MENANG</span>' : statusTim === 'Kalah' ? '<span class="eliminated-badge">KALAH</span>' : '';
+        const disabled = statusTim === 'Menang' || statusTim === 'Kalah' ? 'disabled' : '';
+        return `
+          <div class="group">
+            <div class="group-header">
+              <h4 class="group-title">${group.namaTim} ${badge}</h4>
+            </div>
+            <div style="margin-bottom:8px; color:#666; font-size:0.95em;">Anggota: ${group.participants.map(p => p.Nama + ' (' + p.umur + ' th)').join(', ')}</div>
+            <div style="margin-bottom:8px; color:#888; font-size:0.95em;">Status Tim: ${statusTim} (perwakilan: ${perwakilan.Nama})</div>
+            <div class="btn-group" style="margin-bottom:8px;">
+              <button class="btn btn-menang" onclick="updateResultTim(['${perwakilan.kupon}'], '${kolomTim}', 'Menang')" ${disabled}>Menang Tim</button>
+              <button class="btn btn-kalah" onclick="updateResultTim(['${perwakilan.kupon}'], '${kolomTim}', 'Kalah')" ${disabled}>Kalah Tim</button>
+            </div>
+          </div>
+        `;
+      }
+      // Untuk babak final/semi-final tim, tampilkan tim sebagai satu grup
+      if (group.teams) {
+        return group.teams.map((tim, idx) => {
+          const perwakilan = tim[1] || tim[0];
+          const kolomTim = phaseType === 'semifinal' ? lomba + ' Semi Final' : lomba + ' Final';
+          const statusTim = perwakilan[kolomTim] || 'Belum Main';
+          const badge = statusTim === 'Menang' ? '<span class="winner-badge">MENANG</span>' : statusTim === 'Kalah' ? '<span class="eliminated-badge">KALAH</span>' : '';
+          const disabled = statusTim === 'Menang' || statusTim === 'Kalah' ? 'disabled' : '';
+          return `
+            <div class="group">
+              <div class="group-header">
+                <h4 class="group-title">Tim ${idx+1} ${badge}</h4>
+              </div>
+              <div style="margin-bottom:8px; color:#666; font-size:0.95em;">Anggota: ${tim.map(p => p.Nama + ' (' + p.umur + ' th)').join(', ')}</div>
+              <div style="margin-bottom:8px; color:#888; font-size:0.95em;">Status Tim: ${statusTim} (perwakilan: ${perwakilan.Nama})</div>
+              <div class="btn-group" style="margin-bottom:8px;">
+                <button class="btn btn-menang" onclick="updateResultTim(['${perwakilan.kupon}'], '${kolomTim}', 'Menang')" ${disabled}>Menang Tim</button>
+                <button class="btn btn-kalah" onclick="updateResultTim(['${perwakilan.kupon}'], '${kolomTim}', 'Kalah')" ${disabled}>Kalah Tim</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+      // ...existing code...
       return `
         <div class="group">
           <div class="group-header">
@@ -645,63 +996,62 @@
       `;
     }
 
+    // Fungsi update hasil untuk seluruh anggota tim sekaligus (global scope)
+    async function updateResultTim(kuponList, kolom, hasil) {
+      for (const kupon of kuponList) {
+        await updateResult(kupon, kolom, hasil);
+      }
+    }
+
     async function updateResult(kupon, kolom, hasil) {
       try {
         const participantIndex = currentData.findIndex(p => p.Kupon === kupon);
         if (participantIndex === -1) {
           throw new Error('Participant not found');
         }
-        
+
+        // Always try PATCH first
         const updateUrl = `${API_URL}/${participantIndex}`;
         const payload = { [kolom]: hasil };
-        
+        let saved = false;
         try {
           const response = await fetch(updateUrl, {
             method: 'PATCH',
-            headers: { 
-              'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
           });
-          
           if (response.ok) {
             currentData[participantIndex][kolom] = hasil;
             alert(`✅ Hasil "${hasil}" berhasil dikirim untuk ${kupon}`);
-            setTimeout(() => {
-              generateTournament(currentLomba);
-            }, 1000);
-            return;
+            saved = true;
           }
         } catch (patchError) {}
-        
-        try {
-          const postPayload = {
-            Kupon: kupon,
-            [kolom]: hasil
-          };
-          const postResponse = await fetch(API_URL, {
-            method: 'POST',
-            headers: { 
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(postPayload)
-          });
-          
-          if (postResponse.ok) {
-            currentData[participantIndex][kolom] = hasil;
-            alert(`✅ Hasil "${hasil}" berhasil dikirim untuk ${kupon} (via POST)`);
-            setTimeout(() => {
-              generateTournament(currentLomba);
-            }, 1000);
-            return;
-          }
-        } catch (postError) {}
-        
-        currentData[participantIndex][kolom] = hasil;
-        alert(`⚠️ Hasil "${hasil}" diupdate secara lokal untuk ${kupon}. Data mungkin tidak tersimpan di server.`);
+
+        // If PATCH fails or column doesn't exist, try POST (creates column if needed)
+        if (!saved) {
+          try {
+            const postPayload = { Kupon: kupon, [kolom]: hasil };
+            const postResponse = await fetch(API_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(postPayload)
+            });
+            if (postResponse.ok) {
+              currentData[participantIndex][kolom] = hasil;
+              alert(`✅ Hasil "${hasil}" berhasil dikirim untuk ${kupon} (via POST)`);
+              saved = true;
+            }
+          } catch (postError) {}
+        }
+
+        // Local update fallback
+        if (!saved) {
+          currentData[participantIndex][kolom] = hasil;
+          alert(`⚠️ Hasil "${hasil}" diupdate secara lokal untuk ${kupon}. Data mungkin tidak tersimpan di server.`);
+        }
         setTimeout(() => {
           generateTournament(currentLomba);
-        }, 500);
+        }, saved ? 1000 : 500);
       } catch (error) {
         alert('❌ Gagal mengirim hasil: ' + error.message + '\n\nCoba periksa koneksi internet atau URL API.');
       }
@@ -711,4 +1061,4 @@
     loadInitialData();
   </script>
 </body>
-</html>
+</htm
