@@ -464,6 +464,10 @@ function bagiKelompokOtomatis(lomba) {
         [lomba + ' Semi Final']: p[lomba + ' Semi Final'] || 'Belum Main',
         [lomba + ' Final']: p[lomba + ' Final'] || 'Belum Main'
       }));
+      // Urutkan peserta solo berdasarkan umur ascending
+      if (!isKelompok) {
+        participants.sort((a, b) => a.umur - b.umur);
+      }
 
       if (participants.length === 0) {
         document.getElementById('tournamentContainer').innerHTML = 
